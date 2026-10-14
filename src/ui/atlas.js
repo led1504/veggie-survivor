@@ -231,6 +231,13 @@
              *   ⇒ 该资产整局空白(2026-10-15 实测: 封面主角不见了, 探针 opaquePx 恒为 0)。
              *   complete === undefined 是小游戏端(没这个字段) —— 只在"明确未完成"时才继续等。 */
             if (img.width > 0 && img.height > 0 && img.complete !== false) { ok(); return; }
+            /* v1.1 慢网不是失败: 图集 1.78MB, 40KB/s 的 4G 上要 45 秒, 而这里 10 秒(100x100ms)就判死;
+             *   bad() 一置 done, 后来真到货的 onload / 轮询再调 ok() 也当场返回 ⇒ 用户**整局**停在程序化
+             *   老美术上, 看到的就是"建模变回最初版"(2026-10-15 实测: 手机 37KB/s, 线上慢网复现
+             *   _err='img:timeout' 且加载完也不恢复)。
+             *   complete === false 是浏览器专有的"确知还在下" ⇒ 只续期、不计数、不判死; 真断了会走
+             *   img.onerror(仍判失败)。小游戏端没有 complete 字段, 保留次数看门狗当兜底。 */
+            if (img.complete === false) { global.setTimeout(poll, 250); return; }
             if (++tries > 100) { bad('timeout'); return; }
             global.setTimeout(poll, 100);
           })();
