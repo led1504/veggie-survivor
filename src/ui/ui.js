@@ -136,10 +136,14 @@
     drawWorld: function () {
       var x = this.ctx, u = this.ui, g = PS.Game;
       var cam = g.cam;
+      /* v7.9(手机适配): 世界缩放(见 balance.js 的 FX.viewZoom*)。先平移镜头再 scale ⇒ 屏幕 = (世界 - cam) * z,
+       *   可见世界矩形因此是 cam + (u.W/z, u.H/z) —— 下面裁剪矩形与地面必须用这个尺寸, 不能再用 u.W/u.H。 */
+      var z = g.viewZ || 1, vw = u.W / z, vh = u.H / z;
       x.save();
       // 屏震
       if (g.shake > 0) x.translate(PS.util.randRange(-g.shake, g.shake), PS.util.randRange(-g.shake, g.shake));
       x.translate(-cam.x, -cam.y);
+      if (z !== 1) x.scale(z, z);
       var i;   /* 特效循环计数: 旧背景平铺循环曾在此声明, 删除后仍需函数内声明(下方各特效循环复用) */
       /* ==================== v5.19d(Codex, 2026-09-29) 视口裁剪 ====================
        * 存在理由(用户逐字): 「还有一个严重影响游戏体验的问题, 我现在才无尽第19波, 有非常严重的卡顿掉帧」。
@@ -158,17 +162,17 @@
       /* 溢出带里的实体是**看得见**的, 裁剪矩形必须一起外扩, 否则它们会在屏幕边上凭空消失。 */
       var C = this._cull = {
         x0: cam.x - bl.l - cullM - cullShake, y0: cam.y - bl.t - cullM - cullShake,
-        x1: cam.x + u.W + bl.r + cullM + cullShake, y1: cam.y + u.H + bl.b + cullM + cullShake
+        x1: cam.x + vw + bl.r + cullM + cullShake, y1: cam.y + vh + bl.b + cullM + cullShake
       };
       this.culled = 0;
       /* 背景: 地面整幅交给 PS.Art.drawGround(art.js 无条件定义, 每帧 1 次离屏图 drawImage + 视口裁剪)。
          兜底分支只在 art.js 缺失时才会走到: 世界基色铺满视口 —— 零烘焙、零离屏画布内存。 */
       if (PS.Art && PS.Art.drawGround) {
-        PS.Art.drawGround(x, { x: cam.x - bl.l, y: cam.y - bl.t, w: u.W + bl.l + bl.r, h: u.H + bl.t + bl.b },
+        PS.Art.drawGround(x, { x: cam.x - bl.l, y: cam.y - bl.t, w: vw + bl.l + bl.r, h: vh + bl.t + bl.b },
           B.WORLD, this.time);
       } else {
         x.fillStyle = '#33441f';                     /* 世界基色, 同 art.js palette.groundB */
-        x.fillRect(cam.x - bl.l, cam.y - bl.t, u.W + bl.l + bl.r, u.H + bl.t + bl.b);
+        x.fillRect(cam.x - bl.l, cam.y - bl.t, vw + bl.l + bl.r, vh + bl.t + bl.b);
       }
       // 世界边界
       x.strokeStyle = 'rgba(216,162,74,0.25)';
