@@ -1,0 +1,9009 @@
+{
+  "generatedAt": "2026-09-30T20:57:41.796Z",
+  "source": "PS.Characters / PS.EnemyData / PS.WeaponData / PS.ItemData + qa/enemy-art-spec.md",
+  "root": "C:\\Users\\Admin\\.openclaw-autoclaw\\workspace\\potato-survivor-v2",
+  "counts": {
+    "char": 20,
+    "foe": 22,
+    "elite": 7,
+    "boss": 3,
+    "wpn": 61,
+    "item": 199,
+    "struct": 9,
+    "prop": 2
+  },
+  "total": 323,
+  "styleBlocks": {
+    "char": "veggie-cute",
+    "foe": "monster-eldritch",
+    "elite": "monster-eldritch+elite",
+    "boss": "monster-eldritch+boss",
+    "wpn": "prop-clean",
+    "item": "icon-flat",
+    "struct": "world-prop-matte",
+    "pick": "icon-flat"
+  },
+  "warnings": [],
+  "assets": [
+    {
+      "id": "char_popo",
+      "category": "char",
+      "gameKey": "popo",
+      "name": "小番茄",
+      "color": "#d8382c",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:popo:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 小番茄。参考 desc: 菜园抵抗军的万金油新兵，一杆弹弓打遍田埂。全属性均衡。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_brick",
+      "category": "char",
+      "gameKey": "brick",
+      "name": "甜菜根",
+      "color": "#b52a78",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:brick:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 甜菜根。参考 desc: 根茎部队的重装兵，挥锤慢但落点深，一动就是半个坑。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_wren",
+      "category": "char",
+      "gameKey": "wren",
+      "name": "玉米",
+      "color": "#f2c73c",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:wren:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 玉米。参考 desc: 高秆哨兵，穗子当弩机。出手快得像风，秸秆一折就断。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_comfrey",
+      "category": "char",
+      "gameKey": "comfrey",
+      "name": "芦荟",
+      "color": "#3fc4a0",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:comfrey:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 芦荟。参考 desc: 菜园军的随队军医，刃上抹着自己的汁液。越战越勇。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_mandrake",
+      "category": "char",
+      "gameKey": "mandrake",
+      "name": "大蒜",
+      "color": "#e4dcc4",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:mandrake:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 大蒜。参考 desc: 坛里腌出来的老蒜，气味就是它的盔甲。让蒜瓣替它打架。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_nightshade",
+      "category": "char",
+      "gameKey": "nightshade",
+      "name": "茄子",
+      "color": "#6f3fa8",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:nightshade:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 茄子。参考 desc: 只在夜里巡逻的茄科斥候，扛着一台谁也没见过的光炮。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_pumpkin",
+      "category": "char",
+      "gameKey": "pumpkin",
+      "name": "南瓜",
+      "color": "#e88a1c",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:pumpkin:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 南瓜。参考 desc: 菜园抵抗军的火爆炮长，一铳撒一把，讲的就是热闹。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_clover",
+      "category": "char",
+      "gameKey": "clover",
+      "name": "四叶草",
+      "color": "#46c96e",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:clover:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 四叶草。参考 desc: 据说它出生那天田里只有三叶草。运气越高，商店品质与波末掉落越好。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_engineer",
+      "category": "char",
+      "gameKey": "engineer",
+      "name": "螺丝椒",
+      "color": "#9aa83c",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:engineer:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 螺丝椒。参考 desc: 菜园军里修水车的工兵椒，腰间别着一把长柄扳手。搭起来的家伙最狠，别的本事平平。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_apprentice",
+      "category": "char",
+      "gameKey": "apprentice",
+      "name": "学徒葱",
+      "color": "#6fd0d8",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:apprentice:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 学徒葱。参考 desc: 刚下田的学徒葱，什么兵器都摸一遍。每升一级，四样伤害各长一点，身板也更脆。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_cyborg",
+      "category": "char",
+      "gameKey": "cyborg",
+      "name": "铁皮冬瓜",
+      "color": "#91a1b6",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:cyborg:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 铁皮冬瓜。参考 desc: 半边身子换成零件的铁皮冬瓜。波次打到一半，远程本事全兑换成结构伤害。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_chili",
+      "category": "char",
+      "gameKey": "chili",
+      "name": "朝天椒",
+      "color": "#d4222c",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:chili:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 朝天椒。参考 desc: 田里最辣的一角。越辣伤害越高，代价是几乎不经打。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_onion",
+      "category": "char",
+      "gameKey": "onion",
+      "name": "洋葱",
+      "color": "#bf87ae",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:onion:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 洋葱。参考 desc: 一层包一层，每升一级再厚一层。走得慢，但很难被啃穿。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_lotus",
+      "category": "char",
+      "gameKey": "lotus",
+      "name": "莲藕",
+      "color": "#e2c9a4",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:lotus:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 莲藕。参考 desc: 藕断丝连：打出去的弹道总要多绕一圈，近身却很吃亏。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_mushroom",
+      "category": "char",
+      "gameKey": "mushroom",
+      "name": "蘑菇",
+      "color": "#a08cc8",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:mushroom:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 蘑菇。参考 desc: 长在菜园背阴角的菌菇。孢子落在谁身上，谁就遭雷。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_beansprout",
+      "category": "char",
+      "gameKey": "beansprout",
+      "name": "豆芽",
+      "color": "#cfe08a",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:beansprout:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 豆芽。参考 desc: 一夜就能蹿起来的新芽：长得快、捡得多，就是命薄。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_bittermelon",
+      "category": "char",
+      "gameKey": "bittermelon",
+      "name": "苦瓜",
+      "color": "#b4c87f",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:bittermelon:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 苦瓜。参考 desc: 苦味散得满田都是：怪走得慢了，但也被养得更壮。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_sugarcane",
+      "category": "char",
+      "gameKey": "sugarcane",
+      "name": "甘蔗",
+      "color": "#c4b083",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:sugarcane:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 甘蔗。参考 desc: 田里的甜杆。果实回得更多、掉得更勤，连商店都便宜些。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_loofah",
+      "category": "char",
+      "gameKey": "loofah",
+      "name": "丝瓜",
+      "color": "#b7cf8a",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:loofah:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 丝瓜。参考 desc: 老丝瓜晒干就是刷锅的那根。一帚下去，怪全被扫开。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "char_greenbean",
+      "category": "char",
+      "gameKey": "greenbean",
+      "name": "豆角",
+      "color": "#96c482",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.72
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "c:greenbean:*"
+      ],
+      "variants": [
+        "idle",
+        "walk"
+      ],
+      "style": "veggie-cute",
+      "zh": "蔬菜拟人: 豆角。参考 desc: 半场静养、半场爆发：波次过半，近战本事全换成远程。",
+      "note": "家族统一标识: 金色外发光描边 + 眉眼/腮红/微笑(与怪物区分)"
+    },
+    {
+      "id": "foe_sprout",
+      "category": "foe",
+      "gameKey": "sprout",
+      "name": "嫩芽",
+      "color": "#7a9a4a",
+      "r": 12,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:sprout:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "破壳里钻出的匍匐肉苗; 决定性特征件: 裂成两片的肉质颚叶（左大右小）; 基型 B1",
+      "note": ""
+    },
+    {
+      "id": "foe_thug",
+      "category": "foe",
+      "gameKey": "thug",
+      "name": "壮墩",
+      "color": "#a06a4a",
+      "r": 17,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:thug:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "往前推的湿肉墙; 决定性特征件: 纵向体裂 + 右肩单根骨刺; 基型 B1/B5",
+      "note": ""
+    },
+    {
+      "id": "foe_soilheap",
+      "category": "foe",
+      "gameKey": "soilheap",
+      "name": "土墩",
+      "color": "#8a7a5a",
+      "r": 18,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:soilheap:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "沤烂发酵的肉垛; 决定性特征件: 顶部 3 个大小不一的囊泡; 基型 B1",
+      "note": ""
+    },
+    {
+      "id": "elite_elBrute",
+      "category": "elite",
+      "gameKey": "elBrute",
+      "name": "剁螳",
+      "color": "#c05a3a",
+      "r": 26,
+      "canvas": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:elBrute:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 1,
+      "style": "monster-eldritch+elite",
+      "zh": "前倾三角甲壳块; 决定性特征件: 双骨镰（左 1.5r/右 1.15r 不等长）; 基型 B2",
+      "note": "精英: 金冠 + 双轮廓"
+    },
+    {
+      "id": "foe_charger",
+      "category": "foe",
+      "gameKey": "charger",
+      "name": "冲角",
+      "color": "#d86a4a",
+      "r": 15,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:charger:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "前重后轻的骨镞; 决定性特征件: 单根断角 + 横向感应裂（无眼）; 基型 B2",
+      "note": ""
+    },
+    {
+      "id": "foe_buzzling",
+      "category": "foe",
+      "gameKey": "buzzling",
+      "name": "刺虫",
+      "color": "#d8c05a",
+      "r": 9,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:buzzling:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "4 节细长肉虫; 决定性特征件: 尾针（0.75r）+ 成对复眼簇; 基型 B3",
+      "note": ""
+    },
+    {
+      "id": "boss_kingTuber",
+      "category": "boss",
+      "gameKey": "kingTuber",
+      "name": "薯王",
+      "color": "#8a2a4a",
+      "r": 42,
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:kingTuber:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 2,
+      "style": "monster-eldritch+boss",
+      "zh": "会走路的湿肉丘; 决定性特征件: 贯通纵裂 + 牙环（负形 25%）; 基型 B1",
+      "note": "Boss: 棘冠 + 危险内发光"
+    },
+    {
+      "id": "foe_rotstump",
+      "category": "foe",
+      "gameKey": "rotstump",
+      "name": "空桩",
+      "color": "#7a6a4a",
+      "r": 20,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:rotstump:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "被掏空的枯桩外壳; 决定性特征件: 空洞（负形）+ 洞内 3 条触须; 基型 B4",
+      "note": "定点远程怪"
+    },
+    {
+      "id": "elite_elReaper",
+      "category": "elite",
+      "gameKey": "elReaper",
+      "name": "鳄瓜",
+      "color": "#4a8a5a",
+      "r": 27,
+      "canvas": [
+        192,
+        192
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:elReaper:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 1,
+      "style": "monster-eldritch+elite",
+      "zh": "低伏的长条甲壳兽; 决定性特征件: 口裂长过体长 60% + 3 列甲片; 基型 B2",
+      "note": "精英: 金冠 + 双轮廓"
+    },
+    {
+      "id": "foe_mobrage",
+      "category": "foe",
+      "gameKey": "mobrage",
+      "name": "菜帮",
+      "color": "#c05a5a",
+      "r": 14,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:mobrage:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "一堆挤在一起的叶与手; 决定性特征件: 5 只大小不一的眼睛; 基型 B1",
+      "note": ""
+    },
+    {
+      "id": "foe_finling",
+      "category": "foe",
+      "gameKey": "finling",
+      "name": "鳍鱼",
+      "color": "#5ac0d0",
+      "r": 13,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:finling:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "扁平流线肉条; 决定性特征件: 背鳍皮膜 + 体侧 3 道裂鳃; 基型 B2",
+      "note": ""
+    },
+    {
+      "id": "foe_fly",
+      "category": "foe",
+      "gameKey": "fly",
+      "name": "腐蝇",
+      "color": "#9aa86a",
+      "r": 12,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:fly:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "两团占满脑袋的复眼; 决定性特征件: 巨型复眼 ×2 + 吸盘口; 基型 B3/B4",
+      "note": ""
+    },
+    {
+      "id": "elite_elWeaver",
+      "category": "elite",
+      "gameKey": "elWeaver",
+      "name": "石瓜",
+      "color": "#7a8a9a",
+      "r": 25,
+      "canvas": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:elWeaver:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 1,
+      "style": "monster-eldritch+elite",
+      "zh": "半风化的石壳像; 决定性特征件: 胸口湿肉裂口 + 右半圈 6 条触须; 基型 B2",
+      "note": "定点远程怪"
+    },
+    {
+      "id": "foe_herbwife",
+      "category": "foe",
+      "gameKey": "herbwife",
+      "name": "药婆",
+      "color": "#7ed08a",
+      "r": 14,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:herbwife:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "披破斗篷的瘦长立架; 决定性特征件: 兜帽空洞 + 4 只不对称的手; 基型 B5",
+      "note": ""
+    },
+    {
+      "id": "foe_rockling",
+      "category": "foe",
+      "gameKey": "rockling",
+      "name": "岩壳",
+      "color": "#6a7a8a",
+      "r": 15,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:rockling:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "硬边碎石块; 决定性特征件: 3 条渗肉缝（非 blob 轮廓）; 基型 B2",
+      "note": ""
+    },
+    {
+      "id": "foe_hornpumpkin",
+      "category": "foe",
+      "gameKey": "hornpumpkin",
+      "name": "角瓜",
+      "color": "#c07a3a",
+      "r": 20,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:hornpumpkin:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "裂成 6 瓣的湿肉瓜; 决定性特征件: 6 瓣纵缝 + 双犄角（0.9r/0.55r）; 基型 B1",
+      "note": ""
+    },
+    {
+      "id": "foe_hornpod",
+      "category": "foe",
+      "gameKey": "hornpod",
+      "name": "尖荚",
+      "color": "#d84a3a",
+      "r": 15,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:hornpod:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "被拉长的荚壳; 决定性特征件: 前端骨锥 0.7r + 侧裂露 3 籽; 基型 B2",
+      "note": ""
+    },
+    {
+      "id": "boss_elderBlight",
+      "category": "boss",
+      "gameKey": "elderBlight",
+      "name": "枯老",
+      "color": "#2a5a3a",
+      "r": 44,
+      "canvas": [
+        288,
+        288
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:elderBlight:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 2,
+      "style": "monster-eldritch+boss",
+      "zh": "高瘦的枯木立架; 决定性特征件: 空洞脸 + 悬浮孢子点; 基型 B5",
+      "note": "Boss: 棘冠 + 危险内发光"
+    },
+    {
+      "id": "foe_hopper",
+      "category": "foe",
+      "gameKey": "hopper",
+      "name": "跳菇",
+      "color": "#e0a05a",
+      "r": 11,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:hopper:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "歪斜菌盖压着收缩菌柄; 决定性特征件: 菌盖右侧塌陷 + 折叠后腿; 基型 B4",
+      "note": ""
+    },
+    {
+      "id": "foe_lamprey",
+      "category": "foe",
+      "gameKey": "lamprey",
+      "name": "沟鳗",
+      "color": "#4a7a8a",
+      "r": 16,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:lamprey:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "没有眼睛的长肉虫; 决定性特征件: 前端吸盘口（2 圈牙）; 基型 B3",
+      "note": ""
+    },
+    {
+      "id": "foe_crothief",
+      "category": "foe",
+      "gameKey": "crothief",
+      "name": "偷鸦",
+      "color": "#5a5a6a",
+      "r": 13,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:crothief:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "低伏鸟影; 决定性特征件: 裂开的肉颚喙 + 头侧 3 眼; 基型 B2/B5",
+      "note": ""
+    },
+    {
+      "id": "elite_scythemantis",
+      "category": "elite",
+      "gameKey": "scythemantis",
+      "name": "镰螳",
+      "color": "#7ac05a",
+      "r": 24,
+      "canvas": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:scythemantis:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 1,
+      "style": "monster-eldritch+elite",
+      "zh": "三角头 + 高胸节 + 节段腹; 决定性特征件: 双镰臂（一高一低）; 基型 B3/B2",
+      "note": "精英: 金冠 + 双轮廓"
+    },
+    {
+      "id": "elite_earthmother",
+      "category": "elite",
+      "gameKey": "earthmother",
+      "name": "薯婆",
+      "color": "#8a6a8a",
+      "r": 30,
+      "canvas": [
+        192,
+        192
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:earthmother:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 1,
+      "style": "monster-eldritch+elite",
+      "zh": "巨囊身挂 3 个副囊; 决定性特征件: 囊缝里一排 4 条短触手; 基型 B1",
+      "note": "定点远程怪"
+    },
+    {
+      "id": "elite_asceticradish",
+      "category": "elite",
+      "gameKey": "asceticradish",
+      "name": "苦萝",
+      "color": "#c8b06a",
+      "r": 26,
+      "canvas": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:asceticradish:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 1,
+      "style": "monster-eldritch+elite",
+      "zh": "瘦高根体被骨刺自缚; 决定性特征件: 一圈 6 根自缚骨刺 + 2 个空洞眼窝; 基型 B5",
+      "note": "精英: 金冠 + 双轮廓"
+    },
+    {
+      "id": "boss_soulvine",
+      "category": "boss",
+      "gameKey": "soulvine",
+      "name": "魂藤",
+      "color": "#3a2a5a",
+      "r": 48,
+      "canvas": [
+        288,
+        288
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:soulvine:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 2,
+      "style": "monster-eldritch+boss",
+      "zh": "藤与骨拧成的人形柱; 决定性特征件: 中轴单只巨眼（被 4 条藤半遮）; 基型 B1",
+      "note": "Boss: 棘冠 + 危险内发光"
+    },
+    {
+      "id": "foe_rootthrall",
+      "category": "foe",
+      "gameKey": "rootthrall",
+      "name": "缠根",
+      "color": "#6a8a4a",
+      "r": 16,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:rootthrall:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "上半露骨、下半拖根束; 决定性特征件: 下半身 6 根根束 + 外露 3 条肋骨; 基型 B3/B5",
+      "note": ""
+    },
+    {
+      "id": "elite_ironrhizo",
+      "category": "elite",
+      "gameKey": "ironrhizo",
+      "name": "铁薯",
+      "color": "#9a7a5a",
+      "r": 29,
+      "canvas": [
+        192,
+        192
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:ironrhizo:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 2,
+      "style": "monster-eldritch+elite",
+      "zh": "披铁甲的厚躯; 决定性特征件: 前端骨锥 0.8r + 甲缝 4 条透光缝（无眼）; 基型 B2",
+      "note": "精英: 金冠 + 双轮廓"
+    },
+    {
+      "id": "foe_slasher",
+      "category": "foe",
+      "gameKey": "slasher",
+      "name": "镰手",
+      "color": "#8a4a5a",
+      "r": 19,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:slasher:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "瘦高兜帽身; 决定性特征件: 单臂骨镰 + 另一侧断肢; 基型 B5",
+      "note": ""
+    },
+    {
+      "id": "foe_splitpod",
+      "category": "foe",
+      "gameKey": "splitpod",
+      "name": "裂荚",
+      "color": "#c8e08a",
+      "r": 12,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:splitpod:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "晒干的鼓壳; 决定性特征件: 顶裂 + 缝里 4 颗籽; 基型 B4",
+      "note": ""
+    },
+    {
+      "id": "foe_cackler",
+      "category": "foe",
+      "gameKey": "cackler",
+      "name": "笑枭",
+      "color": "#8a6aa8",
+      "r": 15,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:cackler:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "圆身枭影; 决定性特征件: 4 瓣裂脸（每瓣 1 只眼）+ 发声囊; 基型 B2/B4",
+      "note": ""
+    },
+    {
+      "id": "foe_spitweed",
+      "category": "foe",
+      "gameKey": "spitweed",
+      "name": "喷藤",
+      "color": "#8fae5a",
+      "r": 13,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:spitweed:*"
+      ],
+      "variants": [
+        "front",
+        "side"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "茎顶裂成 5 瓣的吻; 决定性特征件: 5 瓣裂吻（内侧倒刺）+ 茎上 3 圈刺; 基型 B4",
+      "note": "定点远程怪"
+    },
+    {
+      "id": "foe_tentacle",
+      "category": "foe",
+      "gameKey": "tentacle",
+      "name": "沼手",
+      "color": "#5a6a4a",
+      "r": 24,
+      "canvas": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.78
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "e:tentacle:*"
+      ],
+      "variants": [
+        "front"
+      ],
+      "tier": 0,
+      "style": "monster-eldritch",
+      "zh": "从地里钻出的肉质柱; 决定性特征件: 顶端 3 个递减吸盘 + 底部碎土环; 基型 B3",
+      "note": ""
+    },
+    {
+      "id": "wpn_cactus_mace",
+      "category": "wpn",
+      "gameKey": "cactus_mace",
+      "name": "狼牙棒",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:cactus_mace_t1:*",
+        "w3:cactus_mace_t2:*",
+        "w3:cactus_mace_t3:*",
+        "w3:cactus_mace_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 狼牙棒 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_chopper",
+      "category": "wpn",
+      "gameKey": "chopper",
+      "name": "厚背剁刀",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:chopper_t1:*",
+        "w3:chopper_t2:*",
+        "w3:chopper_t3:*",
+        "w3:chopper_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 厚背剁刀 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_circular_saw",
+      "category": "wpn",
+      "gameKey": "circular_saw",
+      "name": "圆盘锯",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:circular_saw_t2:*",
+        "w3:circular_saw_t3:*",
+        "w3:circular_saw_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 圆盘锯 II (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_claw",
+      "category": "wpn",
+      "gameKey": "claw",
+      "name": "三齿钢耙",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:claw_t1:*",
+        "w3:claw_t2:*",
+        "w3:claw_t3:*",
+        "w3:claw_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 三齿钢耙 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_dagger",
+      "category": "wpn",
+      "gameKey": "dagger",
+      "name": "短刃匕",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:dagger_t1:*",
+        "w3:dagger_t2:*",
+        "w3:dagger_t3:*",
+        "w3:dagger_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 短刃匕 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_dextroyer",
+      "category": "wpn",
+      "gameKey": "dextroyer",
+      "name": "破土犁刀",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:dextroyer_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 破土犁刀 IV (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_drill",
+      "category": "wpn",
+      "gameKey": "drill",
+      "name": "穿心钻",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:drill_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 穿心钻 IV (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_excalibur",
+      "category": "wpn",
+      "gameKey": "excalibur",
+      "name": "圣芒长剑",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:excalibur_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 圣芒长剑 IV (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_fighting_stick",
+      "category": "wpn",
+      "gameKey": "fighting_stick",
+      "name": "短棍",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:fighting_stick_t1:*",
+        "w3:fighting_stick_t2:*",
+        "w3:fighting_stick_t3:*",
+        "w3:fighting_stick_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 短棍 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_fist",
+      "category": "wpn",
+      "gameKey": "fist",
+      "name": "铁指拳套",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:fist_t1:*",
+        "w3:fist_t2:*",
+        "w3:fist_t3:*",
+        "w3:fist_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 铁指拳套 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_flaming_knuckles",
+      "category": "wpn",
+      "gameKey": "flaming_knuckles",
+      "name": "烈焰拳套",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:flaming_knuckles_t2:*",
+        "w3:flaming_knuckles_t3:*",
+        "w3:flaming_knuckles_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 烈焰拳套 II (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_ghost_axe",
+      "category": "wpn",
+      "gameKey": "ghost_axe",
+      "name": "幽影战斧",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:ghost_axe_t1:*",
+        "w3:ghost_axe_t2:*",
+        "w3:ghost_axe_t3:*",
+        "w3:ghost_axe_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 幽影战斧 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_ghost_flint",
+      "category": "wpn",
+      "gameKey": "ghost_flint",
+      "name": "鬼火燧石",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:ghost_flint_t1:*",
+        "w3:ghost_flint_t2:*",
+        "w3:ghost_flint_t3:*",
+        "w3:ghost_flint_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 鬼火燧石 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_hammer",
+      "category": "wpn",
+      "gameKey": "hammer",
+      "name": "碎岩重锤",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:hammer_t2:*",
+        "w3:hammer_t3:*",
+        "w3:hammer_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 碎岩重锤 II (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_hand",
+      "category": "wpn",
+      "gameKey": "hand",
+      "name": "铁砂掌",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:hand_t1:*",
+        "w3:hand_t2:*",
+        "w3:hand_t3:*",
+        "w3:hand_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 铁砂掌 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_hatchet",
+      "category": "wpn",
+      "gameKey": "hatchet",
+      "name": "短柄手斧",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:hatchet_t1:*",
+        "w3:hatchet_t2:*",
+        "w3:hatchet_t3:*",
+        "w3:hatchet_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 短柄手斧 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_jousting_lance",
+      "category": "wpn",
+      "gameKey": "jousting_lance",
+      "name": "冲阵长枪",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:jousting_lance_t1:*",
+        "w3:jousting_lance_t2:*",
+        "w3:jousting_lance_t3:*",
+        "w3:jousting_lance_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 冲阵长枪 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_knife",
+      "category": "wpn",
+      "gameKey": "knife",
+      "name": "薄刃切刀",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:knife_t1:*",
+        "w3:knife_t2:*",
+        "w3:knife_t3:*",
+        "w3:knife_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 薄刃切刀 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_lightning_shiv",
+      "category": "wpn",
+      "gameKey": "lightning_shiv",
+      "name": "雷光短匕",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:lightning_shiv_t1:*",
+        "w3:lightning_shiv_t2:*",
+        "w3:lightning_shiv_t3:*",
+        "w3:lightning_shiv_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 雷光短匕 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_plank",
+      "category": "wpn",
+      "gameKey": "plank",
+      "name": "厚木板",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:plank_t1:*",
+        "w3:plank_t2:*",
+        "w3:plank_t3:*",
+        "w3:plank_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 厚木板 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_plasma_sledgehammer",
+      "category": "wpn",
+      "gameKey": "plasma_sledgehammer",
+      "name": "等离子重槌",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:plasma_sledgehammer_t3:*",
+        "w3:plasma_sledgehammer_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 等离子重槌 III (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_power_fist",
+      "category": "wpn",
+      "gameKey": "power_fist",
+      "name": "重击拳套",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:power_fist_t3:*",
+        "w3:power_fist_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 重击拳套 III (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_pruner",
+      "category": "wpn",
+      "gameKey": "pruner",
+      "name": "修枝镰",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:pruner_t1:*",
+        "w3:pruner_t2:*",
+        "w3:pruner_t2b:*",
+        "w3:pruner_t3:*",
+        "w3:pruner_t3b:*",
+        "w3:pruner_t4:*",
+        "w3:pruner_t4b:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 修枝镰 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_rock",
+      "category": "wpn",
+      "gameKey": "rock",
+      "name": "投掷石块",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:rock_t1:*",
+        "w3:rock_t2:*",
+        "w3:rock_t3:*",
+        "w3:rock_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 投掷石块 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_scissors",
+      "category": "wpn",
+      "gameKey": "scissors",
+      "name": "园圃剪刀",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:scissors_t1:*",
+        "w3:scissors_t2:*",
+        "w3:scissors_t3:*",
+        "w3:scissors_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 园圃剪刀 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_screwdriver",
+      "category": "wpn",
+      "gameKey": "screwdriver",
+      "name": "螺丝刀",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:screwdriver_t1:*",
+        "w3:screwdriver_t2:*",
+        "w3:screwdriver_t3:*",
+        "w3:screwdriver_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 螺丝刀 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_scythe",
+      "category": "wpn",
+      "gameKey": "scythe",
+      "name": "收割长镰",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:scythe_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 收割长镰 IV (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_sharp_tooth",
+      "category": "wpn",
+      "gameKey": "sharp_tooth",
+      "name": "尖牙短刃",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:sharp_tooth_t1:*",
+        "w3:sharp_tooth_t2:*",
+        "w3:sharp_tooth_t3:*",
+        "w3:sharp_tooth_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 尖牙短刃 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_spear",
+      "category": "wpn",
+      "gameKey": "spear",
+      "name": "长杆矛",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:spear_t1:*",
+        "w3:spear_t2:*",
+        "w3:spear_t3:*",
+        "w3:spear_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 长杆矛 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_spiky_shield",
+      "category": "wpn",
+      "gameKey": "spiky_shield",
+      "name": "尖刺圆盾",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:spiky_shield_t1:*",
+        "w3:spiky_shield_t2:*",
+        "w3:spiky_shield_t3:*",
+        "w3:spiky_shield_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 尖刺圆盾 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_stick",
+      "category": "wpn",
+      "gameKey": "stick",
+      "name": "枯枝棍",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:stick_t1:*",
+        "w3:stick_t2:*",
+        "w3:stick_t3:*",
+        "w3:stick_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 枯枝棍 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_sword",
+      "category": "wpn",
+      "gameKey": "sword",
+      "name": "阔刃剑",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:sword_t2:*",
+        "w3:sword_t3:*",
+        "w3:sword_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 阔刃剑 II (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_thunder_sword",
+      "category": "wpn",
+      "gameKey": "thunder_sword",
+      "name": "雷击长剑",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:thunder_sword_t3:*",
+        "w3:thunder_sword_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 雷击长剑 III (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_torch",
+      "category": "wpn",
+      "gameKey": "torch",
+      "name": "火把",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:torch_t1:*",
+        "w3:torch_t2:*",
+        "w3:torch_t3:*",
+        "w3:torch_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 火把 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_vorpal_sword",
+      "category": "wpn",
+      "gameKey": "vorpal_sword",
+      "name": "锋刃巨剑",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:vorpal_sword_t2:*",
+        "w3:vorpal_sword_t3:*",
+        "w3:vorpal_sword_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 锋刃巨剑 II (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_wrench",
+      "category": "wpn",
+      "gameKey": "wrench",
+      "name": "长柄扳手",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:wrench_t1:*",
+        "w3:wrench_t2:*",
+        "w3:wrench_t3:*",
+        "w3:wrench_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "melee",
+      "sfx": "melee",
+      "style": "prop-clean",
+      "zh": "近战兵器: 长柄扳手 I (SFX 族 melee)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_chain_gun",
+      "category": "wpn",
+      "gameKey": "chain_gun",
+      "name": "连珠机铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:chain_gun_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot2",
+      "style": "prop-clean",
+      "zh": "远程兵器: 连珠机铳 IV (SFX 族 shoot2)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_crossbow",
+      "category": "wpn",
+      "gameKey": "crossbow",
+      "name": "手弩",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:crossbow_t1:*",
+        "w3:crossbow_t2:*",
+        "w3:crossbow_t3:*",
+        "w3:crossbow_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 手弩 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_double_barrel_shotgun",
+      "category": "wpn",
+      "gameKey": "double_barrel_shotgun",
+      "name": "双管猎铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:double_barrel_shotgun_t1:*",
+        "w3:double_barrel_shotgun_t2:*",
+        "w3:double_barrel_shotgun_t3:*",
+        "w3:double_barrel_shotgun_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot2",
+      "style": "prop-clean",
+      "zh": "远程兵器: 双管猎铳 I (SFX 族 shoot2)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_fireball",
+      "category": "wpn",
+      "gameKey": "fireball",
+      "name": "爆炎弹",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:fireball_t2:*",
+        "w3:fireball_t3:*",
+        "w3:fireball_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 爆炎弹 II (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_flamethrower",
+      "category": "wpn",
+      "gameKey": "flamethrower",
+      "name": "喷火罐",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:flamethrower_t2:*",
+        "w3:flamethrower_t3:*",
+        "w3:flamethrower_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 喷火罐 II (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_gatling_laser",
+      "category": "wpn",
+      "gameKey": "gatling_laser",
+      "name": "多管光铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:gatling_laser_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 多管光铳 IV (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_ghost_scepter",
+      "category": "wpn",
+      "gameKey": "ghost_scepter",
+      "name": "幽光权杖",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:ghost_scepter_t1:*",
+        "w3:ghost_scepter_t2:*",
+        "w3:ghost_scepter_t3:*",
+        "w3:ghost_scepter_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 幽光权杖 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_icicle",
+      "category": "wpn",
+      "gameKey": "icicle",
+      "name": "寒冰锥",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:icicle_t1:*",
+        "w3:icicle_t2:*",
+        "w3:icicle_t3:*",
+        "w3:icicle_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 寒冰锥 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_laser_gun",
+      "category": "wpn",
+      "gameKey": "laser_gun",
+      "name": "聚能光铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:laser_gun_t1:*",
+        "w3:laser_gun_t2:*",
+        "w3:laser_gun_t3:*",
+        "w3:laser_gun_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 聚能光铳 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_medical_gun",
+      "category": "wpn",
+      "gameKey": "medical_gun",
+      "name": "药剂注射铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:medical_gun_t1:*",
+        "w3:medical_gun_t2:*",
+        "w3:medical_gun_t3:*",
+        "w3:medical_gun_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 药剂注射铳 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_minigun",
+      "category": "wpn",
+      "gameKey": "minigun",
+      "name": "多管速射铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:minigun_t3:*",
+        "w3:minigun_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 多管速射铳 III (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_nuclear_launcher",
+      "category": "wpn",
+      "gameKey": "nuclear_launcher",
+      "name": "核籽重炮",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:nuclear_launcher_t3:*",
+        "w3:nuclear_launcher_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 核籽重炮 III (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_obliterator",
+      "category": "wpn",
+      "gameKey": "obliterator",
+      "name": "湮灭光炮",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:obliterator_t3:*",
+        "w3:obliterator_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 湮灭光炮 III (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_particle_accelerator",
+      "category": "wpn",
+      "gameKey": "particle_accelerator",
+      "name": "粒子加速炮",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:particle_accelerator_t3:*",
+        "w3:particle_accelerator_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 粒子加速炮 III (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_pistol",
+      "category": "wpn",
+      "gameKey": "pistol",
+      "name": "短管手铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:pistol_t1:*",
+        "w3:pistol_t2:*",
+        "w3:pistol_t3:*",
+        "w3:pistol_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 短管手铳 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_potato_thrower",
+      "category": "wpn",
+      "gameKey": "potato_thrower",
+      "name": "肩扛投筒",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:potato_thrower_t2:*",
+        "w3:potato_thrower_t3:*",
+        "w3:potato_thrower_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 肩扛投筒 II (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_revolver",
+      "category": "wpn",
+      "gameKey": "revolver",
+      "name": "转轮手铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:revolver_t1:*",
+        "w3:revolver_t2:*",
+        "w3:revolver_t3:*",
+        "w3:revolver_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 转轮手铳 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_rocket_launcher",
+      "category": "wpn",
+      "gameKey": "rocket_launcher",
+      "name": "肩扛火箭筒",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:rocket_launcher_t2:*",
+        "w3:rocket_launcher_t3:*",
+        "w3:rocket_launcher_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 肩扛火箭筒 II (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_shredder",
+      "category": "wpn",
+      "gameKey": "shredder",
+      "name": "碎叶铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:shredder_t1:*",
+        "w3:shredder_t2:*",
+        "w3:shredder_t3:*",
+        "w3:shredder_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 碎叶铳 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_shuriken",
+      "category": "wpn",
+      "gameKey": "shuriken",
+      "name": "飞叶镖",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:shuriken_t1:*",
+        "w3:shuriken_t2:*",
+        "w3:shuriken_t3:*",
+        "w3:shuriken_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 飞叶镖 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_slingshot",
+      "category": "wpn",
+      "gameKey": "slingshot",
+      "name": "藤皮弹弓",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:slingshot_t1:*",
+        "w3:slingshot_t2:*",
+        "w3:slingshot_t3:*",
+        "w3:slingshot_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 藤皮弹弓 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_smg",
+      "category": "wpn",
+      "gameKey": "smg",
+      "name": "连发冲锋铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:smg_t1:*",
+        "w3:smg_t2:*",
+        "w3:smg_t3:*",
+        "w3:smg_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 连发冲锋铳 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_sniper_gun",
+      "category": "wpn",
+      "gameKey": "sniper_gun",
+      "name": "长管狙击铳",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:sniper_gun_t3:*",
+        "w3:sniper_gun_t3b:*",
+        "w3:sniper_gun_t4:*",
+        "w3:sniper_gun_t4b:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 长管狙击铳 III (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_taser",
+      "category": "wpn",
+      "gameKey": "taser",
+      "name": "电击棍",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:taser_t1:*",
+        "w3:taser_t2:*",
+        "w3:taser_t3:*",
+        "w3:taser_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 电击棍 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "wpn_wand",
+      "category": "wpn",
+      "gameKey": "wand",
+      "name": "芽木法杖",
+      "color": "",
+      "canvas": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "w3:wand_t1:*",
+        "w3:wand_t2:*",
+        "w3:wand_t3:*",
+        "w3:wand_t4:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "tiers": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cls": "ranged",
+      "sfx": "shoot",
+      "style": "prop-clean",
+      "zh": "远程兵器: 芽木法杖 I (SFX 族 shoot)",
+      "note": "阶位(T1-T4)的描边/徽记色由代码加, 只出 1 张基础图"
+    },
+    {
+      "id": "item_alien_tongue",
+      "category": "item",
+      "gameKey": "alien_tongue",
+      "name": "卷舌苗",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:alien_tongue"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 卷舌苗。伸得老长，捋得动石头。拾取 +30，击退 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_alien_worm",
+      "category": "item",
+      "gameKey": "alien_worm",
+      "name": "地龙萝卜",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:alien_worm"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 地龙萝卜。根里盘着一条肥虫，伤口合得快，果子吃不干净。生命上限 +3，生命恢复 +2，果实回复 -1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_baby_elephant",
+      "category": "item",
+      "gameKey": "baby_elephant",
+      "name": "小象草",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:baby_elephant"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 小象草。鼻子一翘就有好运。拾起余料时，凭运气替你补上一记。…",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_baby_gecko",
+      "category": "item",
+      "gameKey": "baby_gecko",
+      "name": "壁虎崽子",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:baby_gecko"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 壁虎崽子。尾巴一甩，土里的材料自己往身上贴。材料吸附 +25%，射程 +10",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_bag",
+      "category": "item",
+      "gameKey": "bag",
+      "name": "拾荒布兜",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:bag"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 拾荒布兜。翻箱子时多扒出几份，走路沉一点。开箱材料 +15，移速 -1%，…",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_bat",
+      "category": "item",
+      "gameKey": "bat",
+      "name": "夜蝠藤",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:bat"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 夜蝠藤。夜里吸血，白天偷收成。吸血 +2，采集 -2",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_beanie",
+      "category": "item",
+      "gameKey": "beanie",
+      "name": "毛线兜帽",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:beanie"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 毛线兜帽。跑得快，手短一截。射程 -6，移速 +4%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_boiling_water",
+      "category": "item",
+      "gameKey": "boiling_water",
+      "name": "滚水壶",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:boiling_water"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 滚水壶。烫得草药冒泡，自己脱水。元素伤害 +2，生命上限 -1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_book",
+      "category": "item",
+      "gameKey": "book",
+      "name": "农书残页",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:book"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 农书残页。照着书搭架子。结构伤害 +2，运气 -1，元素伤害 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_boxing_glove",
+      "category": "item",
+      "gameKey": "boxing_glove",
+      "name": "拳套",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:boxing_glove"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 拳套。一拳把人推开。击退 +3，近战伤害 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_broken_mouth",
+      "category": "item",
+      "gameKey": "broken_mouth",
+      "name": "豁口陶罐",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:broken_mouth"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 豁口陶罐。能装得多，漏得也快。生命上限 +5，生命恢复 -1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_butterfly",
+      "category": "item",
+      "gameKey": "butterfly",
+      "name": "菜粉蝶",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:butterfly"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 菜粉蝶。一沾就吸血，怕冷。吸血 +2，元素伤害 -1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_cake",
+      "category": "item",
+      "gameKey": "cake",
+      "name": "胡萝卜糕",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:cake"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 胡萝卜糕。吃饱了长肉，手软一点。生命上限 +3，伤害 -1%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_charcoal",
+      "category": "item",
+      "gameKey": "charcoal",
+      "name": "炭渣",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:charcoal"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 炭渣。火气足，蹭脏了收成。近战伤害 +2，采集 -2，元素伤害 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_claw_tree",
+      "category": "item",
+      "gameKey": "claw_tree",
+      "name": "钩爪枝",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:claw_tree"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 钩爪枝。专挑要害，扎手。暴击率 +3%，生命上限 -1，近战伤害 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_coffee",
+      "category": "item",
+      "gameKey": "coffee",
+      "name": "浓煮豆汁",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:coffee"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 浓煮豆汁。手快，力气虚。攻速 +10%，伤害 -2%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_coupon",
+      "category": "item",
+      "gameKey": "coupon",
+      "name": "菜场劵",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:coupon"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 菜场劵。摊位前掏出来就便宜。商店价格 -5%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_cute_monkey",
+      "category": "item",
+      "gameKey": "cute_monkey",
+      "name": "机灵猴",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:cute_monkey"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 机灵猴。抢到一点零碎，就替你舔一口伤。拾金回血 +8%，远程伤害 -1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_defective_steroids",
+      "category": "item",
+      "gameKey": "defective_steroids",
+      "name": "劣质营养剂",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:defective_steroids"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 劣质营养剂。长肉长劲，手却钝。攻速 -3%，生命上限 +2，近战伤害 +2",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_duct_tape",
+      "category": "item",
+      "gameKey": "duct_tape",
+      "name": "胶布卷",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:duct_tape"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 胶布卷。缠哪补哪，人薄一层。生命上限 -2，护甲 +1，结构伤害 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_dynamite",
+      "category": "item",
+      "gameKey": "dynamite",
+      "name": "硝化萝卜",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:dynamite"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 硝化萝卜。炸得开，全靠这口辛辣。爆炸伤害 +15%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_fertilizer",
+      "category": "item",
+      "gameKey": "fertilizer",
+      "name": "陈年肥",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:fertilizer"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 陈年肥。催收成，手滑一点。采集 +8，近战伤害 -1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_fresh_meat",
+      "category": "item",
+      "gameKey": "fresh_meat",
+      "name": "鲜肉片",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:fresh_meat"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 鲜肉片。咬得动就回血，伤口慢。吸血 +2，生命恢复 -1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_gentle_alien",
+      "category": "item",
+      "gameKey": "gentle_alien",
+      "name": "温驯异种",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:gentle_alien"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 温驯异种。冲你笑，也把同类都招呼过来。伤害 +5%，敌人数量 +5%，生命上限 +2",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_glasses",
+      "category": "item",
+      "gameKey": "glasses",
+      "name": "老花镜",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:glasses"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 老花镜。看得更远。射程 +20",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_goat_skull",
+      "category": "item",
+      "gameKey": "goat_skull",
+      "name": "羊头骨",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:goat_skull"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 羊头骨。近战利器，挑不准要害。近战伤害 +3，暴击率 -2%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_gummy_berserker",
+      "category": "item",
+      "gameKey": "gummy_berserker",
+      "name": "软糖狂徒",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:gummy_berserker"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 软糖狂徒。手快看得远，皮薄。射程 +25，攻速 +5%，护甲 -1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_head_injury",
+      "category": "item",
+      "gameKey": "head_injury",
+      "name": "脑门旧伤",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:head_injury"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 脑门旧伤。下手更狠，看得近。射程 -8，伤害 +6%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_hedgehog",
+      "category": "item",
+      "gameKey": "hedgehog",
+      "name": "刺猬",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:hedgehog"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 刺猬。一身刺，止不住血。近战伤害 +2，生命恢复 -1，远程伤害 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_helmet",
+      "category": "item",
+      "gameKey": "helmet",
+      "name": "铁皮帽",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:helmet"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 铁皮帽。结实，就是压头。移速 -2%，护甲 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_injection",
+      "category": "item",
+      "gameKey": "injection",
+      "name": "针剂",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:injection"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 针剂。一针下去很狠，身板更薄。伤害 +7%，生命上限 -2",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_insanity",
+      "category": "item",
+      "gameKey": "insanity",
+      "name": "疯长剂",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:insanity"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 疯长剂。专挑要害，力气散。暴击率 +6%，伤害 -3%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_jelly",
+      "category": "item",
+      "gameKey": "jelly",
+      "name": "果冻块",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:jelly"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 果冻块。软软一块，垫命。…",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_landmines",
+      "category": "item",
+      "gameKey": "landmines",
+      "name": "播种地雷",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:landmines"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 播种地雷。一路走一路埋，踩上就炸。地雷 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_lemonade",
+      "category": "item",
+      "gameKey": "lemonade",
+      "name": "酸柠汽水",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:lemonade"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 酸柠汽水。一口透心凉，连果子都多顶一点。果实回复 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_lens",
+      "category": "item",
+      "gameKey": "lens",
+      "name": "单片镜",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:lens"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 单片镜。远处瞄准，看得近些。射程 -5，远程伤害 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_lost_duck",
+      "category": "item",
+      "gameKey": "lost_duck",
+      "name": "走失小鸭",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:lost_duck"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 走失小鸭。带来好运，怕冷。运气 +8，元素伤害 -1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_lumberjack_shirt",
+      "category": "item",
+      "gameKey": "lumberjack_shirt",
+      "name": "伐木背心",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:lumberjack_shirt"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 伐木背心。顺手一劈，树苗一碰就倒。一触即倒 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_mushroom",
+      "category": "item",
+      "gameKey": "mushroom",
+      "name": "伞菇",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:mushroom"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 伞菇。愈合快，运气背。生命恢复 +3，运气 -2",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_mutation",
+      "category": "item",
+      "gameKey": "mutation",
+      "name": "变异芽",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:mutation"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 变异芽。元素和远程都长一点，推不动人。击退 -3，远程伤害 +1，元素伤害 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_peaceful_bee",
+      "category": "item",
+      "gameKey": "peaceful_bee",
+      "name": "温顺土蜂",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:peaceful_bee"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 温顺土蜂。会闪会收，力气小。闪避 +4%，采集 +4，近战伤害 -1，…",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_pencil",
+      "category": "item",
+      "gameKey": "pencil",
+      "name": "铅笔头",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:pencil"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 铅笔头。画得架子稳，手慢眼钝。结构伤害 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_plant",
+      "category": "item",
+      "gameKey": "plant",
+      "name": "盆栽",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:plant"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 盆栽。自愈飞快，吸不动。生命恢复 +3，吸血 -1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_propeller_hat",
+      "category": "item",
+      "gameKey": "propeller_hat",
+      "name": "竹蜻蜓帽",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:propeller_hat"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 竹蜻蜓帽。转出好运，力气飘。运气 +10，伤害 -2%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_scar",
+      "category": "item",
+      "gameKey": "scar",
+      "name": "旧疤",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:scar"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 旧疤。学得快，看得近。经验 +20%，射程 -8",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_scared_sausage",
+      "category": "item",
+      "gameKey": "scared_sausage",
+      "name": "胆怯香肠",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:scared_sausage"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 胆怯香肠。点着了就烧起来。燃烧几率 +25%，燃烧持续 +3，燃烧伤害 +1，…",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_sharp_bullet",
+      "category": "item",
+      "gameKey": "sharp_bullet",
+      "name": "尖头弹豆",
+      "color": "#c8b06a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:sharp_bullet"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 尖头弹豆。钻得深，钻不狠。穿透伤害 -20%，伤害 -5%，击退 -3，…",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_snake",
+      "category": "item",
+      "gameKey": "snake",
+      "name": "蛇形豆荚",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:snake"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 蛇形豆荚。火苗会顺着荚爬到旁边。生命上限 -1，燃烧扩散 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_terrified_onion",
+      "category": "item",
+      "gameKey": "terrified_onion",
+      "name": "受惊洋葱",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:terrified_onion"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 受惊洋葱。辣得直窜，运气差。运气 -5，移速 +4%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_toxic_sludge",
+      "category": "item",
+      "gameKey": "toxic_sludge",
+      "name": "毒泥浆",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:toxic_sludge"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 毒泥浆。元素更毒，身法变笨。闪避 -2%，元素伤害 +2",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_tree",
+      "category": "item",
+      "gameKey": "tree",
+      "name": "速生树苗",
+      "color": "#a8c0d8",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:tree"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 速生树苗。开波时地里冒出几棵。树苗 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_turret",
+      "category": "item",
+      "gameKey": "turret",
+      "name": "哨戒炮座",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:turret"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 哨戒炮座。立在场上自己开火。哨戒炮 +1",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_ugly_tooth",
+      "category": "item",
+      "gameKey": "ugly_tooth",
+      "name": "歪牙",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:ugly_tooth"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 歪牙。咬住就拖慢它，最多拖到底。减速上限 +20，命中减速 +5，移速 -3%",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_weird_food",
+      "category": "item",
+      "gameKey": "weird_food",
+      "name": "怪味罐头",
+      "color": "#d8a24a",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:weird_food"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 怪味罐头。闻着不对吃着上瘾，腿脚发软。闪避 -2%，果实回复 +2",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_weird_ghost",
+      "category": "item",
+      "gameKey": "weird_ghost",
+      "name": "游魂灯笼",
+      "color": "#c8c8b0",
+      "rarity": 1,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:weird_ghost"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 游魂灯笼。灯把命吊住，下一波却要从头捱。下波生命 -100%，生命上限 +3",
+      "note": "稀有度 1 的边框由 UI 画"
+    },
+    {
+      "id": "item_acid",
+      "category": "item",
+      "gameKey": "acid",
+      "name": "酸渍薯皮",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:acid"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 酸渍薯皮。泡得发亮，硬得发涩。生命上限 +8，闪避 -2%，击退 -2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_alien_eyes",
+      "category": "item",
+      "gameKey": "alien_eyes",
+      "name": "眼豆荚",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:alien_eyes"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 眼豆荚。荚里一排眼睛，替你盯着四周。环身眼豆 +6",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_bait",
+      "category": "item",
+      "gameKey": "bait",
+      "name": "诱虫饵",
+      "color": "#8fd66b",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:bait"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 诱虫饵。撒下去，下一波闻着味儿来的更多。伤害 +8%，下波额外敌人 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_banner",
+      "category": "item",
+      "gameKey": "banner",
+      "name": "旗杆",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:banner"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 旗杆。站得高看得远，推不动人。射程 +20，攻速 +10%，击退 -5",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_black_belt",
+      "category": "item",
+      "gameKey": "black_belt",
+      "name": "黑腰带",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:black_belt"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 黑腰带。练出近战和见识，运气走光。经验 +25%，运气 -8，近战伤害 +3，…",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_blindfold",
+      "category": "item",
+      "gameKey": "blindfold",
+      "name": "蒙眼布",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:blindfold"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 蒙眼布。凭感觉准，看不见远处。射程 -15，闪避 +5%，暴击率 +5%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_blood_leech",
+      "category": "item",
+      "gameKey": "blood_leech",
+      "name": "吸血蛭",
+      "color": "#8fd66b",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:blood_leech"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 吸血蛭。边打边回，收成被吸走。采集 -3，生命恢复 +2，吸血 +2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_campfire",
+      "category": "item",
+      "gameKey": "campfire",
+      "name": "篝火堆",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:campfire"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 篝火堆。暖和回血，抱着走不快。生命恢复 +2，移速 -2%，元素伤害 +2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_celery_tea",
+      "category": "item",
+      "gameKey": "celery_tea",
+      "name": "醒神芹菜茶",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:celery_tea"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 醒神芹菜茶。滚水一冲就清醒，脑子跑在手前面。每守住一波，杯底的碎叶替你攒下一分，随后的那一波也招来更结实的对手。…",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_clockwork_wasp",
+      "category": "item",
+      "gameKey": "clockwork_wasp",
+      "name": "发条胡蜂",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:clockwork_wasp"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 发条胡蜂。给架子上的家伙上紧发条。结构攻速 +10%，移速 +5%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_cog",
+      "category": "item",
+      "gameKey": "cog",
+      "name": "齿轮",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:cog"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 齿轮。结构件转得欢，人没劲。伤害 -4%，结构伤害 +4，击退 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_compass",
+      "category": "item",
+      "gameKey": "compass",
+      "name": "罗盘",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:compass"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 罗盘。跑得快搭得稳，瞄不准。移速 +5%，暴击率 -3%，结构伤害 +3",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_cyberball",
+      "category": "item",
+      "gameKey": "cyberball",
+      "name": "霓虹球",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:cyberball"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 霓虹球。转起来运气爆棚。倒下的一瞬间，把最后一点运气甩向场上的敌人。…",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_cyclops_worm",
+      "category": "item",
+      "gameKey": "cyclops_worm",
+      "name": "独眼虫",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:cyclops_worm"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 独眼虫。又狠又近。射程 -12，伤害 +12%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_dangerous_bunny",
+      "category": "item",
+      "gameKey": "dangerous_bunny",
+      "name": "危险兔",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:dangerous_bunny"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 危险兔。帮你免费换一次货。免费刷新 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_decomposing_flesh",
+      "category": "item",
+      "gameKey": "decomposing_flesh",
+      "name": "腐叶泥",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:decomposing_flesh"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 腐叶泥。吸一点命，人也烂一点。每当你变强一档，吸血更甚、血肉更薄。…",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_energy_bracelet",
+      "category": "item",
+      "gameKey": "energy_bracelet",
+      "name": "能量手环",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:energy_bracelet"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 能量手环。电气十足，射术生疏。暴击率 +4%，远程伤害 -2，元素伤害 +2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_eyes_surgery",
+      "category": "item",
+      "gameKey": "eyes_surgery",
+      "name": "明目藕片",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:eyes_surgery"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 明目藕片。切薄了看火候更准，看远处差点。燃烧提速 +20%，射程 -10，元素伤害 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_fruit_basket",
+      "category": "item",
+      "gameKey": "fruit_basket",
+      "name": "果园提篮",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:fruit_basket"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 果园提篮。篮子里总有货，自己的伤口好得慢。生命恢复 -3，果实掉落 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_fuel_tank",
+      "category": "item",
+      "gameKey": "fuel_tank",
+      "name": "燃料罐",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:fuel_tank"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 燃料罐。元素旺盛，挥砍射术都松。元素伤害 +4，近战伤害 -1，远程伤害 -1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_gambling_token",
+      "category": "item",
+      "gameKey": "gambling_token",
+      "name": "赌运铜牌",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:gambling_token"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 赌运铜牌。滑不留手，护甲打折。闪避 +8%，护甲 -1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_garden",
+      "category": "item",
+      "gameKey": "garden",
+      "name": "一畦菜圃",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:garden"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 一畦菜圃。隔一阵就送你一颗果子。菜圃 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_ice_cube",
+      "category": "item",
+      "gameKey": "ice_cube",
+      "name": "冰晶块",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:ice_cube"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 冰晶块。一冻一片。元素伤害命中后，冻住的敌人碎得更快。…",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_leather_vest",
+      "category": "item",
+      "gameKey": "leather_vest",
+      "name": "皮马甲",
+      "color": "#8fd66b",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:leather_vest"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 皮马甲。抗揍会躲，身板薄。闪避 +6%，生命上限 -3，护甲 +2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_little_frog",
+      "category": "item",
+      "gameKey": "little_frog",
+      "name": "小青蛙",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:little_frog"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 小青蛙。捡得远收得多，跳得笨。拾取 +20，采集 +10，闪避 -3%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_little_muscley_dude",
+      "category": "item",
+      "gameKey": "little_muscley_dude",
+      "name": "矮壮力士",
+      "color": "#8fd66b",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:little_muscley_dude"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 矮壮力士。近战好血厚，手极短。射程 -15，生命上限 +5，近战伤害 +3",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_lure",
+      "category": "item",
+      "gameKey": "lure",
+      "name": "引路蜂蜡",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:lure"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 引路蜂蜡。跟着蜡味来的，还有额外的收货。生命恢复 +2，下波额外收货 +2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_mastery",
+      "category": "item",
+      "gameKey": "mastery",
+      "name": "精通心得",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:mastery"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 精通心得。近战专精，远程生疏。近战伤害 +6，远程伤害 -3",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_medal",
+      "category": "item",
+      "gameKey": "medal",
+      "name": "奖章",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:medal"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 奖章。样样都长，就是瞄不准。暴击率 -4%，生命上限 +3，移速 +3%，…",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_metal_detector",
+      "category": "item",
+      "gameKey": "metal_detector",
+      "name": "探铁钎",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:metal_detector"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 探铁钎。戳一下，土里的零碎就成双。运气 +6，伤害 -5%，双倍材料 +5%，…",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_metal_plate",
+      "category": "item",
+      "gameKey": "metal_plate",
+      "name": "铁板",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:metal_plate"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 铁板。挡得住，打不狠。伤害 -3%，护甲 +2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_missile",
+      "category": "item",
+      "gameKey": "missile",
+      "name": "小导弹",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:missile"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 小导弹。炸得狠，装填慢。伤害 +10%，攻速 -4%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_padding",
+      "category": "item",
+      "gameKey": "padding",
+      "name": "棉垫",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:padding"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 棉垫。垫出四点命。生命上限 +3，每80份材料 生命上限 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_piggy_bank",
+      "category": "item",
+      "gameKey": "piggy_bank",
+      "name": "存钱瓦罐",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:piggy_bank"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 存钱瓦罐。开波前把本钱再滚一圈。开波本钱 +20%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_pile_of_books",
+      "category": "item",
+      "gameKey": "pile_of_books",
+      "name": "书山",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:pile_of_books"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 书山。架子搭得明白，炮也算得精。暴击率 +5%，结构伤害 +3，结构暴击 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_pocket_factory",
+      "category": "item",
+      "gameKey": "pocket_factory",
+      "name": "口袋小厂",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:pocket_factory"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 口袋小厂。砍倒的树都能立起来当炮架。结构伤害 +2，伐木成炮 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_pumpkin",
+      "category": "item",
+      "gameKey": "pumpkin",
+      "name": "空心南瓜",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:pumpkin"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 空心南瓜。拖着一路穿过去，瓜肉薄一层。穿透伤害 +15%，伤害 -2%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_recycling_machine",
+      "category": "item",
+      "gameKey": "recycling_machine",
+      "name": "粉碎机",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:recycling_machine"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 粉碎机。拆下来的料，能多收回一把。回收收益 +35%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_reinforced_steel",
+      "category": "item",
+      "gameKey": "reinforced_steel",
+      "name": "强化钢条",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:reinforced_steel"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 强化钢条。远程结构都硬，跑不快。移速 -3%，结构伤害 +3，远程伤害 +2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_riposte",
+      "category": "item",
+      "gameKey": "riposte",
+      "name": "反击架势",
+      "color": "#8fd66b",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:riposte"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 反击架势。回手一挡，近战多一点。闪开的那一下，顺手回敬打你的人。近战伤害 +2，…",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_ritual",
+      "category": "item",
+      "gameKey": "ritual",
+      "name": "祭礼",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:ritual"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 祭礼。又狠又吸血，结构件不服。伤害 +6%，吸血 +2，结构伤害 -2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_scope",
+      "category": "item",
+      "gameKey": "scope",
+      "name": "瞄具",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:scope"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 瞄具。看得远射得准，出手慢。射程 +25，攻速 -7%，远程伤害 +2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_shady_potion",
+      "category": "item",
+      "gameKey": "shady_potion",
+      "name": "来路不明药水",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:shady_potion"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 来路不明药水。运气极好，伤口难合。运气 +20，生命恢复 -2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_small_magazine",
+      "category": "item",
+      "gameKey": "small_magazine",
+      "name": "小弹匣",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:small_magazine"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 小弹匣。连发更远，单发更软。攻速 +10%，伤害 -6%，远程伤害 +2",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_snail",
+      "category": "item",
+      "gameKey": "snail",
+      "name": "黏蜗牛",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:snail"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 黏蜗牛。拖慢全场，也拖累自己。敌人移速 -8%，移速 -3%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_snowball",
+      "category": "item",
+      "gameKey": "snowball",
+      "name": "雪球",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:snowball"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 雪球。捏一把冷。身上但凡有东西抬高元素伤害，它都跟着再涨一点。…",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_spicy_sauce",
+      "category": "item",
+      "gameKey": "spicy_sauce",
+      "name": "辣酱瓶",
+      "color": "#8fd66b",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:spicy_sauce"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 辣酱瓶。吃下去身子更壮，果子也带了火气。消耗品爆炸几率 +50%，生命上限 +3",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_sunglasses",
+      "category": "item",
+      "gameKey": "sunglasses",
+      "name": "墨镜",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:sunglasses"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 墨镜。看得准，护甲薄。暴击率 +10%，护甲 -1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_tentacle",
+      "category": "item",
+      "gameKey": "tentacle",
+      "name": "触须标本",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:tentacle"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 触须标本。专挑要害，挑中了就回一口。暴击回血 +20%，暴击率 +3%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_turret_flame",
+      "category": "item",
+      "gameKey": "turret_flame",
+      "name": "喷火哨座",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:turret_flame"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 喷火哨座。喷出来的火会粘住人。喷火哨座 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_turret_healing",
+      "category": "item",
+      "gameKey": "turret_healing",
+      "name": "医疗哨座",
+      "color": "#9ad8a0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:turret_healing"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 医疗哨座。不伤人，只往你身上打药。医疗哨座 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_tyler",
+      "category": "item",
+      "gameKey": "tyler",
+      "name": "散射哨座",
+      "color": "#8fd66b",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:tyler"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 散射哨座。一次撒出一把弹。散射哨座 +1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_wheelbarrow",
+      "category": "item",
+      "gameKey": "wheelbarrow",
+      "name": "独轮车",
+      "color": "#6ec8b0",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:wheelbarrow"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 独轮车。一车收成，铁皮薄。采集 +16，护甲 -1",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_whetstone",
+      "category": "item",
+      "gameKey": "whetstone",
+      "name": "磨刀石",
+      "color": "#7ed08a",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:whetstone"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 磨刀石。磨出血性，推不开人。吸血 +4，击退 -3",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_white_flag",
+      "category": "item",
+      "gameKey": "white_flag",
+      "name": "白旗",
+      "color": "#8fd66b",
+      "rarity": 2,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:white_flag"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 白旗。举起来，场上的东西就懒得再往上凑。采集 +5，敌人数量 -5%",
+      "note": "稀有度 2 的边框由 UI 画"
+    },
+    {
+      "id": "item_adrenaline",
+      "category": "item",
+      "gameKey": "adrenaline",
+      "name": "跳跳椒",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:adrenaline"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 跳跳椒。辣到手抖，躲得比谁都快。闪开的那一下，凭这口气缓一缓。闪避 +5%，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_alien_baby",
+      "category": "item",
+      "gameKey": "alien_baby",
+      "name": "外星豆苗",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:alien_baby"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 外星豆苗。异星落下来的苗，把对手也养壮。生命上限 +15，敌人生命 +10%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_alien_magic",
+      "category": "item",
+      "gameKey": "alien_magic",
+      "name": "异种符咒",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:alien_magic"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 异种符咒。血厚回血快，运气败光。生命上限 +8，运气 -8，生命恢复 +3",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_alloy",
+      "category": "item",
+      "gameKey": "alloy",
+      "name": "合金豆",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:alloy"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 合金豆。样样都沾，身法变笨。闪避 -6%，暴击率 +5%，近战伤害 +3，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_baby_with_a_beard",
+      "category": "item",
+      "gameKey": "baby_with_a_beard",
+      "name": "胡子苗",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:baby_with_a_beard"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 胡子苗。倒下的那一刻把胡子甩出去，可惜人已经没了。射程 -50，倒下吐弹 +1，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_ball_and_chain",
+      "category": "item",
+      "gameKey": "ball_and_chain",
+      "name": "锁链冬瓜",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:ball_and_chain"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 锁链冬瓜。拽着铁球躲不快，出手却压得实。伤害 +15%，击退 +5，护甲 +3，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_bandana",
+      "category": "item",
+      "gameKey": "bandana",
+      "name": "头巾",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:bandana"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 头巾。多穿一个，力气大减。伤害 -10%，穿透 +1",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_barricade",
+      "category": "item",
+      "gameKey": "barricade",
+      "name": "拒马",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:barricade"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 拒马。推得开人，走得慢。移速 -5%，击退 +3，站定不动时 护甲 +8",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_bean_teacher",
+      "category": "item",
+      "gameKey": "bean_teacher",
+      "name": "豆先生",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:bean_teacher"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 豆先生。学得飞快，吸不动。经验 +50%，吸血 -2",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_blood_donation",
+      "category": "item",
+      "gameKey": "blood_donation",
+      "name": "献血袋",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:blood_donation"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 献血袋。先放一点血，换一仓的收成。采集 +40，每秒失血 +1",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_bowler_hat",
+      "category": "item",
+      "gameKey": "bowler_hat",
+      "name": "礼帽",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:bowler_hat"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 礼帽。走运有收成，手慢眼钝。采集 +18，运气 +15，攻速 -5%，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_candle",
+      "category": "item",
+      "gameKey": "candle",
+      "name": "守夜蜡烛",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:candle"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 守夜蜡烛。火头很小，招来的东西也少。敌人数量 -10%，伤害 -5%，元素伤害 +4，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_candy_bag",
+      "category": "item",
+      "gameKey": "candy_bag",
+      "name": "糖纸袋",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:candy_bag"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 糖纸袋。开波随手掏一颗，甜头随机落在某样长处上。下波精英几率 +10%，开波随机长处 +8",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_chameleon",
+      "category": "item",
+      "gameKey": "chameleon",
+      "name": "变色龙",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:chameleon"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 变色龙。滑了一点，打得轻。伤害 -4%，闪避 +3%，站定不动时 闪避 +20%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_clover",
+      "category": "item",
+      "gameKey": "clover",
+      "name": "四叶草",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:clover"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 四叶草。运气与身法俱佳，吸不动。运气 +20，闪避 +6%，吸血 -2",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_coil",
+      "category": "item",
+      "gameKey": "coil",
+      "name": "线圈",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:coil"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 线圈。一推老远，顺手加一点。击退 +5，每点击退 伤害 +1%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_community_support",
+      "category": "item",
+      "gameKey": "community_support",
+      "name": "邻里帮工",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:community_support"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 邻里帮工。快一点点，护甲差。护甲 -2，每只场上怪 攻速 +1%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_crown",
+      "category": "item",
+      "gameKey": "crown",
+      "name": "王冠",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:crown"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 王冠。收获一茬比一茬多。收获成长 +8%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_fairy",
+      "category": "item",
+      "gameKey": "fairy",
+      "name": "小仙灵",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:fairy"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 小仙灵。缠着你就回不动血。每件普通道具 生命恢复 +1，每件传说道具 生命恢复 -3",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_fin",
+      "category": "item",
+      "gameKey": "fin",
+      "name": "背鳍",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:fin"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 背鳍。快且吸血，运气掉光。移速 +10%，运气 -8，吸血 +3",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_fried_rice",
+      "category": "item",
+      "gameKey": "fried_rice",
+      "name": "隔夜炒饭",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:fried_rice"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 隔夜炒饭。热一热，慢慢回。每只燃烧怪 生命恢复 +1",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_frozen_heart",
+      "category": "item",
+      "gameKey": "frozen_heart",
+      "name": "冻心菜",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:frozen_heart"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 冻心菜。心口凉一寸，元素劲道足。燃烧提速 -100%，元素伤害 +8，暴击率 +5%，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_ghost_outfit",
+      "category": "item",
+      "gameKey": "ghost_outfit",
+      "name": "幽灵罩衫",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:ghost_outfit"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 幽灵罩衫。闪避上限抬高，代价是慢而脆。闪避上限 +70，闪避 +10%，移速 -5%，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_glass_cannon",
+      "category": "item",
+      "gameKey": "glass_cannon",
+      "name": "瓷炮筒",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:glass_cannon"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 瓷炮筒。极狠极脆。伤害 +25%，护甲 -3",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_handcuffs",
+      "category": "item",
+      "gameKey": "handcuffs",
+      "name": "铐手锁链",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:handcuffs"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 铐手锁链。近战远程元素齐涨，代价是生命上限从此封顶。近战伤害 +8，远程伤害 +8，元素伤害 +8，最大生命值锁定为当前值…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_honey",
+      "category": "item",
+      "gameKey": "honey",
+      "name": "稠蜜罐",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:honey"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 稠蜜罐。又黏又甜，脚步腻住了。爆炸伤害 +10%，爆炸范围 +5%，闪避 -3%，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_hunting_trophy",
+      "category": "item",
+      "gameKey": "hunting_trophy",
+      "name": "猎获标本",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:hunting_trophy"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 猎获标本。专挑要害下手的记号。暴击杀敌掉料 +33%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_improved_tools",
+      "category": "item",
+      "gameKey": "improved_tools",
+      "name": "顺手家什",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:improved_tools"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 顺手家什。出手快了一截。攻速 +10%，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_lucky_charm",
+      "category": "item",
+      "gameKey": "lucky_charm",
+      "name": "吉祥结",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:lucky_charm"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 吉祥结。运气爆棚，打人发软。运气 +30，近战伤害 -2，远程伤害 -1",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_mouse",
+      "category": "item",
+      "gameKey": "mouse",
+      "name": "田鼠",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:mouse"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 田鼠。顺手牵一把，顺带把远处的东西引来。敌人数量 +10%，吸血 +5，采集 -5",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_nail",
+      "category": "item",
+      "gameKey": "nail",
+      "name": "铁钉",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:nail"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 铁钉。结构件稳一点，射术生疏。结构伤害 +5，远程伤害 -2，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_peacock",
+      "category": "item",
+      "gameKey": "peacock",
+      "name": "孔雀翎羽",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:peacock"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 孔雀翎羽。翎子一展手气旺，对面也跟着凶。每守住一波，翎子上的一根眼斑换成经验，随后的那一波却招来更狠的对手。经验 +25%，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_plastic_explosive",
+      "category": "item",
+      "gameKey": "plastic_explosive",
+      "name": "塑胶炸药包",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:plastic_explosive"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 塑胶炸药包。不伤人，专炸开一大圈。爆炸范围 +25%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_poisonous_tonic",
+      "category": "item",
+      "gameKey": "poisonous_tonic",
+      "name": "毒补汤",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:poisonous_tonic"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 毒补汤。快准远，伤口难合。射程 +15，攻速 +10%，暴击率 +5%，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_power_generator",
+      "category": "item",
+      "gameKey": "power_generator",
+      "name": "发电机",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:power_generator"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 发电机。拖着它，力气变小。伤害 -5%，每点移速 伤害 +1%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_rip_and_tear",
+      "category": "item",
+      "gameKey": "rip_and_tear",
+      "name": "撕扯藤",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:rip_and_tear"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 撕扯藤。打死的家伙偶尔会炸开。尸爆几率 +20%，暴击率 -5%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_sad_tomato",
+      "category": "item",
+      "gameKey": "sad_tomato",
+      "name": "苦脸番茄",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:sad_tomato"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 苦脸番茄。开波总要先蔫上一阵，蔫完又能缓过来。开波生命 -50%，生命恢复 +8",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_shackles",
+      "category": "item",
+      "gameKey": "shackles",
+      "name": "铁箍脚环",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:shackles"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 铁箍脚环。回血快射得远，腿却拖不动了。射程 +80，生命恢复 +8，结构伤害 +8，移速锁定为当前值…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_shmoop",
+      "category": "item",
+      "gameKey": "shmoop",
+      "name": "软塌塌",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:shmoop"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 软塌塌。养得壮回得快，打人没劲。生命上限 +6，生命恢复 +2，近战伤害 -2，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_silver_bullet",
+      "category": "item",
+      "gameKey": "silver_bullet",
+      "name": "银弹",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:silver_bullet"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 银弹。专治大块头。对精英伤害 +25%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_statue",
+      "category": "item",
+      "gameKey": "statue",
+      "name": "石像",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:statue"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 石像。挪不动窝。移速 -10%，站定不动时 攻速 +40%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_stone_skin",
+      "category": "item",
+      "gameKey": "stone_skin",
+      "name": "石皮",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:stone_skin"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 石皮。硬一点点，出手变钝。攻速 -6%，每点护甲 生命上限 +1",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_strange_book",
+      "category": "item",
+      "gameKey": "strange_book",
+      "name": "怪书",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:strange_book"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 怪书。结构件涨，肉身退。近战伤害 -1，远程伤害 -1，每点元素伤害 结构伤害 +1",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_tardigrade",
+      "category": "item",
+      "gameKey": "tardigrade",
+      "name": "缓步虫干",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:tardigrade"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 缓步虫干。每波头几下挨不死。受击豁免 +1",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_toolbox",
+      "category": "item",
+      "gameKey": "toolbox",
+      "name": "工具箱",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:toolbox"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 工具箱。结构件强，手慢。攻速 -8%，结构伤害 +6",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_tractor",
+      "category": "item",
+      "gameKey": "tractor",
+      "name": "铁牛",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:tractor"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 铁牛。一趟顶十趟，打不疼。采集 +40，伤害 -8%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_triangle_of_power",
+      "category": "item",
+      "gameKey": "triangle_of_power",
+      "name": "三角土阵",
+      "color": "#9ac0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:triangle_of_power"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 三角土阵。又狠又硬。挨一下，刀刃就钝一分。伤害 +20%，护甲 +1，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_turret_laser",
+      "category": "item",
+      "gameKey": "turret_laser",
+      "name": "激光哨座",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:turret_laser"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 激光哨座。一发穿透一排。激光哨座 +1",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_vigilante_ring",
+      "category": "item",
+      "gameKey": "vigilante_ring",
+      "name": "义警戒指",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:vigilante_ring"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 义警戒指。稳稳加三点伤害。每守完一波，这笔账就更硬气一点。…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_wandering_bot",
+      "category": "item",
+      "gameKey": "wandering_bot",
+      "name": "游走铁虫",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:wandering_bot"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 游走铁虫。绕着圈转，蹭到就减速。游走铁虫 +1",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_warrior_helmet",
+      "category": "item",
+      "gameKey": "warrior_helmet",
+      "name": "铆钉铁盔",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:warrior_helmet"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 铆钉铁盔。扛得住血也厚，走得沉。生命上限 +5，移速 -5%，护甲 +3",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_wheat",
+      "category": "item",
+      "gameKey": "wheat",
+      "name": "金麦束",
+      "color": "#8fa8e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:wheat"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 金麦束。近战远程收成都有，怕冷。采集 +10，近战伤害 +4，远程伤害 +2，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_will_o_the_wisp",
+      "category": "item",
+      "gameKey": "will_o_the_wisp",
+      "name": "鬼火",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:will_o_the_wisp"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 鬼火。手慢了半拍。烧着的对手倒下时，这簇火苗就旺一分。攻速 -7%，…",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_wings",
+      "category": "item",
+      "gameKey": "wings",
+      "name": "风羽披风",
+      "color": "#a8a0e8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:wings"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 风羽披风。跑得快射得远，怕冷。射程 +30，移速 +10%，元素伤害 -2",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_wisdom",
+      "category": "item",
+      "gameKey": "wisdom",
+      "name": "智囊书",
+      "color": "#7ea8d8",
+      "rarity": 3,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:wisdom"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 智囊书。想得多了，下手更轻。伤害 -15%，每隔5秒 伤害 +5%",
+      "note": "稀有度 3 的边框由 UI 画"
+    },
+    {
+      "id": "item_anvil",
+      "category": "item",
+      "gameKey": "anvil",
+      "name": "铁砧",
+      "color": "#e0533f",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:anvil"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 铁砧。扛在肩上，硬两点。…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_big_arms",
+      "category": "item",
+      "gameKey": "big_arms",
+      "name": "铁臂藤",
+      "color": "#e0533f",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:big_arms"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 铁臂藤。力气大推得远，手慢脚沉。近战伤害 +12，远程伤害 +6，移速 -3%，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_bloody_hand",
+      "category": "item",
+      "gameKey": "bloody_hand",
+      "name": "血手",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:bloody_hand"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 血手。一直淌着，淌得越久下手越狠。吸血 +10，每秒失血 +1，每点吸血 伤害 +2%",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_cape",
+      "category": "item",
+      "gameKey": "cape",
+      "name": "夜行披巾",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:cape"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 夜行披巾。又飘又吸血，打人没劲。闪避 +20%，吸血 +5，近战伤害 -2，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_diploma",
+      "category": "item",
+      "gameKey": "diploma",
+      "name": "文凭",
+      "color": "#e0533f",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:diploma"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 文凭。见识结构双涨，身子薄。经验 +50%，结构伤害 +10，生命上限 -3",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_estys_couch",
+      "category": "item",
+      "gameKey": "estys_couch",
+      "name": "懒人躺椅",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:estys_couch"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 懒人躺椅。血厚回血快，挪不动窝。移速 -20%，生命上限 +5，每点移速 生命恢复 -2",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_exoskeleton",
+      "category": "item",
+      "gameKey": "exoskeleton",
+      "name": "外骨壳",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:exoskeleton"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 外骨壳。硬准快，但回血吸血全废。暴击率 +5%，移速 +5%，结构伤害 +5，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_explosive_shells",
+      "category": "item",
+      "gameKey": "explosive_shells",
+      "name": "爆壳瓜子",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:explosive_shells"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 爆壳瓜子。壳一炸一大片，瓜瓤就轻了。爆炸伤害 +60%，伤害 -15%，爆炸范围 +15%",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_extra_stomach",
+      "category": "item",
+      "gameKey": "extra_stomach",
+      "name": "额外胃袋",
+      "color": "#c96bd8",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:extra_stomach"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 额外胃袋。多吃一口，多扛一点。…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_focus",
+      "category": "item",
+      "gameKey": "focus",
+      "name": "屏息口诀",
+      "color": "#c96bd8",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:focus"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 屏息口诀。心一定，下手极狠。伤害 +30%，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_giant_belt",
+      "category": "item",
+      "gameKey": "giant_belt",
+      "name": "巨人腰带",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:giant_belt"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 巨人腰带。一系上，暴击砸得更狠。暴击伤害 +10%",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_gnome",
+      "category": "item",
+      "gameKey": "gnome",
+      "name": "矮壮地精",
+      "color": "#c96bd8",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:gnome"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 矮壮地精。近战元素强，手短眼短。射程 -20，拾取 -20，近战伤害 +10，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_greek_fire",
+      "category": "item",
+      "gameKey": "greek_fire",
+      "name": "火油藤",
+      "color": "#e08a3a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:greek_fire"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 火油藤。烧起来的量按对手的血算。燃烧按血比 +10%",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_grinds_magical_leaf",
+      "category": "item",
+      "gameKey": "grinds_magical_leaf",
+      "name": "磨碎的灵叶",
+      "color": "#e08a3a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:grinds_magical_leaf"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 磨碎的灵叶。血厚回血又吸血。每熬过一波，根须就扎得更深。…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_heavy_bullets",
+      "category": "item",
+      "gameKey": "heavy_bullets",
+      "name": "重头弹",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:heavy_bullets"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 重头弹。又重又狠又远，慢且糙。射程 +10，伤害 +10%，暴击率 -5%，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_broken_hourglass",
+      "category": "item",
+      "gameKey": "broken_hourglass",
+      "name": "碎沙漏",
+      "color": "#e0533f",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:broken_hourglass"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 碎沙漏。漏完了，什么也没留下。下波生命 -100%，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_hourglass",
+      "category": "item",
+      "gameKey": "hourglass",
+      "name": "倒转沙漏",
+      "color": "#e0533f",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:hourglass"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 倒转沙漏。沙子倒着走，这一波算没来过。下波生命 -100%，时光倒流 +1",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_jetpack",
+      "category": "item",
+      "gameKey": "jetpack",
+      "name": "喷气背囊",
+      "color": "#e0533f",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:jetpack"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 喷气背囊。飞一样快，皮薄甲软。移速 +15%，闪避 +10%，生命上限 -5，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_lucky_coin",
+      "category": "item",
+      "gameKey": "lucky_coin",
+      "name": "古旧铜钱",
+      "color": "#e0533f",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:lucky_coin"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 古旧铜钱。一点运气，换掉护甲。护甲 -2，每点暴击率 运气 +2",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_mammoth",
+      "category": "item",
+      "gameKey": "mammoth",
+      "name": "长毛兽皮",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:mammoth"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 长毛兽皮。力大血厚推得远，又慢又软。近战伤害 +20，伤害 -8%，生命恢复 +5，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_medikit",
+      "category": "item",
+      "gameKey": "medikit",
+      "name": "随军药囊",
+      "color": "#e08a3a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:medikit"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 随军药囊。回血极快，运气归零。生命恢复 +10，运气 -10，每隔5秒 生命恢复 +2",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_night_goggles",
+      "category": "item",
+      "gameKey": "night_goggles",
+      "name": "夜枭目镜",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:night_goggles"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 夜枭目镜。夜里极准极远，人却虚。射程 +50，暴击率 +15%，生命上限 -3，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_octopus",
+      "category": "item",
+      "gameKey": "octopus",
+      "name": "八腕怪",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:octopus"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 八腕怪。血厚回血吸血，瞄不准。生命上限 +12，暴击率 -8%，生命恢复 +5，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_panda",
+      "category": "item",
+      "gameKey": "panda",
+      "name": "黑白团子",
+      "color": "#c96bd8",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:panda"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 黑白团子。又壮又走运，打人不疼。运气 +25，生命上限 +12，伤害 -5%",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_potato",
+      "category": "item",
+      "gameKey": "potato",
+      "name": "什锦菜",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:potato"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 什锦菜。什么都来一点，什么都不精。伤害 +5%，攻速 +5%，运气 +5，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_potion",
+      "category": "item",
+      "gameKey": "potion",
+      "name": "红药水",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:potion"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 红药水。血见底时，回得更凶。低血回复 +100%，生命恢复 +3",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_retromations_hoodie",
+      "category": "item",
+      "gameKey": "retromations_hoodie",
+      "name": "旧连帽衫",
+      "color": "#e0533f",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:retromations_hoodie"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 旧连帽衫。手速略快，射程几乎没了。射程 -80，每点闪避 攻速 +2%",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_ricochet",
+      "category": "item",
+      "gameKey": "ricochet",
+      "name": "弹射弹",
+      "color": "#e08a3a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:ricochet"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 弹射弹。会拐弯，打得软。伤害 -25%，弹射 +1",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_robot_arm",
+      "category": "item",
+      "gameKey": "robot_arm",
+      "name": "机械臂",
+      "color": "#d8c05a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:robot_arm"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 机械臂。近战结构双涨，人薄一点。每守完一波，这只铁手更沉也更耗身。…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_sifds_relic",
+      "category": "item",
+      "gameKey": "sifds_relic",
+      "name": "来路不明遗物",
+      "color": "#e08a3a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:sifds_relic"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 来路不明遗物。东西不用捡，自己贴上来。材料吸附 +100%，护甲 +3",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_spider",
+      "category": "item",
+      "gameKey": "spider",
+      "name": "结网蛛",
+      "color": "#e08a3a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:spider"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 结网蛛。下手毒，身法差偷收成。伤害 +12%，采集 -5，闪避 -3%，…",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_torture",
+      "category": "item",
+      "gameKey": "torture",
+      "name": "苦修藤",
+      "color": "#e08a3a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:torture"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 苦修藤。绞着自己长，伤口不再结痂。生命上限 +15，苦修回复 +5",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_turret_rocket",
+      "category": "item",
+      "gameKey": "turret_rocket",
+      "name": "火箭哨座",
+      "color": "#e08a3a",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:turret_rocket"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 火箭哨座。打出去会炸开一片。火箭哨座 +1",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "item_wolf_helmet",
+      "category": "item",
+      "gameKey": "wolf_helmet",
+      "name": "狼头帽",
+      "color": "#c96bd8",
+      "rarity": 4,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "i2:wolf_helmet"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "icon-flat",
+      "zh": "道具图标: 狼头帽。戴上走运又带火气，结构件不服。运气 +20，元素伤害 +10，结构伤害 -5",
+      "note": "稀有度 4 的边框由 UI 画"
+    },
+    {
+      "id": "struct_turret",
+      "category": "struct",
+      "gameKey": "turret",
+      "name": "哨戒炮",
+      "color": "#d8a24a",
+      "kind": "gun",
+      "r": 11,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "s:turret:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "哨戒炮: 矮胖的圆盔壳体, 正面一个大同心圆圈炮口, 壳体骑在四条张开的粗腿上; 决定性特征件: 大同心圆圈炮口 + 四条张开的粗腿",
+      "note": "kind=gun 的场上结构体; 接触阴影由图集层(PS.Art.bits.shadow)补, 出图本身不含底影"
+    },
+    {
+      "id": "struct_turret_flame",
+      "category": "struct",
+      "gameKey": "turret_flame",
+      "name": "喷火哨座",
+      "color": "#e08a3a",
+      "kind": "gun",
+      "r": 11,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "s:turret_flame:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "喷火哨座: 同一种圆盔壳体 + 四条张开的粗腿, 但正面是一道横向宽缝喷嘴, 壳体侧面挂一个胖燃料罐; 决定性特征件: 横向宽缝喷嘴 + 侧面胖燃料罐",
+      "note": "kind=gun 的场上结构体; 接触阴影由图集层(PS.Art.bits.shadow)补, 出图本身不含底影"
+    },
+    {
+      "id": "struct_turret_healing",
+      "category": "struct",
+      "gameKey": "turret_healing",
+      "name": "医疗哨座",
+      "color": "#9ad8a0",
+      "kind": "heal",
+      "r": 11,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "s:turret_healing:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "医疗哨座: 同一种圆盔壳体 + 四条张开的粗腿, 正面一个大凸起十字, 侧面伸出一只短臂挂滞瓶; 决定性特征件: 正面大十字 + 侧面滞瓶",
+      "note": "kind=heal 的场上结构体; 接触阴影由图集层(PS.Art.bits.shadow)补, 出图本身不含底影"
+    },
+    {
+      "id": "struct_turret_laser",
+      "category": "struct",
+      "gameKey": "turret_laser",
+      "name": "激光哨座",
+      "color": "#a8a0e8",
+      "kind": "gun",
+      "r": 11,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "s:turret_laser:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "激光哨座: 同一种圆盔壳体 + 四条张开的粗腿, 顶上竖起一根粗壮水晶杆(约两倍壳高), 杆中一圈束环、杆尖一颗宝石; 决定性特征件: 顶上竖起的粗晶体杆",
+      "note": "kind=gun 的场上结构体; 接触阴影由图集层(PS.Art.bits.shadow)补, 出图本身不含底影"
+    },
+    {
+      "id": "struct_turret_rocket",
+      "category": "struct",
+      "gameKey": "turret_rocket",
+      "name": "火箭哨座",
+      "color": "#e0533f",
+      "kind": "gun",
+      "r": 12,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "s:turret_rocket:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "火箭哨座: 同一种圆盔壳体 + 四条张开的粗腿, 顶上斜插一束三根胖短火箭管(炒圆弹头 + 尾翼); 决定性特征件: 顶上的三管胖火箭束",
+      "note": "kind=gun 的场上结构体; 接触阴影由图集层(PS.Art.bits.shadow)补, 出图本身不含底影"
+    },
+    {
+      "id": "struct_tyler",
+      "category": "struct",
+      "gameKey": "tyler",
+      "name": "散射哨座",
+      "color": "#8fd66b",
+      "kind": "gun",
+      "r": 12,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "s:tyler:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "散射哨座: 同一种圆盔壳体 + 四条张开的粗腿, 正面一圈五根短胖管口像花瓣一样排开; 决定性特征件: 正面一圈五根短胖管口",
+      "note": "kind=gun 的场上结构体; 接触阴影由图集层(PS.Art.bits.shadow)补, 出图本身不含底影"
+    },
+    {
+      "id": "struct_garden",
+      "category": "struct",
+      "gameKey": "garden",
+      "name": "菜圃",
+      "color": "#7ed08a",
+      "kind": "garden",
+      "r": 13,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "s:garden:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "菜圃: 一畝低矮的深色湿土垄, 上面长着三棵胖叶菜苗; 决定性特征件: 土垄 + 三棵菜苗",
+      "note": "kind=garden 的场上结构体; 接触阴影由图集层(PS.Art.bits.shadow)补, 出图本身不含底影"
+    },
+    {
+      "id": "struct_wandering_bot",
+      "category": "struct",
+      "gameKey": "wandering_bot",
+      "name": "游走铁虫",
+      "color": "#7ea8d8",
+      "kind": "pet",
+      "r": 9,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "s:wandering_bot:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "游走铁虫: 矮圆顶小机器, 正面两只大圆玻璃镜头, 头顶一根粗短天线顶着金球, 三只短脚; 决定性特征件: 两只圆镜头 + 一根粗短天线",
+      "note": "kind=pet 的场上结构体; 接触阴影由图集层(PS.Art.bits.shadow)补, 出图本身不含底影"
+    },
+    {
+      "id": "struct_landmines",
+      "category": "struct",
+      "gameKey": "landmines",
+      "name": "地雷",
+      "color": "#c8b06a",
+      "kind": "mine",
+      "r": 8,
+      "canvas": [
+        128,
+        128
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "s:landmines:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "地雷: 一块宽扁钢盘, 盘面正中一颗大红球压发头; 决定性特征件: 宽扁圆盘 + 正中红球",
+      "note": "kind=mine 的场上结构体; 接触阴影由图集层(PS.Art.bits.shadow)补, 出图本身不含底影"
+    },
+    {
+      "id": "prop_tree",
+      "category": "prop",
+      "gameKey": "tree",
+      "name": "树木",
+      "color": "#6fae5a",
+      "r": 16,
+      "canvas": [
+        192,
+        192
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "t:tree:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "树木: 一根粗短棕色干, 上面一大团重叠圆叶冠, 左侧三团低垂、右侧一截断枝; 决定性特征件: 粗短干 + 一大团圆叶冠",
+      "note": "场景中性物(源 neutral/tree.tscn): 砍倒掉材料, 见 balance.js 的 B.TREE"
+    },
+    {
+      "id": "prop_fruit",
+      "category": "prop",
+      "gameKey": "fruit",
+      "name": "果实",
+      "color": "#d94a4a",
+      "r": 7,
+      "canvas": [
+        96,
+        96
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "scale": 1,
+      "spriteKeys": [
+        "t:fruit:*"
+      ],
+      "variants": [
+        "idle"
+      ],
+      "style": "world-prop-matte",
+      "zh": "果实: 一颗胖圆浆果, 顶部一截短梗挑着两片小叶, 果身左下一条纵向浅沟; 决定性特征件: 胖圆果身 + 顶上的两片小叶",
+      "note": "场景中性物(源 neutral/tree.tscn): 砍倒掉材料, 见 balance.js 的 B.TREE"
+    }
+  ]
+}
