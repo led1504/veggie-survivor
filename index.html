@@ -6,8 +6,10 @@
 <title>蔬菜幸存者 v3 Veggie Survivor · 源数据全量移植</title>
 <style>
   html, body { margin: 0; padding: 0; height: 100%; background: #0a0f0a; overflow: hidden; }
-  #game-root { display: flex; align-items: center; justify-content: center; height: 100%; }
+  #game-root { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
   canvas { display: block; touch-action: none; }
+  /* 竖屏伪横屏(见 src/platform/web.js 的 resize, 由它加/去这个类): 转 90 度后按中心对齐铺满 */
+  canvas.rot90 { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(90deg); }
 </style>
 </head>
 <body>

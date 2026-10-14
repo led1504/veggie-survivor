@@ -32,11 +32,17 @@
       }
       ctx.scale(dpr, dpr);
 
+      /* 竖屏(手机竖着拿)走"伪横屏": 画布整体 CSS 转 90° 铺满屏幕。
+       *   为什么不是锁方向: screen.orientation.lock 只在全屏 + 少数浏览器可用, 国产 webview(微信/夸克…)基本不支持
+       *   ⇒ 转画布是网页版唯一稳的做法(旋转样式见 index.html 的 canvas.rot90)。
+       *   尺寸口径: 转 90° 后画布的**宽轴落在屏幕竖向** ⇒ scale 按 (vh/W, vw/H) 取小。 */
       function resize() {
         var vw = global.innerWidth, vh = global.innerHeight;
-        var scale = Math.min(vw / W, vh / H);
+        var portrait = vh > vw;
+        var scale = portrait ? Math.min(vh / W, vw / H) : Math.min(vw / W, vh / H);
         canvas.style.width = (W * scale) + 'px';
         canvas.style.height = (H * scale) + 'px';
+        if (portrait) canvas.classList.add('rot90'); else canvas.classList.remove('rot90');
       }
       global.addEventListener('resize', resize);
       resize();

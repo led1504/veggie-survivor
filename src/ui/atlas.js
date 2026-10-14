@@ -226,7 +226,11 @@
         if (typeof global.setTimeout === 'function') {
           (function poll() {
             if (done) return;
-            if (img.width > 0 && img.height > 0) { ok(); return; }
+            /* 尺寸已知 ≠ 可解码: 浏览器里 img.width>0 在**响应头解析后**就成立, 而此刻 drawImage 画不出像素
+             *   ⇒ 这一瞬间烘出来的精灵是**全透明**的, 而图集从此 `_ready` 不会再作废程序化槽
+             *   ⇒ 该资产整局空白(2026-10-15 实测: 封面主角不见了, 探针 opaquePx 恒为 0)。
+             *   complete === undefined 是小游戏端(没这个字段) —— 只在"明确未完成"时才继续等。 */
+            if (img.width > 0 && img.height > 0 && img.complete !== false) { ok(); return; }
             if (++tries > 100) { bad('timeout'); return; }
             global.setTimeout(poll, 100);
           })();
@@ -305,7 +309,9 @@
 
   /** bake 钩子: 命中资产则画位图并返回 true(跳过程序化绘制) */
   A.onBake = function (key, ctx, w, h) {
-    if (!A._ready || !A.idFor) return false;
+    /* 认领 = 跳过程序化绘制 ⇒ 只在"图集就绪**且此刻真能解码**"时才认领。
+     *   图片未解码时 drawImage 画不出像素, 认领会烘出**全透明**精灵并被缓存整局(见 load 的轮询注释)。 */
+    if (!A._ready || !A.idFor || !A.img || A.img.complete === false) return false;
     var id = A.idFor(key);
     if (!id) { A._miss++; return false; }
     var fr = A.frame(id);
