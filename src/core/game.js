@@ -12,11 +12,6 @@
    *   所以一进 PAUSE, 波次计时/刷怪/受击/开火全部停摆(旧版没有任何暂停途径, 只能等死或刷新页面)。 */
   var State = { MENU: 'menu', MODE: 'mode', CHAR: 'char', PLAY: 'play', PAUSE: 'pause', LEVELUP: 'levelup', SHOP: 'shop', OVER: 'over' };
   PS.State = State;
-  /* v7.9(手机适配): 世界相机缩放。真源是平台层(web.js 的 resize 按物理倍率算 PS.Game.viewZ),
-   *   这一层只负责「可见世界矩形」这**一个**口径 —— 跟镜头有关的尺寸全走它, 不许再各自写 B.VIEW.w/h;
-   *   写错一处就是可见区与裁剪区对不上(屏幕边上的怪凭空消失, 或视口外的东西还在逐帧光栅化)。 */
-  function viewW() { return B.VIEW.w / (PS.Game.viewZ || 1); }
-  function viewH() { return B.VIEW.h / (PS.Game.viewZ || 1); }
   /* v6.7(Wave 3): 燃烧中的敌人数 —— 给条件词条 condCtx.burningEnemy 用。
    *   源口径: unit.gd:717-727 set_burning 在挂/摘燃烧时增减 RunData.current_burning_enemies;
    *   本作把"燃烧态"存在 e.burn 上(burnTick 结算, duration 是**次数**), 所以只数 dur > 0 且没死的。 */
@@ -412,7 +407,7 @@
         x: B.WORLD.w / 2, y: B.WORLD.h / 2, hp: g.stats.maxHp,
         aimAng: 0, walkT: 0, moving: false
       };
-      g.cam = { x: g.player.x - viewW() / 2, y: g.player.y - viewH() / 2 };   // 镜头(左上角): 视口对齐玩家中心(视口随世界缩放变窄, 见 viewW)
+      g.cam = { x: g.player.x - B.VIEW.w / 2, y: g.player.y - B.VIEW.h / 2 };   // 镜头(左上角): 视口对齐玩家中心
       g.enemies = [];
       g.projectiles = [];
       g.enemyProj = [];
@@ -758,10 +753,10 @@
       p.y = PS.util.clamp(p.y, A.y + 14, A.y + A.h - 14);
 
       /* 镜头跟随(带平滑) */
-      g.cam.x = PS.util.lerp(g.cam.x, p.x - viewW() / 2, Math.min(1, dt * 6));
-      g.cam.y = PS.util.lerp(g.cam.y, p.y - viewH() / 2, Math.min(1, dt * 6));
-      g.cam.x = PS.util.clamp(g.cam.x, 0, Math.max(0, B.WORLD.w - viewW()));
-      g.cam.y = PS.util.clamp(g.cam.y, 0, Math.max(0, B.WORLD.h - viewH()));
+      g.cam.x = PS.util.lerp(g.cam.x, p.x - B.VIEW.w / 2, Math.min(1, dt * 6));
+      g.cam.y = PS.util.lerp(g.cam.y, p.y - B.VIEW.h / 2, Math.min(1, dt * 6));
+      g.cam.x = PS.util.clamp(g.cam.x, 0, Math.max(0, B.WORLD.w - B.VIEW.w));
+      g.cam.y = PS.util.clamp(g.cam.y, 0, Math.max(0, B.WORLD.h - B.VIEW.h));
 
       /* 武器开火(6 槽) */
       for (var wi = 0; wi < g.weapons.length; wi++) {

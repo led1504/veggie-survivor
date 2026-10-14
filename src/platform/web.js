@@ -42,11 +42,6 @@
         var scale = portrait ? Math.min(vh / W, vw / H) : Math.min(vw / W, vh / H);
         canvas.style.width = (W * scale) + 'px';
         canvas.style.height = (H * scale) + 'px';
-        /* v7.9(手机适配): 世界相机缩放。物理倍率 scale 是「逻辑像素 → CSS 像素」的唯一口径, 手机上只有
-         *   ~0.55 ⇒ 角色/怪在物理屏上也就一半大(用户逐字「角色过小, 怪物过小」)。这里按「逻辑像素不低于
-         *   FX.viewZoomMin 倍」反推世界缩放交给 core(见 game.js 的 viewW/viewH)。
-         *   桌面端 scale >= 1 ⇒ 结果恒为 1 ⇒ 什么都不变。 */
-        if (PS.Game) PS.Game.viewZ = PS.util.clamp((B.FX.viewZoomMin || 0.8) / scale, 1, (B.FX.viewZoomMax || 1.8));
         if (portrait) canvas.classList.add('rot90'); else canvas.classList.remove('rot90');
       }
       global.addEventListener('resize', resize);
