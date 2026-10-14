@@ -24,8 +24,19 @@
        *   微信端(weapp.js:137-151 的 pickTouch/liftedId)早就按同一思路修过, 浏览器端没同步。 */
       var joyId = null;          // 拥有摇杆的 pointerId; null = 无
 
+      /* 屏幕点 → 逻辑坐标。**必须考虑画布的 CSS 旋转**: 竖屏伪横屏时 web.js 给画布加了
+       *   canvas.rot90(rotate(90deg)), 而 getBoundingClientRect 给的是**旋转后的外接矩形** ——
+       *   宽高互换, 照着它缩放会让每一次点击都落到别的位置(2026-10-15 实测: 竖屏下点「启程」点不动,
+       *   所有点击都被当成推摇杆)。判据用"外接矩形与元素自身尺寸不等"而不是类名 —— 类名是 web 端加的,
+       *   这一层不该依赖它(小游戏端没有这个类)。 */
       function toLogic(e) {
         var r = canvas.getBoundingClientRect();
+        var cw = canvas.clientWidth || r.width, ch = canvas.clientHeight || r.height;
+        if (Math.abs(r.width - cw) > 1) {          /* 90 度旋转: 外接矩形 = 元素宽高互换 */
+          var sx = e.clientX - (r.left + r.width / 2), sy = e.clientY - (r.top + r.height / 2);
+          var lx = cw / 2 + sy, ly = ch / 2 - sx;  /* rotate(90deg) 的逆变换: 局部偏移 = (sy, -sx) */
+          return { x: lx * (ui.W / cw), y: ly * (ui.H / ch) };
+        }
         return { x: (e.clientX - r.left) * (ui.W / r.width), y: (e.clientY - r.top) * (ui.H / r.height) };
       }
 
