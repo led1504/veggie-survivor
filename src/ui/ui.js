@@ -1074,6 +1074,12 @@
       var x = this.ctx, u = this.ui;
       var on = !opts.disabled && !opts.sold && this.hot(px, py, w, h);
       var size = opts.size || T.fs.body, rad = opts.radius === undefined ? 10 : opts.radius;
+      /* v10.0: 可选"厚块"态 —— 先在下方垫一块深色厚板, 本体压上去 ⇒ 读成有厚度的实体键,
+       *   而不是一块贴着屏幕的色板(封面那三颗入口按钮用)。默认 false, 其余页面逐像素不变。 */
+      if (opts.chunky) {
+        x.fillStyle = 'rgba(6,9,6,0.92)';
+        this.rr(px, py + 5, w, h, rad); x.fill();
+      }
       x.fillStyle = opts.sold ? 'rgba(7,11,7,0.60)'
         : opts.disabled ? 'rgba(13,19,13,0.50)'
           : (on ? (opts.hoverBg || this.withA(T.gold, 0.30)) : (opts.bg || this.withA(T.gold, 0.16)));
@@ -1291,6 +1297,25 @@
       x.fillStyle = color;
       x.textAlign = align || 'center';
       x.fillText(str, px, py);
+    },
+    /* ---- 封面 logo 字(粗黑描边 + 字面) ----
+     * v10.0(用户 2026-10-16「ui 和美术不过关」): 大标题原来是 52px sans 一行 + 一条金下划线,
+     *   那是**网页标题栏**的画法, 不是游戏 logo。原版的标题是一块"贴"在画面上的粗描边字。
+     *   口径与 art.js 一致: 黑描边在字**外**, 先描后填(反过来描边会啃掉字面);
+     *   lineJoin=round 让转折处不出现尖角(无这个的话「蔬」的撇会翘出一根刺)。
+     * 只画字, 不进热区表(标题不是按钮)。 */
+    logoText: function (str, cx, cy, size, fill, stroke, lw) {
+      var x = this.ctx, u = this.ui;
+      x.font = 'bold ' + size + 'px ' + u.font;
+      x.textAlign = 'center';
+      x.textBaseline = 'alphabetic';
+      if (lw > 0) {
+        x.lineJoin = 'round'; x.lineCap = 'round';
+        x.strokeStyle = stroke; x.lineWidth = lw;
+        x.strokeText(str, cx, cy);
+      }
+      x.fillStyle = fill;
+      x.fillText(str, cx, cy);
     },
     /* ---------- 动态文本自适应(spec §10 唯一口径) ----------
      * 背景: 道具池 163 件, 其中 6 件 desc 达 33~54 汉字, 角色 desc 26~34 字 —— 卡片上一切
@@ -1991,24 +2016,36 @@
        *   "每只怪保留自己的物种配色再整体调暗" 会让颜色互相打架、糊成色块(用户实测截图的原话)。
        * 只数是**故意的密**(每排 15~20 只): 首版 8~12 只在实测截图里读成"几颗零散光斑", 不是"墙"。
        * 加密几乎不要钱 —— 精灵按 (key,r) 缓存, 多出来的只是烘焙期的 drawImage 次数, 稳态每帧仍是 1 次。 */
-      var SIL = '#221d2b';   /* 剪影墙的**唯一色号**(深紫灰): 全墙同色同透明度, 只靠轮廓分辨 */
+      var SIL = '#312a45';   /* 剪影墙的**唯一色号**(深紫): 全墙同色同透明度, 只靠轮廓分辨 */
+      /* v10.0: 旧值 #221d2b 在实测截图里几乎并进夜底, 整屏读起来是「没有色相的一团黑」。
+       *   抬到 #312a45 之后墙与夜底拉开一档明度, 轮廓才真的可读(仍压得住奶油字: T.hi 在其上 12:1)。 */
       var ROWS = [
         [48, 0.80, 20], [104, 0.88, 19], [164, 0.96, 18],
         [228, 1.06, 17], [296, 1.16, 16], [366, 1.28, 15]
       ];
       var BASE_R = 15, n = 0, r, row, cnt, sc, y, span, step, j, kk, xx;
+      /* v10.0(用户 2026-10-16「ui 和美术不过关」): 上面这张 ROWS 表原来是**等距网格** ——
+       *   步长 = 跨度/(只数-1)、每只尺寸 = 排号、朝向 = j%2 正反交替, 三个变量全是常量。
+       *   实测截图里它读起来是"壁纸平铺", 不是"夜里挤着一大群怪"(用户原话的"不过关"主要就在这)。
+       *   病根是**周期性**: 只要横竖两个方向都有固定周期, 眼睛立刻认出这是贴图。
+       *   改法 = 每只怪按序号取四个抖动量(横向 / 纵向 / 尺寸 / 朝向), 另加一成空位。
+       *   随机数走 32 位 LCG 且**每次烘都从同一种子重来** ⇒ 同一台机逐像素可复现(截图/门禁不受影响)。
+       *   尺寸抖动 0.72~1.42 **跨排重叠**(大排里也有小的), 顺带把"上小下大"的整齐阶梯也打掉了。 */
+      var seed = 20261016, rnd = function () { seed = (Math.imul(seed, 1103515245) + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
       for (r = 0; r < ROWS.length; r++) {
         row = ROWS[r]; y = row[0]; sc = row[1]; cnt = row[2];
         span = W - 120; step = cnt > 1 ? span / (cnt - 1) : 0;
         for (j = 0; j < cnt; j++) {
           kk = keys[(n * 7 + r * 3 + j * 5) % keys.length];
           n++;
-          xx = 60 + j * step + ((j % 2) ? 12 : -12);
+          if (rnd() < 0.10) continue;                       /* 一成空位: 满格 = 墙纸 */
+          xx = 60 + j * step + (rnd() - 0.5) * step * 0.92;
+          var jy = (rnd() - 0.5) * 30, js = sc * (0.72 + rnd() * 0.70), jf = rnd() < 0.5;
           wc.save();
-          wc.translate(xx, y); wc.scale(sc, sc); wc.translate(-xx, -y);
+          wc.translate(xx, y + jy); wc.scale(js, js); wc.translate(-xx, -(y + jy));
           wc.globalAlpha = 1;                 /* 每只都**全不透明**画上去, 颜色下一步统一抹掉 */
-          A.drawEnemy(wc, { x: xx, y: y, r: BASE_R, hp: 1, maxHp: 1, key: kk,
-            ang: (j % 2) ? 0 : Math.PI }, FD[kk], 0);
+          A.drawEnemy(wc, { x: xx, y: y + jy, r: BASE_R, hp: 1, maxHp: 1, key: kk,
+            ang: jf ? 0 : Math.PI }, FD[kk], 0);
           wc.restore();
         }
       }
@@ -2042,9 +2079,9 @@
       /* 标题底座: 大标题脚下那块更暗的雾, 让 52px 奶油字在任何剪影上都读得出来。
          一起烘进来 ⇒ 热路径仍然只有 1 次 drawImage。 */
       wc.globalCompositeOperation = 'source-over';
-      var tp = wc.createRadialGradient(W / 2, 124, 20, W / 2, 124, 480);
-      tp.addColorStop(0, 'rgba(7,11,7,0.74)');
-      tp.addColorStop(0.58, 'rgba(7,11,7,0.44)');
+      var tp = wc.createRadialGradient(W / 2, 158, 26, W / 2, 158, 480);
+      tp.addColorStop(0, 'rgba(7,11,7,0.80)');
+      tp.addColorStop(0.58, 'rgba(7,11,7,0.48)');
       tp.addColorStop(1, 'rgba(7,11,7,0)');
       /* 落图矩形必须**整个包住**渐变圆(半径 480 ⇒ 中心 y=124 的圆覆盖 y=0..604):
          否则矩形下缘落在 alpha 还有 0.6 的地方, 就是一条能看见的横缝(首版实测就是这样)。 */
@@ -2055,8 +2092,17 @@
     menuBackdrop: function (cx, cy) {
       var x = this.ctx, u = this.ui, W = u.W, H = u.H;
       this.fillScreen(T.bg);
+      /* v10.0: 先铺一层紫罗兰夜光(左下冷、右上暖), 再压中心金雾。
+       *   旧版只有一团金雾压在近黑底上 ⇒ 整屏只有一种颜色, 实测截图"像没做完"。
+       *   两层都在同一个屏幕矩形里, 仍是 2 次 fill(零位图、零每帧开销)。 */
+      var v = x.createLinearGradient(0, H, W, 0);
+      v.addColorStop(0, 'rgba(52,38,86,0.55)');
+      v.addColorStop(0.5, 'rgba(34,26,52,0.30)');
+      v.addColorStop(1, 'rgba(18,20,14,0.10)');
+      x.fillStyle = v;
+      this.fillScreenRect();
       var g = x.createRadialGradient(cx, cy - 60, 40, cx, cy - 60, Math.max(W, H) * 0.74);
-      g.addColorStop(0, this.withA(T.gold, 0.15));
+      g.addColorStop(0, this.withA(T.gold, 0.16));
       g.addColorStop(0.55, this.withA(T.gold, 0.05));
       g.addColorStop(1, 'rgba(0,0,0,0)');
       x.fillStyle = g;
@@ -2155,7 +2201,7 @@
       }
       /* ---- 5) 主角 + 环绕武器(与战斗内同一条轨道: 布局只取决于 p.x/p.y/p.r/p.aimAng) ---- */
       if (hero && A.drawPlayer) {
-        var fp = { x: hx, y: hy, r: 28, moving: false, walkT: 0, aimAng: -0.55, char: hero };
+        var fp = { x: hx, y: hy, r: 40, moving: false, walkT: 0, aimAng: -0.55, char: hero };
         A.drawPlayer(x, fp, { char: hero }, this.time);
         if (A.drawWeaponRing) {
           var wl = [];
@@ -2291,10 +2337,26 @@
       this.menuBackdrop(cx, 250);
       this.menuWall();
       this.menuStage(cx, 470);
-      /* 大标题: 居中偏上 */
-      this.text('蔬 菜 幸 存 者', cx, 112, T.fs.brand, T.hi);
-      x.fillStyle = this.withA(T.gold, 0.85);
-      x.fillRect(cx - 150, 132, 300, 3);
+      /* v10.0: 地面带的**上缘**是它自己视口烘出来的硬边, 与剪影墙拼在一起就是一条横贯全屏的直线
+       *   (menuStage 内部那层地平线雾压不掉它 —— 那层雾烘在 drawGround 的视口里, 位置对不上)。
+       *   在菜单里补一条 140px 高的暗带把这条缝化开: 上缘 alpha 0 起, 不留新的硬边。
+       *   只画在菜单这一帧的屏幕矩形内, 不进任何烘焙缓存, 也不碰战斗/商店。 */
+      var hv = x.createLinearGradient(0, 392, 0, 532);
+      hv.addColorStop(0, 'rgba(7,11,7,0)');
+      hv.addColorStop(0.62, 'rgba(7,11,7,0.62)');
+      hv.addColorStop(1, 'rgba(7,11,7,0)');
+      x.fillStyle = hv;
+      this.fillScreenRect();
+      /* 大标题 = 封面 logo(v10.0): 76px 粗描边字 + 金色西文副题 + 两侧短金线。
+       *   旧版是 52px sans + 一条金下划线 —— 那是网页标题的画法, 在截图里就"不过关"。
+       *   字号与副题宽度都按 1280 逻辑宽定: 标题 9 字 x76 = 684(屏宽的 53%), 与原版 logo 同量级。
+       *   两侧金线画在副题**量出来的宽度**之外(不写死常数) ⇒ 换文案/换字重都不会压到字。 */
+      this.logoText('蔬 菜 幸 存 者', cx, 186, 76, T.hi, 'rgba(6,9,6,0.92)', 14);
+      this.text('V E G G I E   S U R V I V O R', cx, 222, T.fs.lead, this.withA(T.gold, 0.92));
+      var subH = this.textW('V E G G I E   S U R V I V O R', T.fs.lead) / 2;
+      x.fillStyle = this.withA(T.gold, 0.55);
+      x.fillRect(cx - subH - 96, 216, 76, 2);
+      x.fillRect(cx + subH + 20, 216, 76, 2);
       /* 图鉴 / 制作人名单一开就**整块替换菜单体**: 覆盖层底下不许再留可点热区,
          否则点在遮罩上会顺带把「启 程」触发掉(点了没反应 / 点错地方的同类病灶)。 */
       if (this.dex && this.dex.open) { this.drawDex(); return; }
@@ -2303,28 +2365,30 @@
       /* 左列: 主菜单**竖排列表**(对齐原版封面的信息架构: 等高行 + 当前项浅色块高亮)。
          宽度收到 200 —— 原版那一列只占屏宽 ~12%, 用宽卡片会把"列表"读成"卡片阵列"。
          只放 3 项: 本作真的只有这三个入口; 为了凑满一列去造假按钮是另一张脸的同一种错。 */
-      var LX = 48, LW = 200, RH = 52, GAP = 6, LY = 292;
+      /* v10.0: 行高 52→58, 行距 6→10, 圆角 10→8, 描边 1.5→2.5, 并全部走 chunky 厚块态。
+       *   三颗按钮原来是一列"细边色板", 与背景的对比度太低, 在手机上整列都在糊。 */
+      var LX = 48, LW = 210, RH = 58, GAP = 10, LY = 284, BR = 8;
       this.button(LX, LY, LW, RH, '启 程', {
-        size: 18, align: 'left', padX: 22, lw: 2.5,
+        size: 20, align: 'left', padX: 24, lw: 2.5, radius: BR, chunky: true,
         bg: T.hi, hoverBg: '#fffaee',
-        border: 'rgba(8,12,8,0.80)', hoverBorder: T.gold, color: T.onGold,
+        border: 'rgba(8,12,8,0.85)', hoverBorder: T.gold, color: T.onGold,
         cb: function () { PS.Game.setState(PS.State.MODE); PS.Sound.play('click'); }
       });
       this.button(LX, LY + (RH + GAP), LW, RH, '图 鉴', {
-        size: 17, align: 'left', padX: 22,
-        bg: 'rgba(9,14,9,0.74)', hoverBg: this.withA(T.gold, 0.20),
-        border: T.edge, hoverBorder: T.gold,
+        size: 18, align: 'left', padX: 24, lw: 2.5, radius: BR, chunky: true,
+        bg: 'rgba(11,17,11,0.88)', hoverBg: this.withA(T.gold, 0.20),
+        border: 'rgba(242,234,214,0.30)', hoverBorder: T.gold,
         cb: function () { PS.UI.dex.open = true; PS.UI.dex.page = 0; PS.Sound.play('click'); }
       });
       this.button(LX, LY + 2 * (RH + GAP), LW, RH, '制 作 人 名 单', {
-        size: 17, align: 'left', padX: 22,
-        bg: 'rgba(9,14,9,0.74)', hoverBg: this.withA(T.gold, 0.20),
-        border: T.edge, hoverBorder: T.gold,
+        size: 18, align: 'left', padX: 24, lw: 2.5, radius: BR, chunky: true,
+        bg: 'rgba(11,17,11,0.88)', hoverBg: this.withA(T.gold, 0.20),
+        border: 'rgba(242,234,214,0.30)', hoverBorder: T.gold,
         cb: function () { PS.UI.credits.open = true; PS.Sound.play('click'); }
       });
       /* 右列: 次要项 = 声音开关(无边框竖排文字 + 小开关, 见 audioRows)。
          id 固定 audio-sfx / audio-bgm, 门禁与微信自检按 id 断言。 */
-      this.audioPanel(W - 48 - 200, 292, 200, { plain: true });
+      this.audioPanel(W - 48 - 210, LY, 210, { plain: true });
       /* 右下: 存档战绩 + 版本号。真数据 + 只读 —— 不是按钮就不入热区表(没热区的文字不会骗人点它) */
       this.text('最佳 第 ' + (sv.best || 0) + ' 波 · 通关 ' + (sv.wins || 0) + ' 次 · 出战 ' + (sv.runs || 0) + ' 局',
         W - 40, 676, T.fs.small, T.hi, 'right', false);
