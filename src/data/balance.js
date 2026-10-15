@@ -211,7 +211,23 @@
    *   尺子校验: 源竞技场 = zones/zone_1/zone_1_data.tres 的 width 32 x height 24 x TILE_SIZE 64
    *   = **2048x1536**; 本作 ARENA 2160x1480 —— 同一把尺子, 故这些常量 1:1 直用(不再乘任何本作系数)。 */
   B.SPAWN = { minDistFromPlayer: 300, edgeDist: 64, retryStep: 5, retryFloor: 25 };
-  B.MAX_ENEMIES = 100;
+    /* v9.4(用户「等等，既然地图变小了，那可以少刷些怪，这也可以缓解卡顿」): 同屏上限从**只数对齐**改成**密度对齐**
+   *   —— 一个数照抄源, 在场地上已经不是同一个游戏了。
+   *   源: 竞技场 2048x1536(zones/zone_1/zone_1_data.tres, TILE 64) = 3.146 Mpx, max_enemies 恒 100
+   *       ⇒ 源密度 = 31.8 只/Mpx。
+   *   本作 v9.0 为手机把场地缩到 1180x885(见 B.ARENA, 一眼看全) = 1.044 Mpx ⇒ 照抄 100 只是
+   *       **3.0 倍密度**; 而且小场地**没有视口外可裁**(drawWorld 的视口裁剪救不了它) ——
+   *       源在 2048x1536 上, 1280x720 的视口只看得到 29% 的场地, 我们的竞技场约等于一屏。
+   *   实测(work/_paintprofile.cjs, 第 16 波 100 只): 685 draw call/帧, 怪占 47% —— 既是手感问题
+   *       (挤成一团躲不开)也是卡顿源(用户报的"无尽第 10 波发烫掉帧"就落在这里)。
+   *   口径: 上限 = 源密度 × 本作竞技场面积 = 31.79 × 1.044 ≈ **33 只**。
+   *   要拧只改 B.ENEMY_DENSITY_PER_MPX 一个数(语义 = 每 Mpx 竞技场放几只; 源密度 = 100/3.1457)。
+   *   与 v3.4 的关系: v3.4 取 100 是"源 20 波恒 100"的**只数**对齐, 那条只在场地 1:1 时成立;
+   *       v9.0 缩了场地 ⇒ 前提没了, 改成密度对齐(场地本身已是[有意偏差])。 */
+  B.SOURCE_ARENA_MPX = 2048 * 1536 / 1e6;                            /* 3.1457 = 源 zone_1 竞技场 Mpx */
+  B.SOURCE_MAX_ENEMIES = 100;                                        /* 源 wave_N.tres: 20 波恒 100 */
+  B.ENEMY_DENSITY_PER_MPX = B.SOURCE_MAX_ENEMIES / B.SOURCE_ARENA_MPX;  /* 31.79 只/Mpx(源口径) */
+  B.MAX_ENEMIES = Math.round(B.ENEMY_DENSITY_PER_MPX * (B.ARENA.w * B.ARENA.h) / 1e6);
   /* v7.10(源对齐, 用户「打到第 20 波, boss 出来没撑过 1 秒」): 无尽波的同屏上限 ——
    *   源 singletons/zone_service.gd:45 `wave.max_enemies *= 1.25 + (wave_index * 0.01)`,
    *   wave_index 是**循环后的** 10..19(见 src/data/endless.js 的 capMul) ⇒ 第 21 波起 135~144。
