@@ -81,6 +81,19 @@
       return Math.max(1, Math.min(1.6, 0.85 / s));
     },
     uiW: function () { return this.ui.W / this.uiScale(); },
+    /* 中央波次胶囊的排布 —— **唯一实现**: drawHUDInner 与 hudBandH 都读它, 判据不许各写一遍。
+     *   手机端 UI 空间约 815 宽时左板占到 408, 胶囊居中后左缘只有 257 ⇒ 必然撞车, 换第二行;
+     *   桌面 1280 时 640-150 = 490 > 420 ⇒ 恒为一行, 逐像素与旧版一致。 */
+    capLayout: function () {
+      var W = this.uiW(), capW = 300, capRow2 = (W / 2 - capW / 2) < 420;
+      return { capW: capW, capRow2: capRow2, capX: W / 2 - capW / 2, capY: capRow2 ? 96 : 12 };
+    },
+    /* 顶部 HUD 带在**逻辑画布**里占掉的高度。屏幕空间的东西(波次横幅)必须落在它下面 ——
+     *   手机换成两行后横幅会被放大的板子压住(v5.21 实测截图)。桌面 = 88 -> 横幅仍在 114, 逐像素不变。 */
+    hudBandH: function () {
+      var L = this.capLayout();
+      return (L.capRow2 ? 160 : 88) * this.uiScale();   /* 88 = 12+76(一行) · 160 = 96+64(第二行) */
+    },
     uiH: function () { return this.ui.H / this.uiScale(); },
     rescaleRects: function (arr, from, S) {
       for (var i = from; i < arr.length; i++) { var b = arr[i]; b.x *= S; b.y *= S; b.w *= S; b.h *= S; }
@@ -391,7 +404,8 @@
       if (a <= 0) return;
       var tw = Math.max(this.textW(bn.title, T.fs.num), bn.sub ? this.textW(bn.sub, T.fs.small, false) : 0);
       var pw = Math.min(520, Math.ceil(tw + 64)), ph = bn.sub ? 56 : 40;
-      var bx = Math.round(u.W / 2 - pw / 2), by = 114;
+      /* by: 桌面 114(逐像素不变); 手机 HUD 换两行后必须让开那条带, 否则被放大的板子压住。 */
+      var bx = Math.round(u.W / 2 - pw / 2), by = Math.max(114, Math.round(this.hudBandH()) + 14);
       x.save();
       x.globalAlpha = a * 0.94;
       x.fillStyle = 'rgba(7,11,7,0.86)';
@@ -3034,8 +3048,8 @@
       /* ---- 中央胶囊: 波次 + 剩余秒 + 进度 ---- */
       /* 手机端(UI 空间约 815 宽)左板占到 408, 胶囊居中后左缘只有 257 ⇒ 必然撞车, 换第二行。
        *   桌面 1280: 640-150 = 490 > 420 ⇒ 恒为一行, 逐像素与旧版一致。 */
-      var capW = 300, capRow2 = (W / 2 - capW / 2) < 420;
-      var capX = W / 2 - capW / 2, capY = capRow2 ? 96 : 12;
+      var CL = this.capLayout();
+      var capW = CL.capW, capRow2 = CL.capRow2, capX = CL.capX, capY = CL.capY;
       this.plate(capX, capY, capW, 64, 14, 0.90, T.edge);
       this.groupTag(capX, capY, 64, T.coin);  /* 进度 */
       var mo = B.MODES[g.mode] || { name: '远征', waves: 0 };
