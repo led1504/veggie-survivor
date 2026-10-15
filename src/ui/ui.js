@@ -78,21 +78,39 @@
     setFit: function (s) { this.fitScale = (s > 0 && isFinite(s)) ? s : 1; return this.uiScale(); },
     uiScale: function () {
       var s = this.fitScale || 1;
-      return Math.max(1, Math.min(1.6, 0.85 / s));
+      /* UI_ZOOM = 1.1: 1 UI 单位 = 1.1 CSS px ⇒ 正文 14 -> 15.4 · 小字 12.5 -> 13.8 · 次级 11 -> 12.1 CSS px。
+       * 上限 1280/612: **612 是手机版式底行的硬约束**(见 hudLayout): 16 + 材料 268 + 12 + 胶囊 300 + 16;
+       *   再往上放两件就重叠。到顶的机型(短边 <= 344 CSS px)只是少赚一点, 不会压坏版式。 */
+      if (s >= 1) return 1;   /* 逻辑面已经 1:1 铺满(桌面): 一个像素都不改 */
+      return Math.max(1, Math.min(1280 / 612, 1.1 / s));
     },
     uiW: function () { return this.ui.W / this.uiScale(); },
-    /* 中央波次胶囊的排布 —— **唯一实现**: drawHUDInner 与 hudBandH 都读它, 判据不许各写一遍。
-     *   手机端 UI 空间约 815 宽时左板占到 408, 胶囊居中后左缘只有 257 ⇒ 必然撞车, 换第二行;
-     *   桌面 1280 时 640-150 = 490 > 420 ⇒ 恒为一行, 逐像素与旧版一致。 */
-    capLayout: function () {
-      var W = this.uiW(), capW = 300, capRow2 = (W / 2 - capW / 2) < 420;
-      return { capW: capW, capRow2: capRow2, capX: W / 2 - capW / 2, capY: capRow2 ? 96 : 12 };
+    /* 手机端 HUD 版式 —— **唯一实现**(drawHUDInner / drawSettingsButton / hudBandH 都读它)。
+     * 桌面(S=1): 顶行三件(血板 16..408 · 齿轮 · 材料 996..1264) + 波次胶囊也顶行居中, 逐像素与旧版一致。
+     * 手机: 顶行只留「血板 + 齿轮」, 材料托盘与波次胶囊**一起挪到底行**。
+     *   理由(实测截图): 放大的 HUD 若继续全堆在顶部, 顶部要吃掉 41%~51% 的屏高, 从上方压过来的怪全被挡住;
+     *   拆成上下两条后干净战场 ≈ 屏高的 49%, 而且**玩家正好落在干净带正中** —— 顶部双行版式里玩家贴着 HUD 下沿。
+     *   代价是总遮挡变多(遮挡比例 ≈ uiScale/4), 这是"字要大"必然的交换。
+     *   底行宽度和 16+268 = 284 与胶囊 300 在 uiW >= 612 时才不重叠 —— uiScale 的上限就是照这条定的。 */
+    hudLayout: function () {
+      var W = this.uiW(), H = this.uiH();
+      if (this.uiScale() === 1) return {
+        phone: false,
+        capW: 300, capX: W / 2 - 150, capY: 12,
+        matX: W - 16 - 268, matY: 12,
+        gearX: W - 16 - 268 - 52, gearY: 12, upY: 84
+      };
+      return {
+        phone: true,
+        capW: 300, capX: W - 16 - 300, capY: H - 16 - 64,
+        matX: 16, matY: H - 16 - 76,
+        gearX: W - 16 - 44, gearY: 12, upY: 94
+      };
     },
     /* 顶部 HUD 带在**逻辑画布**里占掉的高度。屏幕空间的东西(波次横幅)必须落在它下面 ——
      *   手机换成两行后横幅会被放大的板子压住(v5.21 实测截图)。桌面 = 88 -> 横幅仍在 114, 逐像素不变。 */
     hudBandH: function () {
-      var L = this.capLayout();
-      return (L.capRow2 ? 160 : 88) * this.uiScale();   /* 88 = 12+76(一行) · 160 = 96+64(第二行) */
+      return 88 * this.uiScale();   /* 顶带只剩血板那一条(12+76); 上下两条版式下胶囊已不在顶部 */
     },
     uiH: function () { return this.ui.H / this.uiScale(); },
     rescaleRects: function (arr, from, S) {
@@ -143,7 +161,7 @@
         this.drawWorld();
         this.drawHUD();
         if (g.state === PS.State.PAUSE) this.drawPause();
-        if (g.state === PS.State.LEVELUP) this.drawLevelup();
+        if (g.state === PS.State.LEVELUP) this.drawPageScaled(T.scrim, this.drawLevelup);
         if (g.state === PS.State.SHOP) this.drawShop();
         if (g.state === PS.State.OVER) this.drawOver();
       }
@@ -2078,8 +2096,9 @@
      * 纪律: 这里**只画矢量不写文字** —— HUD 那几条断言(文字不出板/不压按钮/位数改基线)全部基于 fillText
      *   的包围盒, 齿轮不 fillText 就不可能踩到它们。只在 PLAY 画并入表(暂停页自己有继续/退出)。 */
     drawSettingsButton: function () {
-      var x = this.ctx, u = this.ui, W = this.uiW();   /* 与 HUD 同一坐标系(缩放的) */
-      var w = 44, h = 44, px = W - 16 - 268 - 52, py = 12;
+      var x = this.ctx, u = this.ui;   /* 与 HUD 同一坐标系(缩放的) */
+      var L = this.hudLayout();
+      var w = 44, h = 44, px = L.gearX, py = L.gearY;
       var on = this.hot(px, py, w, h);
       x.fillStyle = on ? this.withA(T.gold, 0.34) : 'rgba(13,19,13,0.90)';
       this.rr(px, py, w, h, 12); x.fill();
@@ -2955,6 +2974,24 @@
     /* HUD = 唯一常驻、看得最久的界面 ⇒ 手机端第一个放大它(见 setFit)。
      *   桌面 uiScale()=1 ⇒ 直接走 drawHUDInner, 一个像素都不变。
      *   S!==1 时: 绕原点均匀缩放(屏幕角仍是屏幕角) → 内部排版在小空间里重排 → 热区换算回画布坐标。 */
+    /* 覆盖页(强化/商店/暂停/结算…)的手机放大 —— 与 drawHUD 同一口径: 绕原点均匀缩放, 出栈时把热区
+     *   **换算回画布坐标**(指针来自 toLogic, 未缩放)。页内排版由各页自己在缩放空间里重排。
+     * 整屏遮罩必须画在缩放**之外**: 缩放空间只有 W/S x H/S 大, 在里面 fillScreen 会在边上留一条没盖住的边。
+     * 桌面 S=1 时**直接原样调用** —— 一个像素、一个热区都不动。 */
+    drawPageScaled: function (scrim, fn) {
+      var x = this.ctx, S = this.uiScale();
+      if (S === 1) { this.spaceScale = 1; fn.call(this); return; }
+      if (scrim) this.fillScreen(scrim);
+      x.save();
+      x.scale(S, S);
+      this.spaceScale = S;
+      var n0 = this.buttons.length, r0 = this.btnRects.length;
+      fn.call(this);
+      this.rescaleRects(this.buttons, n0, S);
+      this.rescaleRects(this.btnRects, r0, S);
+      this.spaceScale = 1;
+      x.restore();
+    },
     drawHUD: function () {
       var x = this.ctx, S = this.uiScale();
       if (S === 1) { this.spaceScale = 1; this.drawHUDInner(); return; }
@@ -2976,6 +3013,7 @@
       var s = g.stats;
       var dt = this.time - (this._hudT === undefined ? this.time : this._hudT);
       this._hudT = this.time;
+      var L = this.hudLayout();   /* 版式唯一来源: 桌面顶行三件 / 手机上下两条 */
       /* ---- 左上: 头像 + 生命 + 经验 + 等级 ---- */
       var px = 16, py = 12, pw = 392, ph = 76;
       this.plate(px, py, pw, ph, 14, 0.90, T.edge);
@@ -3048,15 +3086,16 @@
       /* ---- 中央胶囊: 波次 + 剩余秒 + 进度 ---- */
       /* 手机端(UI 空间约 815 宽)左板占到 408, 胶囊居中后左缘只有 257 ⇒ 必然撞车, 换第二行。
        *   桌面 1280: 640-150 = 490 > 420 ⇒ 恒为一行, 逐像素与旧版一致。 */
-      var CL = this.capLayout();
-      var capW = CL.capW, capRow2 = CL.capRow2, capX = CL.capX, capY = CL.capY;
+      var capW = L.capW, capX = L.capX, capY = L.capY, capCX = capX + capW / 2;
+      /* 胶囊在手机端被挪到底行右对齐(capX 不再是 W/2-150) ⇒ 里面的文字必须跟着 capCX 走,
+         沿用 W/2 会把标题画到板子左缘外面去(2026-10-15 实测截图)。 */
       this.plate(capX, capY, capW, 64, 14, 0.90, T.edge);
       this.groupTag(capX, capY, 64, T.coin);  /* 进度 */
       var mo = B.MODES[g.mode] || { name: '远征', waves: 0 };
       this.fitText(mo.name + ' · ' + B.diffOf(g.diff).name + ' · 第 ' + g.wave + ' 波' + (mo.noWin ? '' : ' / ' + mo.waves),
-        W / 2, capY + 26, capW - 24, T.fs.lead, T.coin, 'center', true, 12);
+        capCX, capY + 26, capW - 24, T.fs.lead, T.coin, 'center', true, 12);
       var left = Math.max(0, g.waveDuration - g.timeInWave);
-      this.fitText(Math.ceil(left) + ' 秒' + (g.horde ? ' · 怪潮!' : ''), W / 2, capY + 48, capW - 24, T.fs.body,
+      this.fitText(Math.ceil(left) + ' 秒' + (g.horde ? ' · 怪潮!' : ''), capCX, capY + 48, capW - 24, T.fs.body,
         left < 5 ? T.danger : (g.horde ? T.neg : T.mid), 'center', true, 11);
       var wpr = g.waveDuration > 0 ? PS.util.clamp(g.timeInWave / g.waveDuration, 0, 1) : 0;
       x.fillStyle = 'rgba(255,255,255,0.12)';
@@ -3073,27 +3112,27 @@
         x.font = 'bold ' + T.fs.small + 'px ' + u.font;
         var upw = x.measureText(upTxt).width + 28;
         /* 换行时让位到胶囊下面(桌面恒 84, 与旧版一致) */
-        var upY = capRow2 ? (capY + 64 + 6) : 84;
+        var upY = L.upY;
         this.plate(W / 2 - upw / 2, upY, upw, 26, 8, 0.86, this.withA(T.coin, 0.55));
         x.fillStyle = T.coin;
         x.textAlign = 'center';
         x.fillText(upTxt, W / 2, upY + 18);
       }
       /* ---- 右上: 材料 + 武器槽 ---- */
-      var rw2 = 268, rx2 = W - 16 - rw2;
-      this.plate(rx2, 12, rw2, 76, 14, 0.90, T.edge);
-      this.groupTag(rx2, 12, 76, T.pos);     /* 资源 */
+      var rw2 = 268, rx2 = L.matX, ry2 = L.matY;
+      this.plate(rx2, ry2, rw2, 76, 14, 0.90, T.edge);
+      this.groupTag(rx2, ry2, 76, T.pos);     /* 资源 */
       x.fillStyle = T.pos;
       /* 位数兜底: 数值最多占到右侧面板宽度减 76(给左侧「材料」标签留位), 放不下就缩字号 */
-      this.fitText('★ ' + g.material, rx2 + rw2 - 14, 42, rw2 - 76, T.fs.num, T.pos, 'right', true, 13);
+      this.fitText('★ ' + g.material, rx2 + rw2 - 14, ry2 + 30, rw2 - 76, T.fs.num, T.pos, 'right', true, 13);
       x.font = T.fs.micro + 'px ' + u.font;
       x.fillStyle = T.low;
       x.textAlign = 'left';
-      x.fillText('材料', rx2 + 14, 42);
+      x.fillText('材料', rx2 + 14, ry2 + 30);
       var slotW = 34, sgap = 5;
       var slotN = (g.stats && g.stats.weaponSlot) || B.WEAPON_SLOTS;   /* v3.5: 源 weapon_slot 词条通道 */
       var total = slotN * slotW + (slotN - 1) * sgap;
-      var sx0 = rx2 + rw2 - 14 - total, sy0 = 48;
+      var sx0 = rx2 + rw2 - 14 - total, sy0 = ry2 + 36;
       for (var i = 0; i < slotN; i++) {
         var wx = sx0 + i * (slotW + sgap);
         x.fillStyle = g.weapons[i] ? 'rgba(7,11,7,0.9)' : 'rgba(7,11,7,0.55)';
@@ -3127,8 +3166,12 @@
       return RARITY[(((card && card.tier) | 0) + 1)] || RARITY[1];
     },
     drawLevelup: function () {
-      var x = this.ctx, u = this.ui, W = u.W, H = u.H, g = PS.Game;
-      this.fillScreen(T.scrim);
+      var x = this.ctx, u = this.ui, g = PS.Game;
+      /* 手机(S>1)下本页是在**缩放后的**空间里排版的 ⇒ W/H 必须是 uiW/uiH(630x355), 不是 1280x720;
+         沿用 u.W 会让 1280 空间的版式再乘一次 S, 内容直接溢出屏幕(实测截图: 只看得见两张卡)。 */
+      var PH = this.uiScale() > 1;
+      var W = PH ? this.uiW() : u.W, H = PH ? this.uiH() : u.H;
+      if (this.uiScale() === 1) this.fillScreen(T.scrim);   /* 缩放时遮罩由 drawPageScaled 铺(见 draw) */
       /* 空池也必须给出出口: 旧写法只看 null, 不查长度 ⇒ choices=[] 时下面 `|| 1` 会读 [0].stat 抛 TypeError,
        *   而且玩家一张卡都点不到(死锁)。引擎侧已保底(rollLevelupChoices 恒非空), 这里是第二道防线。 */
       if (!g.levelupChoices || !g.levelupChoices.length) {
@@ -3151,16 +3194,23 @@
         this._lvTotal = phase === 'prewave' ? 1 : 0;
       }
       /* ---- 标题带 ---- */
-      var bw = 1160, bx0 = (W - bw) / 2;
-      this.plate(bx0, 20, bw, 132, 16, 0.92, T.edge);
+      /* ---- 标题带 ----
+       * 手机: 整条摊到 W-32, 矮一半(84)。桌面: 1160x132 原样, 逐像素不变。 */
+      var bw = PH ? (W - 32) : 1160, bx0 = (W - bw) / 2;
+      var bH = PH ? 84 : 132, bY = PH ? 12 : 20;
+      this.plate(bx0, bY, bw, bH, 16, 0.92, T.edge);
       var title = phase === 'waveEnd' ? ('第 ' + g.wave + ' 波结束的强化') : (phase === 'prewave' ? '开局强化' : '强化');
-      this.text(title + ' · LV ' + g.level, W / 2, 66, T.fs.title, T.coin);
+      /* 刷新钮在标题带右侧: 手机上标题必须让开它, 否则「第 13 波结束的强化」会被压住 */
+      var rbW = PH ? 160 : 196, rbH = PH ? 52 : 56;
+      var rbX = PH ? (bx0 + bw - 16 - rbW) : 1004, rbY = PH ? (bY + 16) : 52;
+      var titleMaxW = PH ? (rbX - bx0 - 24) : (W - 40);
+      this.fitText(title + ' · LV ' + g.level, PH ? (bx0 + titleMaxW / 2 + 8) : W / 2, PH ? 44 : 66,
+        titleMaxW, T.fs.title, T.coin, 'center', false);
       var sub = phase === 'waveEnd'
         ? ('本波共可强化 ' + this._lvTotal + ' 次 · ' + (leftN > 1 ? ('还剩 ' + leftN + ' 次(含本次)') : '这是最后一次'))
         : (phase === 'prewave' ? '开局赠送强化 · 免费 1 次' : '四选一 · 波末结算');
-      this.text(sub, W / 2, 96, T.fs.body, T.hi, 'center', false);
-      this.text('数值为「当前 → 选它之后」 · 点卡片任意位置即可选择(触屏同样)', W / 2, 122, T.fs.small, T.mid, 'center', false);
-      /* ---- 四张卡 ---- */
+      this.fitText(sub, PH ? (bx0 + titleMaxW / 2 + 8) : W / 2, PH ? 74 : 96, titleMaxW, T.fs.body, T.hi, 'center', false);
+      if (!PH) this.text('数值为「当前 → 选它之后」 · 点卡片任意位置即可选择(触屏同样)', W / 2, 122, T.fs.small, T.mid, 'center', false);
       /* ---- v7.0 刷新(用户逐字「升级选项，添加刷新按钮，可以花材料刷新」) ----
        * 与商店顶栏那枚「刷新」逐字同形: label = '刷新', 费用按**引擎口径**现算(卡面写的必须是要扣的数),
        *   钱不够时 disabled ⇒ 按钮不进热区表 ⇒ 点击不生效(引擎侧 rerollLevelup 的内部守卫再兜一道)。
@@ -3168,7 +3218,7 @@
       var lvCnt = g.levelupRerolls || 0;
       var lvCost = Math.max(0, B.rerollPrice(g.wave, lvCnt) - (g.stats.rerollDiscount || 0));
       var lvAff = lvCost <= g.material;
-      this.button(1004, 52, 196, 56, '刷新', {
+      this.button(rbX, rbY, rbW, rbH, '刷新', {
         size: T.fs.lead,
         sub: lvAff ? ('★' + lvCost + ' · 已刷 ' + lvCnt + ' 次') : ('还差 ★' + (lvCost - g.material)),
         subColor: lvAff ? T.mid : T.neg,
@@ -3176,7 +3226,18 @@
         cb: function () { PS.Game.rerollLevelup(); }
       });
       var n = g.levelupChoices.length;   /* 空池不再伪装成 1(旧 `|| 1` 会读 [0].stat 抛错); 空池出口见本函数顶部守卫 */
-      var cw = 272, chh = 356, gap = 24, py = 190;
+      /* ---- 四张卡 ----
+       * 手机: 四张摊满全宽 —— 693 CSS px / 4 ≈ 173 CSS px(正常手机卡宽), 卡内节奏整体压缩;
+       *         丢掉「分类口味」那行小字(手机上一行放不下 8 个字, 而且它只是风味文案)。
+       * 桌面: 272x356 + 24 间距 + y=190 原样, 逐像素不变。 */
+      var gap = PH ? 12 : 24;
+      var cw = PH ? Math.floor((W - 32 - (n - 1) * gap) / n) : 272;
+      var chh = PH ? 224 : 356, py = PH ? 104 : 190;
+      var RB = PH ? 24 : 30, CHIPY = PH ? 30 : 38;
+      var ICY = PH ? 70 : 108, ICR = PH ? 19 : 30;
+      var NAMY = PH ? 112 : 168, VALY = PH ? 142 : 202, DELY = PH ? 166 : 232;
+      var INW = cw - (PH ? 16 : 24);
+      var BTNH = PH ? 44 : 48, BTNOFF = PH ? 48 : 72, BTNPAD = PH ? 12 : 24;
       var sx = (W - (n * cw + (n - 1) * gap)) / 2;
       var hueMap = {
         maxHp: '#e05a7a', dmgPct: T.neg, meleePct: '#c96b3f', rangedPct: T.info, atkSpd: '#e8b45a',
@@ -3201,44 +3262,50 @@
         x.lineWidth = hot ? 3 : 2;
         this.rr(px, py, cw, chh, 16); x.stroke();
         x.save();
-        this.rr(px, py, cw, 30, 16); x.clip();
+        this.rr(px, py, cw, RB, 16); x.clip();
         x.fillStyle = rar.c;
-        x.fillRect(px, py, cw, 30);
+        x.fillRect(px, py, cw, RB);
         x.restore();
-        this.text(rar.n, px + cw / 2, py + 20, T.fs.small, T.onGold);
-        this.chip(px + 16, py + 38, CAT_NAME[cat], CAT_COL[cat], 11);
+        this.text(rar.n, px + cw / 2, py + (PH ? 17 : 20), T.fs.small, T.onGold);
+        this.chip(px + (PH ? 10 : 16), py + CHIPY, CAT_NAME[cat], CAT_COL[cat], PH ? 10 : 11);
         var hue = hueMap[c.stat] || T.gold;
         x.fillStyle = hue;
-        x.beginPath(); x.arc(px + cw / 2, py + 108, 30, 0, PS.TAU); x.fill();
+        x.beginPath(); x.arc(px + cw / 2, py + ICY, ICR, 0, PS.TAU); x.fill();
         x.fillStyle = 'rgba(0,0,0,0.4)';
-        x.font = 'bold 25px ' + u.font;
+        x.font = 'bold ' + (PH ? 17 : 25) + 'px ' + u.font;
         x.textAlign = 'center';
-        x.fillText(c.name.charAt(0), px + cw / 2, py + 118);
-        this.fitText(c.name, px + cw / 2, py + 168, cw - 24, T.fs.lead, T.hi, 'center', true, T.fs.body);
+        x.fillText(c.name.charAt(0), px + cw / 2, py + ICY + (PH ? 6 : 10));
+        this.fitText(c.name, px + cw / 2, py + NAMY, INW, T.fs.lead, T.hi, 'center', true, T.fs.body);
         /* critDmg 兜底: 引擎已固定 150%, 池里也过滤 —— 数据表若回流也只写"固定" */
         this.text(c.stat === 'critDmg' ? '按武器' : ('+' + c.v + (c.pct ? '%' : '')),
-          px + cw / 2, py + 202, T.fs.num, T.pos);
+          px + cw / 2, py + VALY, PH ? T.fs.lead : T.fs.num, T.pos);
         if (c.stat === 'critDmg') {
           /* 源口径: 暴击倍率逐武器自带(critMul), 玩家侧不存在"暴击伤害"成长项 —— 只说明去向 */
           this.fitRich([[this.statLabel(c.stat) + ' ', T.mid], ['由武器决定', T.hi], ['(不进强化池)', T.low]],
-            px + cw / 2, py + 232, T.fs.small, cw - 24);
+            px + cw / 2, py + (PH ? 166 : 232), T.fs.small, INW);
         } else {
-          this.deltaLine(c.stat, this.statsAfterUpgrade(c), px + cw / 2, py + 232, T.fs.small, cw - 24);
+          this.deltaLine(c.stat, this.statsAfterUpgrade(c), px + cw / 2, py + DELY, T.fs.small, INW);
         }
-        this.fitText(CAT_HINT[cat] || '', px + cw / 2, py + 262, cw - 24, T.fs.micro, T.low, 'center', false);
-        this.button(px + 24, py + chh - 72, cw - 48, 48, '选 它', {
-          size: T.fs.body, cb: pick,
+        if (!PH) this.fitText(CAT_HINT[cat] || '', px + cw / 2, py + 262, cw - 24, T.fs.micro, T.low, 'center', false);
+        this.button(px + BTNPAD, py + chh - BTNOFF, cw - 2 * BTNPAD, BTNH, '选 它', {
+          size: PH ? T.fs.small : T.fs.body, cb: pick,
           bg: this.withA(rar.c, 0.20), hoverBg: this.withA(rar.c, 0.32),
           border: this.withA(rar.c, 0.65), hoverBorder: rar.c
         });
       }
-      /* ---- 页脚: 波末口径 + 固定暴击伤害 + 幸运收益 ---- */
+      /* ---- 页脚: 波末口径 + 固定暴击伤害 + 幸运收益 ----
+       * 手机只留一行(两行在 354 高的版式空间里放不下), 桌面两行原样。 */
       var lk = this.luckInfo();
-      this.fitText('第 ' + g.wave + ' 波 · 本局已强化 ' + ((g.levelups || []).length) + ' 项 · 暴击倍率由武器自带(逐武器固定, 不进强化池)',
-        W / 2, 586, W - 160, T.fs.small, T.mid, 'center', false);
-      this.text('运气 ' + lk.luck + ' · 商店高品质(稀有+) ' + lk.pct + '% · 白送道具 ' + lk.chance
-        + '%(本波已出 ' + ((g.itemsSpawnedThisWave || 0)) + ' 件, 再中一件 ' + lk.nextChance + '%)',
-        W / 2, 612, T.fs.small, T.luck, 'center', false);
+      if (PH) {
+        this.fitText('第 ' + g.wave + ' 波 · 已强化 ' + ((g.levelups || []).length) + ' 项 · 运气 ' + lk.luck
+          + ' · 商店高品质(稀有+) ' + lk.pct + '%', W / 2, 344, W - 32, T.fs.small, T.luck, 'center', false);
+      } else {
+        this.fitText('第 ' + g.wave + ' 波 · 本局已强化 ' + ((g.levelups || []).length) + ' 项 · 暴击倍率由武器自带(逐武器固定, 不进强化池)',
+          W / 2, 586, W - 160, T.fs.small, T.mid, 'center', false);
+        this.text('运气 ' + lk.luck + ' · 商店高品质(稀有+) ' + lk.pct + '% · 白送道具 ' + lk.chance
+          + '%(本波已出 ' + ((g.itemsSpawnedThisWave || 0)) + ' 件, 再中一件 ' + lk.nextChance + '%)',
+          W / 2, 612, T.fs.small, T.luck, 'center', false);
+      }
     },
 
     /* ================= 商店(波间) =================
@@ -3246,8 +3313,10 @@
      * 热区: 整卡(先入, 可买) + 价格钮 + 锁定钮(后入 ⇒ 优先, 绝不误触整卡)。 */
     /* drawLevelup 的出口保底: 只有升级池为空(数据表异常)时才会走到这里 —— 给一个明确可点的「继续」。 */
     drawLevelupEmpty: function () {
-      var x = this.ctx, u = this.ui, W = u.W, H = u.H;
-      this.fillScreen(T.scrim);
+      var x = this.ctx, u = this.ui;
+      var PH = this.uiScale() > 1;
+      var W = PH ? this.uiW() : u.W, H = PH ? this.uiH() : u.H;
+      if (this.uiScale() === 1) this.fillScreen(T.scrim);
       this.plate((W - 760) / 2, 236, 760, 208, 16, 0.94, T.edge);
       this.text('本次强化没有可选卡片', W / 2, 300, T.fs.title, T.coin);
       this.text('升级池数据异常(池为空)。点下面继续, 不会丢进度。', W / 2, 342, T.fs.body, T.mid, 'center', false);
