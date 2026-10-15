@@ -15,22 +15,38 @@
       document.getElementById(containerId).appendChild(canvas);
       var baseDpr = Math.min(B.FX.dprCap, global.devicePixelRatio || 1);
       var dpr = baseDpr;
-      /* v5.20 渲染预算(见 src/core/perf.js): 后备缓冲倍率 = 设备像素比 x 守门员给的可变倍率。
-       *   为什么必须是变量: 实测帧耗时与像素数线性 ⇒ 弱机上唯一的杠杆就是像素数。
-       *   宽度取 5 的整数倍: 512*k 与 1280*k 都成整数 ⇒ 地面件能**精确 1:1** 落图(art.js 的 blit1to1)。 */
-      function canvasW(s) { return Math.max(160, Math.round(W * baseDpr * s / 5) * 5); }
-      canvas.width = canvasW(1);
-      canvas.height = Math.round(canvas.width * H / W);
-      var ctx = canvas.getContext('2d');
-      function applyScale(s) {
-        var cw = canvasW(s), ch = Math.round(cw * H / W);
-        if (cw === canvas.width && ch === canvas.height) return;
+      var fitScale = 1;      /* 画布 CSS 宽 / 逻辑宽(见 resize) */
+      var perfScale = 1;     /* 渲染预算(PS.Perf)给的可变倍率 */
+      /* v5.21(2026-10-15) 后备缓冲的像素数 = 屏幕上**真正显示出来**的像素数。
+       *   旧口径 canvas.width = W x min(dprCap, devicePixelRatio) 完全不看画布在屏幕上占多大:
+       *   手机 390x844 / dpr2.25 竖屏实测, 后备 2560x1440 = 3.69Mpx, 而屏幕只显示
+       *   (390x693 CSS) x 2.25 = 1.37Mpx ⇒ **每帧多画 2.69 倍像素**(纯浪费)。
+       *   填充率是唯一瓶颈(帧耗时与像素数线性, 见 core/perf.js 与 work/phoneprobe.json):
+       *   这 2.69 倍既不做任何观感提升, 又直接变成发热与掉帧(用户实测骁龙8至尊版发烫)。
+       *   口径 effDpr = min(dprCap, fitScale x devicePixelRatio) x 渲染预算倍率 ——
+       *   恒 <= 旧口径(只减不增), 桌面大窗 / 4K 屏逐像素不变。
+       *   宽度取 5 的整数倍: k = 5m/1280 = m/256 ⇒ 512*k = 2m 恒为整数
+       *   ⇒ 地面砖落图在任何倍率下都是**精确 1:1**(art.js 的 blit1to1), 不会出现重采样接缝。 */
+      function effDpr() {
+        var want = fitScale * (global.devicePixelRatio || 1);
+        return Math.max(0.5, Math.min(baseDpr, want)) * perfScale;
+      }
+      function canvasW(k) { return Math.max(160, Math.round(W * k / 5) * 5); }
+      /* v5.21: alpha:false —— 主画布每帧第一件事就是 fillScreen 铺满(见 ui.js 的 draw),
+       *   没有任何一帧需要页面底色透过来。透明后备缓冲会让浏览器在合成时多做一次混合,
+       *   手机上这是白给的电量与带宽(起始闸门等待期间的空画布也从“透出页面底色”变成不透明黑,
+       *   页面底色本来就是 #0a0f0a, 观感一致)。 */
+      var ctx = canvas.getContext('2d', { alpha: false });
+      function applyBacking() {
+        var cw = canvasW(effDpr()), ch = Math.round(cw * H / W);
+        if (cw === canvas.width && ch === canvas.height) { dpr = cw / W; if (ui) ui.dpr = dpr; return; }
         canvas.width = cw; canvas.height = ch;          /* 赋值即清空后备缓冲 + 复位基变换 */
         dpr = cw / W;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ui.dpr = dpr;
+        if (ui) ui.dpr = dpr;
       }
-      ctx.scale(dpr, dpr);
+      applyBacking();
+      function applyScale(s) { perfScale = s; applyBacking(); }
 
       /* 竖屏(手机竖着拿)走"伪横屏": 画布整体 CSS 转 90° 铺满屏幕。
        *   为什么不是锁方向: screen.orientation.lock 只在全屏 + 少数浏览器可用, 国产 webview(微信/夸克…)基本不支持
@@ -43,6 +59,10 @@
         canvas.style.width = (W * scale) + 'px';
         canvas.style.height = (H * scale) + 'px';
         if (portrait) canvas.classList.add('rot90'); else canvas.classList.remove('rot90');
+        /* v5.21: 屏幕尺寸/方向一变, 后备缓冲跟着变 —— 手机竖屏 scale=0.546, dpr2.25
+         *   ⇒ effDpr=1.23(旧口径恒为 2), 像素数 3.69Mpx → 1.39Mpx。 */
+        fitScale = scale;
+        applyBacking();
       }
       global.addEventListener('resize', resize);
       resize();
@@ -88,7 +108,10 @@
       }
       P.applyFps = function (n) {
         fpsNow = (n === 30 || n === 60 || n === 120) ? n : 60;
-        minGap = fpsNow >= 60 ? 0 : (1000 / fpsNow) - 1;
+        /* v5.21: 60 挡必须**真的是 60**。旧实现 60/120 都取 minGap=0(注释原话「高刷屏自然跑满」)
+         *   ⇒ 120Hz 手机上选了 60 仍按 120 帧画: 像素填充与整条主循环全部翻倍, 是发热的头号来源。
+         *   120 挡保持 0(它就是「屏幕多快跑多快」), 30/60 按本挡节奏隔帧。 */
+        minGap = fpsNow >= 120 ? 0 : (1000 / fpsNow) - 2;
         return fpsNow;
       };
       if (PS.applyFps) PS.applyFps(PS.Save.data.fps);
@@ -112,10 +135,41 @@
       var input = PS.Input.attach(canvas, ui);
       PS.FX.init();
 
+      /* ?perf=1 —— 真机自证读数(玩家默认看不到, 见下面的 drawPerf)。
+       *   存在的理由: 「发热 / 掉帧」只能在真机上验收, 而真机跑不了我们的探针(Node + 无头 Edge)
+       *   ⇒ 让游戏自己把 fps / 后备缓冲像素数 / 降档级别 / 同屏实体报在屏幕上, 手机截个图就是证据。
+       *   用法: 打开 https://…/veggie-survivor/?perf=1 (横竖屏都可以, 竖屏会跟着画布一起转)。 */
+      var showPerf = !!(global.location && /[?&]perf=1(&|$)/.test(global.location.search));
+      var pfWin = [], pfTxt = '', pfT = 0;
+      function perfTick(ivMs) {
+        pfWin.push(ivMs); pfT += ivMs;
+        if (pfT < 500) return;
+        var a = pfWin.slice().sort(function (x, y) { return x - y; });
+        var p50 = a[Math.floor(a.length / 2)];
+        pfWin.length = 0; pfT = 0;
+        var g = PS.Game, pf = (PS.Perf && PS.Perf.stats) ? PS.Perf.stats() : { level: -1 };
+        pfTxt = (1000 / p50).toFixed(0) + 'fps ' + p50.toFixed(1) + 'ms | ' + canvas.width + 'x' + canvas.height +
+          ' (' + (canvas.width / W).toFixed(2) + 'x) | 档' + pf.level + ' | 怪' + (g.enemies ? g.enemies.length : 0) +
+          ' 弹' + (g.projectiles ? g.projectiles.length : 0) + ' 粒' + (PS.FX && PS.FX.parts ? PS.FX.parts.length : 0);
+      }
+      /* 用**设备像素**画(不是逻辑像素): 逻辑坐标在手机上只有 0.55 倍, 13px 的字会缩成 7px 看不见。 */
+      function drawPerf() {
+        if (!pfTxt) return;
+        var r = global.devicePixelRatio || 1, x = ctx;
+        x.save();
+        x.setTransform(1, 0, 0, 1, 0, 0);
+        x.font = (13 * r) + 'px ' + '"PingFang SC","Microsoft YaHei",monospace';
+        x.textBaseline = 'top';
+        var w = x.measureText(pfTxt).width + 10 * r;
+        x.fillStyle = 'rgba(0,0,0,0.66)'; x.fillRect(0, 0, w, 21 * r);
+        x.fillStyle = '#8fd66b'; x.fillText(pfTxt, 5 * r, 4 * r);
+        x.restore();
+      }
       var last = Date.now();
       function frame() {
         var now = Date.now();
         var ivMs = now - last;                    /* 本帧真实间隔(未夹紧): 渲染预算的输入 */
+        if (showPerf) perfTick(ivMs);
         if (minGap && ivMs < minGap) { global.requestAnimationFrame(frame); return; }   /* 帧率挡位: 没到本挡的节奏就不画 */
         try {
           var dt = Math.min(0.05, ivMs / 1000);
@@ -135,6 +189,7 @@
             : 0.35);
           PS.UI.draw(dt);
           input.drawJoystick();
+          if (showPerf) drawPerf();
         } catch (err) {
           if (!frame._lastErr || now - frame._lastErr > 1000) {
             console.error('[PS frame]', err);
