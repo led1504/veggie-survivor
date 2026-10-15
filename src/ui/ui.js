@@ -62,6 +62,30 @@
       return ui;
     },
 
+    /* ================= 手机端 UI 缩放(v5.21, 2026-10-15) =================
+     * 背景(实测): 逻辑面恒为 1280x720, 手机上只映射到 693x390 CSS ⇒ 每逻辑像素 0.542 CSS px,
+     *   正文 14px 落成 **7.6 CSS px**(可读下限约 11~12)。放大只有一条路: 让界面在**更小的逻辑空间**里排版。
+     * 口径: setFit(s) 由平台层给「每个逻辑像素占多少 CSS 像素」(web 的 fitScale / 微信的 fit);
+     *   UI 倍率 = 0.85 / s, 夹在 [1, 1.6] —— 桌面 s=1 ⇒ 恒为 1(整条绘制路径逐像素不变);
+     *   手机 s=0.542 ⇒ 1.57 ⇒ 界面的逻辑空间从 1280x720 变成约 815x459。
+     * 为什么不是「调大字号」: 字号大了框也得大, 框一大会撞车。缩放坐标系 = 整套几何按同比例挪进小空间,
+     *   **框与字的关系逐像素不变**(不会撑破板子、不会压按钮), 只有「边上留多少空、一行放不下怎么办」要重排。
+     * 缩放是**绕原点**的均匀缩放 ⇒ UI 空间的 (0,0) 落在画布 (0,0), 贴着屏幕角的排版仍贴着屏幕角
+     *   (若绕中心缩放, HUD 会缩到屏幕中间去)。
+     * 本轮只作用于战斗内 HUD(常驻、看得最久); 覆盖页(菜单/商店/强化/结算)各自重排之后才能跟着放大。
+     * 指针: 按钮热区在缩放空间里画, 但指针来自 input.js 的 toLogic(未缩放) ⇒ 出这层时必须把热区
+     *   **换算回画布坐标**(见 drawHUD 的 rescaleRects), 这是唯一会点不中的地方。 */
+    setFit: function (s) { this.fitScale = (s > 0 && isFinite(s)) ? s : 1; return this.uiScale(); },
+    uiScale: function () {
+      var s = this.fitScale || 1;
+      return Math.max(1, Math.min(1.6, 0.85 / s));
+    },
+    uiW: function () { return this.ui.W / this.uiScale(); },
+    uiH: function () { return this.ui.H / this.uiScale(); },
+    rescaleRects: function (arr, from, S) {
+      for (var i = from; i < arr.length; i++) { var b = arr[i]; b.x *= S; b.y *= S; b.w *= S; b.h *= S; }
+    },
+
     /* 溢出量的唯一入口: 缺省/非法一律 0 —— 任何没有 bleed 的调用方(浏览器端、探针)因此逐像素不变 */
     normBleed: function (b) {
       function n(v) { return (typeof v === 'number' && isFinite(v) && v > 0) ? v : 0; }
@@ -876,16 +900,20 @@
       x.closePath();
     },
     hot: function (px, py, w, h) {
-      var m = this.ui.pointer;
+      var m = this.ui.pointer, S = this.spaceScale || 1;
+      if (m && S !== 1) m = { x: m.x / S, y: m.y / S };   /* HUD 是缩放绘制的, 指针做同样的逆变换 */
       return !!(m && m.x >= px && m.x <= px + w && m.y >= py && m.y <= py + h);
     },
 
     /* ---------- 按下反馈: 触屏没有 hover, 用 140ms 金环补上(spec §4) ---------- */
     press: function (px, py, w, h, opts) {
       var self = this;
+      /* 缩放空间(HUD)里创建的按钮, 按下环要回到画布坐标 —— 环是在变换之外画的(见 drawPress)。
+       *   必须**创建时**捕获空间: 回调是点击那一刻跑的, 那时 spaceScale 已经复位。 */
+      var sp = this.spaceScale || 1;
       return function () {
         if (!self.pressFx) self.pressFx = [];
-        self.pressFx.push({ x: px, y: py, w: w, h: h, t: 0 });
+        self.pressFx.push({ x: px * sp, y: py * sp, w: w * sp, h: h * sp, t: 0 });
         if (self.pressFx.length > 4) self.pressFx.shift();
         if (opts && opts.cb) opts.cb();
       };
@@ -2036,7 +2064,7 @@
      * 纪律: 这里**只画矢量不写文字** —— HUD 那几条断言(文字不出板/不压按钮/位数改基线)全部基于 fillText
      *   的包围盒, 齿轮不 fillText 就不可能踩到它们。只在 PLAY 画并入表(暂停页自己有继续/退出)。 */
     drawSettingsButton: function () {
-      var x = this.ctx, u = this.ui, W = u.W;
+      var x = this.ctx, u = this.ui, W = this.uiW();   /* 与 HUD 同一坐标系(缩放的) */
       var w = 44, h = 44, px = W - 16 - 268 - 52, py = 12;
       var on = this.hot(px, py, w, h);
       x.fillStyle = on ? this.withA(T.gold, 0.34) : 'rgba(13,19,13,0.90)';
@@ -2910,8 +2938,25 @@
       x.fillRect(px, py + 1, 4.5, h - 2);
       x.restore();
     },
+    /* HUD = 唯一常驻、看得最久的界面 ⇒ 手机端第一个放大它(见 setFit)。
+     *   桌面 uiScale()=1 ⇒ 直接走 drawHUDInner, 一个像素都不变。
+     *   S!==1 时: 绕原点均匀缩放(屏幕角仍是屏幕角) → 内部排版在小空间里重排 → 热区换算回画布坐标。 */
     drawHUD: function () {
-      var x = this.ctx, u = this.ui, g = PS.Game, W = u.W;
+      var x = this.ctx, S = this.uiScale();
+      if (S === 1) { this.spaceScale = 1; this.drawHUDInner(); return; }
+      x.save();
+      x.scale(S, S);
+      this.spaceScale = S;
+      var n0 = this.buttons.length, r0 = this.btnRects.length;
+      this.drawHUDInner();
+      /* 热区回到画布坐标: 指针来自 input.js 的 toLogic(未缩放), 不同坐标就点不中(与旋转那次同一类坑) */
+      this.rescaleRects(this.buttons, n0, S);
+      this.rescaleRects(this.btnRects, r0, S);
+      this.spaceScale = 1;
+      x.restore();
+    },
+    drawHUDInner: function () {
+      var x = this.ctx, u = this.ui, g = PS.Game, W = this.uiW();
       if (!g.player || !g.stats) return;
       if (g.state === PS.State.OVER || g.state === PS.State.LEVELUP || g.state === PS.State.SHOP) return;
       var s = g.stats;
@@ -2987,7 +3032,10 @@
       x.textAlign = 'right';
       x.fillText('LV ' + g.level + ' · ' + Math.floor(g.xp) + '/' + need, bx + xbw, py + 68);
       /* ---- 中央胶囊: 波次 + 剩余秒 + 进度 ---- */
-      var capW = 300, capX = W / 2 - capW / 2, capY = 12;
+      /* 手机端(UI 空间约 815 宽)左板占到 408, 胶囊居中后左缘只有 257 ⇒ 必然撞车, 换第二行。
+       *   桌面 1280: 640-150 = 490 > 420 ⇒ 恒为一行, 逐像素与旧版一致。 */
+      var capW = 300, capRow2 = (W / 2 - capW / 2) < 420;
+      var capX = W / 2 - capW / 2, capY = capRow2 ? 96 : 12;
       this.plate(capX, capY, capW, 64, 14, 0.90, T.edge);
       this.groupTag(capX, capY, 64, T.coin);  /* 进度 */
       var mo = B.MODES[g.mode] || { name: '远征', waves: 0 };
@@ -3010,10 +3058,12 @@
         var upTxt = '★ 本波获得 ' + g.pendingLevelups + ' 次强化 · 波末结算';
         x.font = 'bold ' + T.fs.small + 'px ' + u.font;
         var upw = x.measureText(upTxt).width + 28;
-        this.plate(W / 2 - upw / 2, 84, upw, 26, 8, 0.86, this.withA(T.coin, 0.55));
+        /* 换行时让位到胶囊下面(桌面恒 84, 与旧版一致) */
+        var upY = capRow2 ? (capY + 64 + 6) : 84;
+        this.plate(W / 2 - upw / 2, upY, upw, 26, 8, 0.86, this.withA(T.coin, 0.55));
         x.fillStyle = T.coin;
         x.textAlign = 'center';
-        x.fillText(upTxt, W / 2, 102);
+        x.fillText(upTxt, W / 2, upY + 18);
       }
       /* ---- 右上: 材料 + 武器槽 ---- */
       var rw2 = 268, rx2 = W - 16 - rw2;

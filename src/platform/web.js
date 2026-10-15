@@ -63,6 +63,8 @@
          *   ⇒ effDpr=1.23(旧口径恒为 2), 像素数 3.69Mpx → 1.39Mpx。 */
         fitScale = scale;
         applyBacking();
+        /* v5.21: 把"每个逻辑像素占多少 CSS 像素"交给 UI —— 它据此决定界面要不要放大(setFit) */
+        if (PS.UI && PS.UI.setFit) PS.UI.setFit(scale);
       }
       global.addEventListener('resize', resize);
       resize();
@@ -84,6 +86,7 @@
           return c;
         }
       });
+      if (PS.UI && PS.UI.setFit) PS.UI.setFit(fitScale);   /* 初始一次: resize 在 ui 建好之前就跑过了 */
       PS.Save.load();
       /* 帧率挡位(30/60/120): 浏览器 rAF 跟着屏幕刷新率走, 所以只能往下夹 —— 30 挡真的隔帧画
        *   (隔一帧直接 return 且不动 last ⇒ 下一帧的 dt 仍是完整间隔); 60/120 挡不夹(rAF 给多少就是多少,

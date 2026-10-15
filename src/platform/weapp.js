@@ -110,7 +110,10 @@
       };
 
       /* 每帧基变换(UI/FX 都在逻辑坐标下绘制, ui.js 内部只做 save/restore, 不会覆盖基变换) */
-      function applyView() { ctx.setTransform(dpr * fit, 0, 0, dpr * fit, dpr * offX, dpr * offY); }
+      function applyView() {
+        ctx.setTransform(dpr * fit, 0, 0, dpr * fit, dpr * offX, dpr * offY);
+        if (PS.UI && PS.UI.setFit) PS.UI.setFit(fit);   /* v5.21: 界面按屏幕实际倍率决定要不要放大 */
+      }
       /* 只填溢出区(世界会紧跟着盖过去; 这一层只防"世界还没画"的第一帧露底) */
       function clearBars() {
         ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -155,6 +158,7 @@
           return c;
         }
       });
+      if (PS.UI && PS.UI.setFit) PS.UI.setFit(fit);   /* 初始一次: applyView 在 ui 建好之前就跑过了 */
       PS.Save.load();
       PS.FX.init();
       /* 渲染预算装机: 判定在 core/perf.js, 这里只提供"怎么套用倍率" + 调参面 */
