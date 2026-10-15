@@ -140,6 +140,14 @@
        *   ⇒ 让游戏自己把 fps / 后备缓冲像素数 / 降档级别 / 同屏实体报在屏幕上, 手机截个图就是证据。
        *   用法: 打开 https://…/veggie-survivor/?perf=1 (横竖屏都可以, 竖屏会跟着画布一起转)。 */
       var showPerf = !!(global.location && /[?&]perf=1(&|$)/.test(global.location.search));
+      /* 设备自报(只为取证, 不参与任何判定): 手机端该从哪一档起步、要不要给弱机留后手,
+       *   阈值一律等真机把这几项报回来再定(移植手游常用的「按设备能力选初始画质」第一步就是先摸清分布)。 */
+      var devTxt = (function () {
+        var n = global.navigator || {}, sc = global.screen || {};
+        return '屏' + (sc.width || '?') + 'x' + (sc.height || '?') + ' dpr' + (global.devicePixelRatio || 1) +
+          ' 窗' + (global.innerWidth || '?') + 'x' + (global.innerHeight || '?') +
+          ' 核' + (n.hardwareConcurrency || '?') + ' 存' + (n.deviceMemory || '?') + 'G';
+      })();
       var pfWin = [], pfTxt = '', pfT = 0;
       function perfTick(ivMs) {
         pfWin.push(ivMs); pfT += ivMs;
@@ -160,9 +168,10 @@
         x.setTransform(1, 0, 0, 1, 0, 0);
         x.font = (13 * r) + 'px ' + '"PingFang SC","Microsoft YaHei",monospace';
         x.textBaseline = 'top';
-        var w = x.measureText(pfTxt).width + 10 * r;
-        x.fillStyle = 'rgba(0,0,0,0.66)'; x.fillRect(0, 0, w, 21 * r);
+        var w = Math.max(x.measureText(pfTxt).width, x.measureText(devTxt).width) + 10 * r;
+        x.fillStyle = 'rgba(0,0,0,0.66)'; x.fillRect(0, 0, w, 38 * r);
         x.fillStyle = '#8fd66b'; x.fillText(pfTxt, 5 * r, 4 * r);
+        x.fillStyle = '#98a68f'; x.fillText(devTxt, 5 * r, 21 * r);
         x.restore();
       }
       var last = Date.now();
