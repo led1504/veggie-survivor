@@ -85,32 +85,41 @@
       return Math.max(1, Math.min(1280 / 612, 1.1 / s));
     },
     uiW: function () { return this.ui.W / this.uiScale(); },
-    /* 手机端 HUD 版式 —— **唯一实现**(drawHUDInner / drawSettingsButton / hudBandH 都读它)。
+    /* HUD 版式 —— **唯一实现**(drawHUDInner / drawHUDPhone / drawSettingsButton / hudBandH 都读它)。
      * 桌面(S=1): 顶行三件(血板 16..408 · 齿轮 · 材料 996..1264) + 波次胶囊也顶行居中, 逐像素与旧版一致。
-     * 手机: 顶行只留「血板 + 齿轮」, 材料托盘与波次胶囊**一起挪到底行**。
-     *   理由(实测截图): 放大的 HUD 若继续全堆在顶部, 顶部要吃掉 41%~51% 的屏高, 从上方压过来的怪全被挡住;
-     *   拆成上下两条后干净战场 ≈ 屏高的 49%, 而且**玩家正好落在干净带正中** —— 顶部双行版式里玩家贴着 HUD 下沿。
-     *   代价是总遮挡变多(遮挡比例 ≈ uiScale/4), 这是"字要大"必然的交换。
-     *   底行宽度和 16+268 = 284 与胶囊 300 在 uiW >= 612 时才不重叠 —— uiScale 的上限就是照这条定的。 */
+     * 手机(v9.0, 2026-10-15 用户: 「你把 ui 放大它反而挡住屏幕了」+「就按着(土豆兄弟手游)这个标准来」):
+     *   常驻 UI 全部退回三个角 —— 左上一块板(头像/血/经验/等级/材料) + 顶中央波次 + 右上齿轮 + 左下武器条,
+     *   **屏幕正中那条横带全空**。常驻 UI 面积 = 11.3% 的逻辑层(旧版 31.9%), 顶/底两条带合计 29%(旧版 51%)。
+     *   字号一个都没动(用户 2026-10-15 说过字号小得眼睛难受) —— 这是 Brotato 同款口径: **小框 + 大字**。
+     *   量出来的对照(Brotato 手游截图 3136x1440): 血条 = 屏宽 12.8% x 屏高 2.8%, 常驻 UI 只占左上角一块(约屏高 15%), 底部全空。 */
     hudLayout: function () {
       var W = this.uiW(), H = this.uiH();
-      if (this.uiScale() === 1) return {
-        phone: false,
-        capW: 300, capX: W / 2 - 150, capY: 12,
-        matX: W - 16 - 268, matY: 12,
-        gearX: W - 16 - 268 - 52, gearY: 12, upY: 84
-      };
+      if (this.uiScale() === 1) {
+        var dp = { x: 16, y: 12, w: 392, h: 76 };                 /* 血板(桌面) */
+        var dm = { x: W - 16 - 268, y: 12, w: 268, h: 76 };       /* 材料/武器托盘 */
+        var dc = { x: W / 2 - 150, y: 12, w: 300, h: 64 };        /* 波次胶囊 */
+        var dg = { x: W - 16 - 268 - 52, y: 12, s: 44 };          /* 设置齿轮 */
+        return {
+          phone: false, plate: dp, mat: dm, cap: dc, gear: dg,
+          capW: dc.w, capX: dc.x, capY: dc.y, matX: dm.x, matY: dm.y,
+          gearX: dg.x, gearY: dg.y, gearS: dg.s, upY: 84
+        };
+      }
+      var pp = { x: 10, y: 8, w: 214, h: 54 };                    /* 左上: 头像 + 血 + 经验 + 等级 + 材料 */
+      var pm = { x: 10, y: H - 8 - 34, w: 200, h: 34 };           /* 左下: 武器槽(6 格 x 26) */
+      var pc = { x: Math.round(W / 2 - 58), y: 6, w: 116, h: 46 };/* 顶中: 波次 + 倒计时(半透明小底, 不再是 300x64 胶囊) */
+      var pg = { x: W - 8 - 40, y: 8, s: 40 };                    /* 右上: 暂停/设置(40 UI = 44 CSS px, 不小于触控下限) */
       return {
-        phone: true,
-        capW: 300, capX: W - 16 - 300, capY: H - 16 - 64,
-        matX: 16, matY: H - 16 - 76,
-        gearX: W - 16 - 44, gearY: 12, upY: 94
+        phone: true, plate: pp, mat: pm, cap: pc, gear: pg,
+        capW: pc.w, capX: pc.x, capY: pc.y, matX: pm.x, matY: pm.y,
+        gearX: pg.x, gearY: pg.y, gearS: pg.s, upY: pm.y - 30
       };
     },
-    /* 顶部 HUD 带在**逻辑画布**里占掉的高度。屏幕空间的东西(波次横幅)必须落在它下面 ——
-     *   手机换成两行后横幅会被放大的板子压住(v5.21 实测截图)。桌面 = 88 -> 横幅仍在 114, 逐像素不变。 */
+    /* 顶部 HUD 带在**逻辑画布**里占掉的高度。屏幕空间的东西(波次横幅)必须落在它下面。
+     *   桌面 = 62(S=1) -> 横幅仍在 max(114, 62+14) = 114, 逐像素与旧版一致;
+     *   手机 = (8+54) x S -> 横幅让到紧凑版下面(v5.21 的 88 x S 是两行版的代价, 现已不需要)。 */
     hudBandH: function () {
-      return 88 * this.uiScale();   /* 顶带只剩血板那一条(12+76); 上下两条版式下胶囊已不在顶部 */
+      return (this.uiScale() === 1 ? 62 : 62) * this.uiScale();
     },
     uiH: function () { return this.ui.H / this.uiScale(); },
     rescaleRects: function (arr, from, S) {
@@ -225,9 +234,16 @@
         x.fillStyle = '#33441f';                     /* 世界基色, 同 art.js palette.groundB */
         x.fillRect(cam.x - bl.l, cam.y - bl.t, u.W + bl.l + bl.r, u.H + bl.t + bl.b);
       }
+      /* v9.0: 场地外圈压暗 —— 竞技场不再铺满视口后, 场外那圈必须一眼读成「墙」,
+         否则玩家分不清哪块能走。纯 fillRect(+奇偶填充, 零烘焙) —— 与 Brotato 手游左右两道黑岩壁同一个作用。 */
+      x.beginPath();
+      x.rect(cam.x - bl.l, cam.y - bl.t, u.W + bl.l + bl.r, u.H + bl.t + bl.b);
+      x.rect(B.ARENA.x, B.ARENA.y, B.ARENA.w, B.ARENA.h);
+      x.fillStyle = 'rgba(6,10,6,0.74)';
+      x.fill('evenodd');
       // 世界边界
-      x.strokeStyle = 'rgba(216,162,74,0.25)';
-      x.lineWidth = 4;
+      x.strokeStyle = 'rgba(216,162,74,0.42)';
+      x.lineWidth = 5;
       x.strokeRect(B.ARENA.x, B.ARENA.y, B.ARENA.w, B.ARENA.h);
       var fx = PS.FX;
       // 尸体
@@ -2098,7 +2114,7 @@
     drawSettingsButton: function () {
       var x = this.ctx, u = this.ui;   /* 与 HUD 同一坐标系(缩放的) */
       var L = this.hudLayout();
-      var w = 44, h = 44, px = L.gearX, py = L.gearY;
+      var w = L.gearS || 44, h = L.gearS || 44, px = L.gearX, py = L.gearY;   /* 手机 40 / 桌面 44 */
       var on = this.hot(px, py, w, h);
       x.fillStyle = on ? this.withA(T.gold, 0.34) : 'rgba(13,19,13,0.90)';
       this.rr(px, py, w, h, 12); x.fill();
@@ -3006,27 +3022,11 @@
       this.spaceScale = 1;
       x.restore();
     },
-    drawHUDInner: function () {
-      var x = this.ctx, u = this.ui, g = PS.Game, W = this.uiW();
-      if (!g.player || !g.stats) return;
-      if (g.state === PS.State.OVER || g.state === PS.State.LEVELUP || g.state === PS.State.SHOP) return;
-      var s = g.stats;
-      var dt = this.time - (this._hudT === undefined ? this.time : this._hudT);
-      this._hudT = this.time;
-      var L = this.hudLayout();   /* 版式唯一来源: 桌面顶行三件 / 手机上下两条 */
-      /* ---- 左上: 头像 + 生命 + 经验 + 等级 ---- */
-      var px = 16, py = 12, pw = 392, ph = 76;
-      this.plate(px, py, pw, ph, 14, 0.90, T.edge);
-      this.groupTag(px, py, ph, T.neg);      /* 生存 */
-      x.save();
-      x.beginPath(); x.arc(px + 42, py + 38, 25, 0, PS.TAU);
-      x.fillStyle = this.withA(T.gold, 0.14); x.fill();
-      x.strokeStyle = this.withA(T.gold, 0.6); x.lineWidth = 2; x.stroke();
-      x.clip();
-      this.drawCharModel(g.char, px + 42, py + 46, 0.8, { walk: 0, moving: false, eyeDx: 0, eyeDy: 0 });
-      x.restore();
-      var bx = px + 78, bw = 300, by = py + 14, bh = 18;
-      var ratio = PS.util.clamp(s.maxHp > 0 ? g.player.hp / s.maxHp : 0, 0, 1);
+    /* 血条填充 + 掉血残影 + 低血脉冲 —— 桌面血板与手机血板**共用这一份**。
+     *   抽出来的理由: 里面每一个数都影响观感(残影速度 0.55/s · 脉冲 8Hz · 高光 2px),
+     *   抄第二份就一定会漂移。调用方只负责给矩形与 ratio, 返回值 = 是否激活「危」态(文字用色)。 */
+    hpBarFill: function (bx, by, bw, bh, ratio, dt) {
+      var x = this.ctx;
       var low = ratio <= 0.3, veryLow = ratio <= 0.15;
       if (this._hpGhost === undefined) this._hpGhost = ratio;
       this._hpGhost = Math.max(ratio, this._hpGhost - dt * 0.55);
@@ -3051,6 +3051,34 @@
       for (var tk = 1; tk < 4; tk++) {
         x.beginPath(); x.moveTo(bx + bw / 4 * tk, by + 1); x.lineTo(bx + bw / 4 * tk, by + bh - 1); x.stroke();
       }
+      return veryLow;
+    },
+
+    drawHUDInner: function () {
+
+      var x = this.ctx, u = this.ui, g = PS.Game, W = this.uiW();
+      if (!g.player || !g.stats) return;
+      if (g.state === PS.State.OVER || g.state === PS.State.LEVELUP || g.state === PS.State.SHOP) return;
+      var s = g.stats;
+      var dt = this.time - (this._hudT === undefined ? this.time : this._hudT);
+      this._hudT = this.time;
+      var L = this.hudLayout();              /* 版式唯一来源(见 hudLayout) */
+      if (L.phone) return this.drawHUDPhone(L, dt);   /* 手机走紧凑版(v9.0): 桌面那条路径一个字节都不碰 */
+      /* ---- 左上: 头像 + 生命 + 经验 + 等级 ---- */
+      var px = 16, py = 12, pw = 392, ph = 76;
+      this.plate(px, py, pw, ph, 14, 0.90, T.edge);
+      this.groupTag(px, py, ph, T.neg);      /* 生存 */
+      x.save();
+      x.beginPath(); x.arc(px + 42, py + 38, 25, 0, PS.TAU);
+      x.fillStyle = this.withA(T.gold, 0.14); x.fill();
+      x.strokeStyle = this.withA(T.gold, 0.6); x.lineWidth = 2; x.stroke();
+      x.clip();
+      this.drawCharModel(g.char, px + 42, py + 46, 0.8, { walk: 0, moving: false, eyeDx: 0, eyeDy: 0 });
+      x.restore();
+      var bx = px + 78, bw = 300, by = py + 14, bh = 18;
+      var ratio = PS.util.clamp(s.maxHp > 0 ? g.player.hp / s.maxHp : 0, 0, 1);
+      /* 填充 + 掉血残影 + 低血脉冲全在 hpBarFill(与手机血板共用同一份表达式) */
+      var veryLow = this.hpBarFill(bx, by, bw, bh, ratio, dt);
       var hpTxt = Math.max(0, Math.ceil(g.player.hp)) + ' / ' + s.maxHp;
       x.font = 'bold ' + T.fs.small + 'px ' + u.font;
       var htw = x.measureText(hpTxt).width;
@@ -3157,7 +3185,109 @@
       x.textAlign = 'left';
       /* 设置(暂停)入口: 只在真实战斗中画, 暂停页自己有一整套按钮 */
       if (g.state === PS.State.PLAY) this.drawSettingsButton();
-    },    /* ================= 波末强化(4 选 1) ================= */
+    },
+
+    /* ================= 手机端战斗 HUD(v9.0, 2026-10-15) =================
+     * 版式见 hudLayout(); 这里只负责画。与 drawHUDInner 的分工:
+     *   桌面那条路径**一个字节不碰**(qa/verify-ui 的桌面像素审计照旧), 手机这条只读 L 的四个矩形。
+     * 三块: 左上一板(血/经验/等级/材料) · 顶中波次 · 左下武器槽; 齿轮仍走 drawSettingsButton。
+     * 为什么单开一条而不把 drawHUDInner 加上一堆 if(phone): 桌面那份是审计基准(逐像素), 把两套排版揉进同一函数就等于每改一边都要重验另一边。 */
+    drawHUDPhone: function (L, dt) {
+      var x = this.ctx, u = this.ui, g = PS.Game, s = g.stats;
+      var i;
+      /* ---- 左上板: 头像 + 血条 + 经验条 + 等级徽 + LV/材料一行 ---- */
+      var P = L.plate;
+      this.plate(P.x, P.y, P.w, P.h, 12, 0.90, T.edge);
+      this.groupTag(P.x, P.y, P.h, T.neg);
+      x.save();
+      x.beginPath(); x.arc(P.x + 24, P.y + 27, 16, 0, PS.TAU);
+      x.fillStyle = this.withA(T.gold, 0.14); x.fill();
+      x.strokeStyle = this.withA(T.gold, 0.6); x.lineWidth = 1.5; x.stroke();
+      x.clip();
+      this.drawCharModel(g.char, P.x + 24, P.y + 31, 0.52, { walk: 0, moving: false, eyeDx: 0, eyeDy: 0 });
+      x.restore();
+      var bx = P.x + 46, bw = P.w - 46 - 8, by = P.y + 7, bh = 15;
+      var ratio = PS.util.clamp(s.maxHp > 0 ? g.player.hp / s.maxHp : 0, 0, 1);
+      var veryLow = this.hpBarFill(bx, by, bw, bh, ratio, dt);
+      var hpTxt = Math.max(0, Math.ceil(g.player.hp)) + ' / ' + s.maxHp;
+      x.font = 'bold ' + T.fs.small + 'px ' + u.font;
+      x.fillStyle = 'rgba(5,8,5,0.66)';
+      this.rr(bx + 4, by + 1, Math.min(bw - 8, x.measureText(hpTxt).width + 10), bh - 2, 5); x.fill();
+      this.fitText(hpTxt, bx + 9, by + bh - 4, bw - 16, T.fs.small, veryLow ? '#ffd2cb' : '#ffffff', 'left', true, 10);
+      /* 经验条 + 等级圆徽 */
+      var need = B.xpNeed(g.level), xbw = bw - 26, xy = P.y + 27, xh = 7;
+      x.fillStyle = 'rgba(255,255,255,0.08)';
+      this.rr(bx, xy, xbw, xh, 4); x.fill();
+      var xr = PS.util.clamp(need > 0 ? g.xp / need : 0, 0, 1);
+      if (xr > 0) { x.fillStyle = T.info; this.rr(bx, xy, Math.max(4, xbw * xr), xh, 4); x.fill(); }
+      x.strokeStyle = this.withA(T.info, 0.5); x.lineWidth = 1;
+      this.rr(bx, xy, xbw, xh, 4); x.stroke();
+      x.fillStyle = T.info;
+      x.beginPath(); x.arc(bx + bw - 8, xy + xh / 2, 9, 0, PS.TAU); x.fill();
+      x.strokeStyle = T.ink; x.lineWidth = 1.2; x.stroke();
+      x.fillStyle = T.onGold;
+      x.font = 'bold ' + (g.level >= 100 ? 9 : (g.level >= 10 ? 10 : 11)) + 'px ' + u.font;
+      x.textAlign = 'center';
+      x.fillText('' + g.level, bx + bw - 8, xy + xh / 2 + 4);
+      x.textAlign = 'left';
+      this.fitText('LV ' + g.level + ' · ' + Math.floor(g.xp) + '/' + need, bx, P.y + P.h - 5, bw - 62,
+        T.fs.micro, T.low, 'left', false, 9);
+      this.fitText('★ ' + g.material, P.x + P.w - 8, P.y + P.h - 4, 66, T.fs.small, T.pos, 'right', true, 10);
+      /* ---- 顶中: 波次 + 倒计时 + 进度(半透明小底, 无描边) ---- */
+      var C = L.cap, cx = C.x + C.w / 2;
+      this.plate(C.x, C.y, C.w, C.h, 12, 0.62, false);
+      var left = Math.max(0, (g.waveDuration || 0) - g.timeInWave);
+      this.fitText('第 ' + g.wave + ' 波', cx, C.y + 20, C.w - 12, T.fs.lead, T.coin, 'center', true, 12);
+      this.fitText(Math.ceil(left) + ' 秒' + (g.horde ? ' · 怪潮!' : ''), cx, C.y + 35, C.w - 12, T.fs.small,
+        left < 5 ? T.danger : (g.horde ? T.neg : T.mid), 'center', true, 9);
+      var wpr = g.waveDuration > 0 ? PS.util.clamp(g.timeInWave / g.waveDuration, 0, 1) : 0;
+      x.fillStyle = 'rgba(255,255,255,0.14)';
+      this.rr(C.x + 8, C.y + 39, C.w - 16, 4, 2); x.fill();
+      if (wpr > 0) {
+        x.fillStyle = left < 5 ? T.danger : T.coin;
+        this.rr(C.x + 8, C.y + 39, Math.max(3, (C.w - 16) * wpr), 4, 2); x.fill();
+      }
+      /* ---- 左下: 武器槽 ---- */
+      var M = L.mat;
+      this.plate(M.x, M.y, M.w, M.h, 12, 0.90, T.edge);
+      this.groupTag(M.x, M.y, M.h, T.pos);
+      var slotN = (s && s.weaponSlot) || B.WEAPON_SLOTS;
+      var sgap = 4, slotW = Math.min(26, Math.floor((M.w - 24 - (slotN - 1) * sgap) / slotN));
+      var sx0 = M.x + 12, sy0 = M.y + Math.round((M.h - slotW) / 2);
+      for (i = 0; i < slotN; i++) {
+        var wx = sx0 + i * (slotW + sgap);
+        x.fillStyle = g.weapons[i] ? 'rgba(7,11,7,0.9)' : 'rgba(7,11,7,0.55)';
+        this.rr(wx, sy0, slotW, slotW, 6); x.fill();
+        x.strokeStyle = g.weapons[i] ? this.withA((RARITY[g.weapons[i].tier] || RARITY[1]).c, 0.8) : T.weak;
+        x.lineWidth = 1.2;
+        this.rr(wx, sy0, slotW, slotW, 6); x.stroke();
+        if (g.weapons[i]) {
+          this.weaponIcon(g.weapons[i].key, wx + slotW / 2, sy0 + slotW / 2 - 3, 12,
+            { def: PS.WeaponData.list[g.weapons[i].key], tier: g.weapons[i].tier });
+          x.fillStyle = 'rgba(5,8,5,0.78)';
+          this.rr(wx + slotW - 15, sy0 + slotW - 12, 13, 10, 3); x.fill();
+          x.fillStyle = T.coin;
+          x.font = 'bold 8px ' + u.font;
+          x.textAlign = 'center';
+          x.fillText('T' + g.weapons[i].tier, wx + slotW - 8.5, sy0 + slotW - 4.5);
+        }
+      }
+      x.textAlign = 'left';
+      /* ---- 强化预告(战斗中只预告, 绝不弹窗) ---- */
+      if (g.pendingLevelups > 0) {
+        var upTxt = '★ 本波获得 ' + g.pendingLevelups + ' 次强化 · 波末结算';
+        x.font = 'bold ' + T.fs.small + 'px ' + u.font;
+        var upw = Math.round(x.measureText(upTxt).width) + 24;
+        this.plate(M.x, L.upY, upw, 24, 8, 0.86, this.withA(T.coin, 0.55));
+        x.fillStyle = T.coin;
+        x.textAlign = 'center';
+        x.fillText(upTxt, M.x + upw / 2, L.upY + 17);
+        x.textAlign = 'left';
+      }
+      if (g.state === PS.State.PLAY) this.drawSettingsButton();
+    },
+
+    /* ================= 波末强化(4 选 1) ================= */
     /* v7.2(源对齐) 卡面品质缎带 = 这张卡**真的**属于哪一档(源 get_upgrade_data 的 tier), 与 stat 名无关。
      *   独立成方法只为**可测**: 门禁用它算期望色, 再用真像素对拍。
      *   旧口径是模块内一张按 stat 名硬编码的 LV_RARITY 表 ⇒ 会把 tier0 的暴击率/吸血画成史诗/传说,
