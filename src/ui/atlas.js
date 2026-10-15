@@ -64,8 +64,15 @@
   }
   A.baseUrl = detectBase();
 
+  /* ---- 图集 URL: 表驱动版本号(见上) ---- */
+  var ATLAS_V = (A.data && A.data.size) ? ('?v=' + A.data.size[0] + 'x' + A.data.size[1]) : '';
+  var WEB_HTTP = (typeof global.location !== 'undefined' && global.location && /^https?:$/.test(global.location.protocol || ''));
+  var ATLAS_Q = WEB_HTTP ? ATLAS_V : '';
   A.config = {
-    imageUrl: A.baseUrl + 'atlas.png',     /* 唯一的网络/文件依赖: 一张图集 */
+    imageUrl: A.baseUrl + 'atlas.webp' + ATLAS_Q,   /* 唯一的网络/文件依赖: 一张图集。
+     * 2026-10-15: 同一张图, 无损 WebP 1.10MB vs PNG 1.78MB(1x 时实测; 逐像素验过 alpha 全同,
+     *   只有"全透明像素的 RGB"被 webp 丢弃 = 不可见)。PNG 留作兜底, 不删。 */
+    imageUrlPng: A.baseUrl + 'atlas.png' + ATLAS_Q, /* 容器不认 webp 时用它再下一次(见 onerror) */
     jsonUrl: A.baseUrl + 'atlas.json',     /* 帧表兜底(http 环境; file:// 下浏览器会拦 XHR) */
     requirePath: '../../assets/atlas.js',  /* 小游戏端用 require 拿帧表(可选) */
     fitScale: 1,                           /* 全局落图微调(按画布铺满后嫌大/嫌小的总旋钮) */
@@ -212,7 +219,7 @@
         var done = false, tries = 0;
         function ok() {
           if (done) return; done = true;
-          A.img = img; A._ready = true; A._loading = false;
+          A.img = img; A._ready = true; A._loading = false; syncImgScale();
           invalidateProceduralSlots();
           if (cb) cb(true);
         }
@@ -222,7 +229,17 @@
           if (cb) cb(false);
         }
         img.onload = ok;
-        img.onerror = function () { bad('onerror'); };
+        var usedPng = false;
+        img.onerror = function () {
+          /* webp 下不来/不认(极老浏览器, 或小游戏容器没编解码器) → 换同一张图的 PNG 再下一次;
+             再失败才判死。**不许**在这里直接 bad(): 否则能玩的人会被判成"素材加载失败"。 */
+          if (!usedPng && A.config.imageUrlPng) {
+            usedPng = true;
+            try { img.src = A.config.imageUrlPng; } catch (e) { bad(e && e.message); }
+            return;
+          }
+          bad('onerror');
+        };
         try { img.src = A.config.imageUrl; } catch (e) { bad(e && e.message); }
         /* 小游戏偶发 onload 不触发: 兜底轮询(就绪判据是 width/height 真的有值) */
         if (typeof global.setTimeout === 'function') {
@@ -246,7 +263,7 @@
         }
         return;
       }
-      A._ready = true; A._loading = false; invalidateProceduralSlots();
+      A._ready = true; A._loading = false; syncImgScale();
       if (cb) cb(true);
     });
   };
@@ -284,10 +301,23 @@
     return A;
   };
 
+  /** 就绪时量一次: 图集实际宽度 / 帧表声明宽度(打包期缩过 = <1; 没缩 = 1) */
+  function syncImgScale() {
+    var w0 = (A.data && A.data.size && A.data.size[0]) || 0;
+    var w1 = (A.img && (A.img.naturalWidth || A.img.width)) || 0;
+    A.imgScale = (w0 > 0 && w1 > 0) ? (w1 / w0) : 1;
+  }
   /* ---------------------------- 绘制 ---------------------------- */
   /** 带染色的取图: 画到 scratch 画布上再合成, 避免 source-atop 波及先画的阴影/光环 */
+  /* 图集缩放(v9.2 · 2026-10-15): 图集图像本身可以比帧表声明的尺寸小(imgScale<1), 这时**取图矩形**按比例缩,
+     落图尺寸(dw/dh)仍按帧表算 —— 帧表一个数字都不改。默认 1 = 逐像素与旧版一致。
+     存在理由: 手机首屏要等图集下完(用户实测 10~20 秒), 而运行时在手机上只按约 1.2~1.6 设备像素落图,
+     图集存 @2x 等于多存一倍像素。缩图集 = 直接砍下载量, 也是 PC 游戏移植手机最常见的做法。 */
+  function srcRect(fr) { var k = A.imgScale || 1; return [fr.x * k, fr.y * k, fr.w * k, fr.h * k]; }
+  A.imgScale = 1;
   function blit(ctx, fr, dx, dy, dw, dh, tint) {
-    if (!tint) { ctx.drawImage(A.img, fr.x, fr.y, fr.w, fr.h, dx, dy, dw, dh); return; }
+    var rc = srcRect(fr), sX = rc[0], sY = rc[1], sW = rc[2], sH = rc[3];
+    if (!tint) { ctx.drawImage(A.img, sX, sY, sW, sH, dx, dy, dw, dh); return; }
     var pad = 2;
     var w = Math.max(1, Math.ceil(dw) + pad * 2), h = Math.max(1, Math.ceil(dh) + pad * 2);
     var P = PS.PlatformWeapp || PS.PlatformWeb;
@@ -297,21 +327,21 @@
       else if (PS.Sprites && PS.Sprites._factory) mk = PS.Sprites._factory;
       else if (typeof global.document !== 'undefined' && global.document.createElement) mk = function () { return global.document.createElement('canvas'); };
     } catch (e) { mk = null; }
-    if (!mk) { ctx.drawImage(A.img, fr.x, fr.y, fr.w, fr.h, dx, dy, dw, dh); return; }
+    if (!mk) { ctx.drawImage(A.img, sX, sY, sW, sH, dx, dy, dw, dh); return; }
     var sc = A._scratch;
     if (!sc || sc.width < w || sc.height < h) {
-      try { sc = A._scratch = mk(); } catch (e2) { ctx.drawImage(A.img, fr.x, fr.y, fr.w, fr.h, dx, dy, dw, dh); return; }
+      try { sc = A._scratch = mk(); } catch (e2) { ctx.drawImage(A.img, sX, sY, sW, sH, dx, dy, dw, dh); return; }
       sc.width = w; sc.height = h;
     } else {
       var sx = sc.getContext('2d');
       if (sx) sx.clearRect(0, 0, sc.width, sc.height);
     }
     var x = sc.getContext('2d');
-    if (!x) { ctx.drawImage(A.img, fr.x, fr.y, fr.w, fr.h, dx, dy, dw, dh); return; }
+    if (!x) { ctx.drawImage(A.img, sX, sY, sW, sH, dx, dy, dw, dh); return; }
     x.globalCompositeOperation = 'source-over';
     x.globalAlpha = 1;
     x.clearRect(0, 0, sc.width, sc.height);
-    x.drawImage(A.img, fr.x, fr.y, fr.w, fr.h, pad, pad, dw, dh);
+    x.drawImage(A.img, sX, sY, sW, sH, pad, pad, dw, dh);
     x.globalCompositeOperation = 'source-atop';
     x.fillStyle = tint.c;
     x.globalAlpha = tint.a;
@@ -390,7 +420,7 @@
 
   A.stats = function () {
     return {
-      ready: !!A._ready, failed: !!A._failed, err: A._err, hooked: !!A._hooked,
+      ready: !!A._ready, imgScale: (A.imgScale || 1), failed: !!A._failed, err: A._err, hooked: !!A._hooked,
       hasData: !!(A.data && A.data.frames), frames: A._buckets ? A._buckets.length : 0,
       painted: A._paint, miss: A._miss, ids: (A.data && A.data.frames) ? Object.keys(A.data.frames).length : 0
     };

@@ -204,7 +204,7 @@
       } else {
         this.text('素材加载中…', cx, H * 0.60, T.fs.title, T.hi);
         var wa = (PS.Atlas && PS.Atlas.waitSec) ? PS.Atlas.waitSec() : this.time;
-        this.text('首次进入要下 1.8MB 美术素材 · 已等待 ' + Math.max(0, Math.floor(wa)) + ' 秒', cx, H * 0.69, T.fs.body, T.hi);
+        this.text('首次进入要下美术素材 · 已等待 ' + Math.max(0, Math.floor(wa)) + ' 秒', cx, H * 0.69, T.fs.body, T.hi);
         this.text('网络慢时请保持这一页, 下完会自动进入对局', cx, H * 0.765, T.fs.small, T.low);
       }
       x.restore();
