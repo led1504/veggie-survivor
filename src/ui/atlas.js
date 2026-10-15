@@ -201,6 +201,8 @@
   A.load = function (cb) {
     if (A._ready || A._failed || A._loading) { if (cb) cb(A._ready); return; }
     A._loading = true;
+    /* 加载页要报**真实**已等待秒数(ui.js 的 this.time 从首帧才开始走, 会比真实等待少 holdMs) */
+    A.t0 = (typeof Date !== "undefined" && Date.now) ? Date.now() : 0;
     tryFetchData(function (gotData) {
       if (!gotData) { A._failed = true; A._err = 'no-frame-data'; A._loading = false; if (cb) cb(false); return; }
       buildIndex();
@@ -250,6 +252,11 @@
   };
 
   A.ready = function () { return !!A._ready; };
+  /** 图集是否**确定**失败(onerror / 帧表缺失 / 桩环境无 image 工厂) —— 素材闸门据此决定"加载页"还是"重试页" */
+  A.failed = function () { return !!A._failed; };
+
+  /** 从发起请求到现在的秒数(加载页显示用; 没发起过 = 0) */
+  A.waitSec = function () { return A.t0 ? (Date.now() - A.t0) / 1000 : 0; };
 
   /* ---------------------------- 启动闸门 ---------------------------- */
   /* 为什么要有它: 图集是**异步**加载的(assets/atlas.png 1840KB / 2036x3516, 光解码就要百毫秒),

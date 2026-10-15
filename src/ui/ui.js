@@ -155,6 +155,60 @@
      *   该地标是**纯装饰**: 不生成敌人、不参与碰撞、不提供增益/减益,
      *   删除后只影响观感, 故按用户要求移除; 同时呼应「单一场景 / 不要复杂」的诉求。 */
 
+    /* ================= 素材闸门(v9.1 · 2026-10-15) =================
+     * 用户原话: 「先解决进去还是会显示老版建模的问题, 能不能把老版建模都删除」。
+     * 根因(实读代码, 不是"还剩一份老模型文件"): 老建模 = art.js 的**程序化**画法, 图集没到位时它顶上。
+     *   启动闸门(PS.Atlas.pending)只等 holdMs=1.5s 就放行 ⇒ 慢网那段窗口里整屏都是程序化老美术
+     *   (2026-10-15 实测: 手机 37KB/s, 图集 1.78MB 要 48 秒 ⇒ 玩家打完 4 局都还是老建模)。
+     * 处置: 图集**没给定论就只画这一页** —— 世界/菜单一律不画 ⇒ 老美术在运行时不可达。
+     *   不是删掉程序化画法: 地面/特效/降级环境(stub 门禁)仍然要用它, 删了会黑屏; 是把这条路径堵死。
+     * 下载失败也不退回老美术, 给一个重试入口 —— 宁可不玩, 也不许玩家看到错的美术。
+     * 桩环境(门禁/预览页把 PS.Atlas 换掉或没装)没有 ready() ⇒ 直接放行, 与旧版逐像素一致。 */
+    artGate: function () {
+      var A = PS.Atlas;
+      if (!A || typeof A.ready !== 'function') return 'ok';
+      if (A.ready()) return 'ok';
+      if (typeof A.failed !== 'function' || !A.failed()) return 'loading';
+      /* 失败分两种, 必须分开(2026-10-15 smoke2 撞出来的):
+         · no-image-factory / no-frame-data = **环境压根加载不了图**(桩测试/预览页/无 image 工厂)
+           ⇒ 放行程序化画法: 拦着只会让整个降级环境画不出任何东西;
+         · img:xxx = 本该能下却没下来(onerror / 小游戏超时) ⇒ 真失败, 给重试入口。 */
+      var err = (typeof A.stats === 'function' && A.stats().err) || '';
+      return /^img:/.test(err) ? 'failed' : 'ok';
+    },
+    /* 加载页: 只有这一页 + 转圈 + 已等待秒数(不编进度条 —— 拿不到真实字节数就不许假装) */
+    drawLoading: function (kind) {
+      var x = this.ctx, S = this.uiScale(), W = this.uiW(), H = this.uiH();
+      var failed = (kind === 'failed');
+      /* 全部按**可用高度**摆(手机横屏只有 355 UI 高, 写死像素值会把按钮顶出屏外) */
+      var cx = W / 2, cy = H * 0.40, rr = Math.max(18, Math.min(30, H * 0.075));
+      x.save();
+      x.scale(S, S);
+      this.text('蔬 菜 幸 存 者', cx, H * 0.19, T.fs.hero, this.withA(T.hi, 0.42));
+      x.lineWidth = 6; x.lineCap = 'round';
+      x.strokeStyle = this.withA(T.gold, 0.16);
+      x.beginPath(); x.arc(cx, cy, rr, 0, PS.TAU); x.stroke();
+      x.strokeStyle = failed ? T.neg : T.gold;
+      var a0 = failed ? -1.3 : this.time * 2.6;
+      x.beginPath(); x.arc(cx, cy, rr, a0, a0 + 1.9); x.stroke();
+      x.lineCap = 'butt';
+      if (failed) {
+        this.text('素材加载失败', cx, H * 0.60, T.fs.title, T.neg);
+        this.text('美术图集没下下来 —— 不退回旧美术, 重新下一次', cx, H * 0.69, T.fs.body, T.hi);
+        var st = (PS.Atlas && PS.Atlas.stats) ? PS.Atlas.stats() : null;
+        if (st && st.err) this.text('（' + st.err + '）', cx, H * 0.755, T.fs.small, T.low);
+        this.button(cx - 95, H * 0.82, 190, 44, '重新加载', {
+          size: 17, bg: T.hi, hoverBg: '#fffaee', color: T.onGold, border: 'rgba(8,12,8,0.80)',
+          cb: function () { if (global.location && global.location.reload) global.location.reload(); }
+        });
+      } else {
+        this.text('素材加载中…', cx, H * 0.60, T.fs.title, T.hi);
+        var wa = (PS.Atlas && PS.Atlas.waitSec) ? PS.Atlas.waitSec() : this.time;
+        this.text('首次进入要下 1.8MB 美术素材 · 已等待 ' + Math.max(0, Math.floor(wa)) + ' 秒', cx, H * 0.69, T.fs.body, T.hi);
+        this.text('网络慢时请保持这一页, 下完会自动进入对局', cx, H * 0.765, T.fs.small, T.low);
+      }
+      x.restore();
+    },
     /* ---------- 每帧 ---------- */
     draw: function (dt) {
       this.time += dt;
@@ -163,6 +217,10 @@
       this.btnRects.length = 0;
       x.save();
       this.fillScreen('#0a0f0a');
+      /* v9.1 素材闸门: 图集没定论(还在下/下载失败) ⇒ 只画加载页, 不画世界也不画程序化老美术。
+         位置选在 fillScreen 之后、状态分发之前: 底下任何一页(菜单/战斗/覆盖页)都不许被画出来。 */
+      var gate = this.artGate();
+      if (gate !== 'ok') { this.drawLoading(gate); x.restore(); return; }
       if (g.state === PS.State.MENU) this.drawMenu();
       else if (g.state === PS.State.MODE) this.drawModeSelect();
       else if (g.state === PS.State.CHAR) this.drawCharSelect();
