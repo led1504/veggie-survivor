@@ -113,13 +113,23 @@
        *   对照 Brotato 手游战斗 HUD(3136x1440 截图归一): 血号 2.9% · 波次标题 4.4% · **倒计时 6.9%**
        *   —— 它把倒计时做成战斗界面上最大的一个字, 我们原来是 3.44%, 只比最小的字大一点。 */
       var pp = { x: 10, y: 8, w: 236, h: 66 };                    /* 左上: 头像 + 血 + 经验 + 等级 + 材料 */
-      var pm = { x: 10, y: H - 8 - 44, w: 224, h: 44 };           /* 左下: 武器槽(6 格 x 30) */
-      var pc = { x: Math.round(W / 2 - 66), y: 6, w: 132, h: 62 };/* 顶中: 波次 + 倒计时(倒计时 = 全场最大字) */
+      /* 顶中: 波次 + 倒计时。宽度收到 104 —— 里面最长的一行是 24px 的「60 秒」, 132 是给不出东西的留白,
+       *   而那段留白正是武器栏要用的地(见下)。 */
+      var pc = { x: Math.round(W / 2 - 52), y: 6, w: 104, h: 62 };
       var pg = { x: W - 8 - 46, y: 8, s: 46 };                    /* 右上: 暂停/设置(46 UI = 51 CSS px) */
+      /* v9.5(用户 2026-10-16): 「武器栏可以放在右上角, 波次结束倒计时和设置按钮之间刚好有不少空间;
+       *   放在左下角, 人手会挡住武器栏, 反而看不见」。
+       *   物理验证: 竖屏 + rot90 下 逻辑右上 == 物理右上, 逻辑左下 == 物理左下(左手拇指正压着)
+       *   ⇒ 武器栏从逻辑左下搬到**逻辑右上**, 夹在胶囊右缘与齿轮左缘之间。
+       *   宽度**由这段间距现算**, 一个字都不写死: uiScale 一变压根间距就变(390x844 机型 uiW=630,
+       *   用户那台 uiW=646), 写死必然在某一台上和胶囊或齿轮撞车。 */
+      var mRight = pg.x - 8;
+      var mAvail = Math.max(120, Math.floor(mRight - (pc.x + pc.w + 12)));
+      var pm = { x: mRight - mAvail, y: 8, w: mAvail, h: 48 };
       return {
         phone: true, plate: pp, mat: pm, cap: pc, gear: pg,
         capW: pc.w, capX: pc.x, capY: pc.y, matX: pm.x, matY: pm.y,
-        gearX: pg.x, gearY: pg.y, gearS: pg.s, upY: pm.y - 30
+        gearX: pg.x, gearY: pg.y, gearS: pg.s, upY: pm.y + pm.h + 2
       };
     },
     /* 顶部 HUD 带在**逻辑画布**里占掉的高度。屏幕空间的东西(波次横幅)必须落在它下面。
@@ -3326,8 +3336,10 @@
       this.plate(M.x, M.y, M.w, M.h, 12, 0.90, T.edge);
       this.groupTag(M.x, M.y, M.h, T.pos);
       var slotN = (s && s.weaponSlot) || B.WEAPON_SLOTS;
-      var sgap = 4, slotW = Math.min(30, Math.floor((M.w - 24 - (slotN - 1) * sgap) / slotN));
-      var sx0 = M.x + 12, sy0 = M.y + Math.round((M.h - slotW) / 2);
+      /* 格宽由**算出来的板宽**反推, 并且整行居中 —— 板宽是自适应来的, 再叠一层固定内边距就会左右不对称。 */
+      var sgap = 3, slotW = Math.max(18, Math.min(28, Math.floor((M.w - 16 - (slotN - 1) * sgap) / slotN)));
+      var rowW = slotN * slotW + (slotN - 1) * sgap;
+      var sx0 = M.x + Math.round((M.w - rowW) / 2), sy0 = M.y + Math.round((M.h - slotW) / 2);
       for (i = 0; i < slotN; i++) {
         var wx = sx0 + i * (slotW + sgap);
         x.fillStyle = g.weapons[i] ? 'rgba(7,11,7,0.9)' : 'rgba(7,11,7,0.55)';
