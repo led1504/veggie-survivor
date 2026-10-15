@@ -105,10 +105,17 @@
           gearX: dg.x, gearY: dg.y, gearS: dg.s, upY: 84
         };
       }
-      var pp = { x: 10, y: 8, w: 214, h: 54 };                    /* 左上: 头像 + 血 + 经验 + 等级 + 材料 */
-      var pm = { x: 10, y: H - 8 - 34, w: 200, h: 34 };           /* 左下: 武器槽(6 格 x 26) */
-      var pc = { x: Math.round(W / 2 - 58), y: 6, w: 116, h: 46 };/* 顶中: 波次 + 倒计时(半透明小底, 不再是 300x64 胶囊) */
-      var pg = { x: W - 8 - 40, y: 8, s: 40 };                    /* 右上: 暂停/设置(40 UI = 44 CSS px, 不小于触控下限) */
+      /* v9.5(用户 2026-10-16: 「字体ui太小, 看得眼睛难受」+ 参照 Brotato 战斗 HUD):
+       *   三块板子整体长大一档, 为的是把字号整体抬起来 —— 板子尺寸与字号是绑死的(门禁 [E] 要求
+       *   每条 HUD 文字都落在自己的板子里), 先长板子再加字, 顺序反了必红。
+       *   实测(work/_fonts.cjs, 400x760 @dpr3.5): 旧版最小字 = 徽里等级数字 11.00 CSS px(短边 2.75%)、
+       *   星号/血号/秒数 13.75(3.44%)、LV 行 12.10(3.03%); 波次标题最大也只有 18.15(4.54%)。
+       *   对照 Brotato 手游战斗 HUD(3136x1440 截图归一): 血号 2.9% · 波次标题 4.4% · **倒计时 6.9%**
+       *   —— 它把倒计时做成战斗界面上最大的一个字, 我们原来是 3.44%, 只比最小的字大一点。 */
+      var pp = { x: 10, y: 8, w: 236, h: 66 };                    /* 左上: 头像 + 血 + 经验 + 等级 + 材料 */
+      var pm = { x: 10, y: H - 8 - 44, w: 224, h: 44 };           /* 左下: 武器槽(6 格 x 30) */
+      var pc = { x: Math.round(W / 2 - 66), y: 6, w: 132, h: 62 };/* 顶中: 波次 + 倒计时(倒计时 = 全场最大字) */
+      var pg = { x: W - 8 - 46, y: 8, s: 46 };                    /* 右上: 暂停/设置(46 UI = 51 CSS px) */
       return {
         phone: true, plate: pp, mat: pm, cap: pc, gear: pg,
         capW: pc.w, capX: pc.x, capY: pc.y, matX: pm.x, matY: pm.y,
@@ -119,7 +126,9 @@
      *   桌面 = 62(S=1) -> 横幅仍在 max(114, 62+14) = 114, 逐像素与旧版一致;
      *   手机 = (8+54) x S -> 横幅让到紧凑版下面(v5.21 的 88 x S 是两行版的代价, 现已不需要)。 */
     hudBandH: function () {
-      return (this.uiScale() === 1 ? 62 : 62) * this.uiScale();
+      /* v9.5: 手机板子长高了(血板 8+66 = 74 UI), 带高必须跟着 —— 否则横幅会压在板子上。
+       *   桌面仍然 62 x 1 = 62(逐像素不变)。 */
+      return (this.uiScale() === 1 ? 62 : 74) * this.uiScale();
     },
     uiH: function () { return this.ui.H / this.uiScale(); },
     rescaleRects: function (arr, from, S) {
@@ -494,8 +503,12 @@
       var a = bn.kind === 'sprint' ? PS.util.clamp((6 - left) / 0.6, 0, 1)
         : Math.min(1, g.waveBanner / 0.4) * (g.waveBanner > 1.8 ? PS.util.clamp((2.2 - g.waveBanner) / 0.4, 0, 1) : 1);
       if (a <= 0) return;
-      var tw = Math.max(this.textW(bn.title, T.fs.num), bn.sub ? this.textW(bn.sub, T.fs.small, false) : 0);
-      var pw = Math.min(520, Math.ceil(tw + 64)), ph = bn.sub ? 56 : 40;
+      /* v9.5: 横幅是**屏幕空间**(不乘 uiScale), 所以它的字在手机上只有 11.1 / 6.9 CSS px ——
+       *   全场最小, 却画在屏幕正中最扎眼的位置。手机端单独放大(桌面 S=1 走原值, 逐像素不变)。 */
+      var hot = this.uiScale() > 1;
+      var fT = hot ? 34 : T.fs.num, fS = hot ? 24 : T.fs.small;
+      var tw = Math.max(this.textW(bn.title, fT), bn.sub ? this.textW(bn.sub, fS, false) : 0);
+      var pw = Math.min(hot ? 760 : 520, Math.ceil(tw + (hot ? 84 : 64))), ph = hot ? (bn.sub ? 100 : 68) : (bn.sub ? 56 : 40);
       /* by: 桌面 114(逐像素不变); 手机 HUD 换两行后必须让开那条带, 否则被放大的板子压住。 */
       var bx = Math.round(u.W / 2 - pw / 2), by = Math.max(114, Math.round(this.hudBandH()) + 14);
       x.save();
@@ -505,8 +518,8 @@
       x.strokeStyle = bn.color; x.lineWidth = 2;
       this.rr(bx, by, pw, ph, 14); x.stroke();
       x.globalAlpha = a;
-      this.fitText(bn.title, u.W / 2, by + 26, pw - 40, T.fs.num, bn.color);
-      if (bn.sub) this.fitText(bn.sub, u.W / 2, by + 45, pw - 40, T.fs.small, T.mid, 'center', false);
+      this.fitText(bn.title, u.W / 2, hot ? (bn.sub ? by + 44 : by + 46) : by + 26, pw - 40, fT, bn.color);
+      if (bn.sub) this.fitText(bn.sub, u.W / 2, hot ? by + 84 : by + 45, pw - 40, fS, hot ? T.hi : T.mid, 'center', false);
       x.restore();
       this.bannerRect = { x: bx, y: by, w: pw, h: ph, kind: bn.kind };
     },
@@ -2179,7 +2192,7 @@
       x.strokeStyle = on ? T.gold : T.goldA;
       x.lineWidth = on ? 2.5 : 1.5;
       this.rr(px, py, w, h, 12); x.stroke();
-      this.gearIcon(px + w / 2, py + h / 2, 10.5, on ? T.coin : T.hi);
+      this.gearIcon(px + w / 2, py + h / 2, w === 44 ? 10.5 : w / 4, on ? T.coin : T.hi);   /* v9.5: 图标随按钮走(桌面 44 = 旧值 10.5, 逐像素不变) */
       this.btnRects.push({ x: px, y: py, w: w, h: h, label: '设置' });
       this.buttons.push({
         x: px, y: py, w: w, h: h, id: 'hud-settings', label: '设置',
@@ -3258,22 +3271,22 @@
       this.plate(P.x, P.y, P.w, P.h, 12, 0.90, T.edge);
       this.groupTag(P.x, P.y, P.h, T.neg);
       x.save();
-      x.beginPath(); x.arc(P.x + 24, P.y + 27, 16, 0, PS.TAU);
+      x.beginPath(); x.arc(P.x + 26, P.y + 30, 19, 0, PS.TAU);
       x.fillStyle = this.withA(T.gold, 0.14); x.fill();
       x.strokeStyle = this.withA(T.gold, 0.6); x.lineWidth = 1.5; x.stroke();
       x.clip();
-      this.drawCharModel(g.char, P.x + 24, P.y + 31, 0.52, { walk: 0, moving: false, eyeDx: 0, eyeDy: 0 });
+      this.drawCharModel(g.char, P.x + 26, P.y + 35, 0.62, { walk: 0, moving: false, eyeDx: 0, eyeDy: 0 });
       x.restore();
-      var bx = P.x + 46, bw = P.w - 46 - 8, by = P.y + 7, bh = 15;
+      var bx = P.x + 52, bw = P.w - 52 - 10, by = P.y + 8, bh = 20;
       var ratio = PS.util.clamp(s.maxHp > 0 ? g.player.hp / s.maxHp : 0, 0, 1);
       var veryLow = this.hpBarFill(bx, by, bw, bh, ratio, dt);
       var hpTxt = Math.max(0, Math.ceil(g.player.hp)) + ' / ' + s.maxHp;
-      x.font = 'bold ' + T.fs.small + 'px ' + u.font;
+      x.font = 'bold 16px ' + u.font;
       x.fillStyle = 'rgba(5,8,5,0.66)';
-      this.rr(bx + 4, by + 1, Math.min(bw - 8, x.measureText(hpTxt).width + 10), bh - 2, 5); x.fill();
-      this.fitText(hpTxt, bx + 9, by + bh - 4, bw - 16, T.fs.small, veryLow ? '#ffd2cb' : '#ffffff', 'left', true, 10);
+      this.rr(bx + 4, by + 2, Math.min(bw - 8, x.measureText(hpTxt).width + 14), bh - 4, 6); x.fill();
+      this.fitText(hpTxt, bx + 10, by + bh - 5, bw - 18, 16, veryLow ? '#ffd2cb' : '#ffffff', 'left', true, 12);
       /* 经验条 + 等级圆徽 */
-      var need = B.xpNeed(g.level), xbw = bw - 26, xy = P.y + 27, xh = 7;
+      var need = B.xpNeed(g.level), xbw = bw - 32, xy = P.y + 36, xh = 9;
       x.fillStyle = 'rgba(255,255,255,0.08)';
       this.rr(bx, xy, xbw, xh, 4); x.fill();
       var xr = PS.util.clamp(need > 0 ? g.xp / need : 0, 0, 1);
@@ -3281,36 +3294,39 @@
       x.strokeStyle = this.withA(T.info, 0.5); x.lineWidth = 1;
       this.rr(bx, xy, xbw, xh, 4); x.stroke();
       x.fillStyle = T.info;
-      x.beginPath(); x.arc(bx + bw - 8, xy + xh / 2, 9, 0, PS.TAU); x.fill();
-      x.strokeStyle = T.ink; x.lineWidth = 1.2; x.stroke();
+      x.beginPath(); x.arc(bx + bw - 11, xy + xh / 2, 11.5, 0, PS.TAU); x.fill();
+      x.strokeStyle = T.ink; x.lineWidth = 1.4; x.stroke();
       x.fillStyle = T.onGold;
-      x.font = 'bold ' + (g.level >= 100 ? 9 : (g.level >= 10 ? 10 : 11)) + 'px ' + u.font;
+      x.font = 'bold ' + (g.level >= 100 ? 10 : (g.level >= 10 ? 12 : 13)) + 'px ' + u.font;
       x.textAlign = 'center';
-      x.fillText('' + g.level, bx + bw - 8, xy + xh / 2 + 4);
+      x.fillText('' + g.level, bx + bw - 11, xy + xh / 2 + 4.5);
       x.textAlign = 'left';
-      this.fitText('LV ' + g.level + ' · ' + Math.floor(g.xp) + '/' + need, bx, P.y + P.h - 5, bw - 62,
-        T.fs.micro, T.low, 'left', false, 9);
-      this.fitText('★ ' + g.material, P.x + P.w - 8, P.y + P.h - 4, 66, T.fs.small, T.pos, 'right', true, 10);
+      /* 颜色从 T.low(#6b776b, 对深板 ≈4.4:1) 提到 T.hi: 最小的字配最低的对比度是最糟的组合。 */
+      this.fitText('LV ' + g.level + ' · ' + Math.floor(g.xp) + '/' + need, bx, P.y + P.h - 6, bw - 74,
+        13, T.hi, 'left', false, 10);
+      this.fitText('★ ' + g.material, P.x + P.w - 10, P.y + P.h - 6, 62, 16, T.pos, 'right', true, 11);
       /* ---- 顶中: 波次 + 倒计时 + 进度(半透明小底, 无描边) ---- */
       var C = L.cap, cx = C.x + C.w / 2;
       this.plate(C.x, C.y, C.w, C.h, 12, 0.62, false);
       var left = Math.max(0, (g.waveDuration || 0) - g.timeInWave);
-      this.fitText('第 ' + g.wave + ' 波', cx, C.y + 20, C.w - 12, T.fs.lead, T.coin, 'center', true, 12);
-      this.fitText(Math.ceil(left) + ' 秒' + (g.horde ? ' · 怪潮!' : ''), cx, C.y + 35, C.w - 12, T.fs.small,
-        left < 5 ? T.danger : (g.horde ? T.neg : T.mid), 'center', true, 9);
+      this.fitText('第 ' + g.wave + ' 波', cx, C.y + 20, C.w - 12, 18, T.coin, 'center', true, 13);
+      /* v9.5: 倒计时 = 战斗界面上最大的一个字(Brotato 战斗 HUD 同口径: 它的倒计时占屏高 6.9%,
+       *   我们原来 3.44%, 只比最小的字大一点)。「怪潮!」不再挤在这一行 —— 横幅已经喊过一次了。 */
+      this.fitText(Math.ceil(left) + ' 秒', cx, C.y + 50, C.w - 12, 24,
+        left < 5 ? T.danger : (g.horde ? T.neg : T.hi), 'center', true, 16);
       var wpr = g.waveDuration > 0 ? PS.util.clamp(g.timeInWave / g.waveDuration, 0, 1) : 0;
       x.fillStyle = 'rgba(255,255,255,0.14)';
-      this.rr(C.x + 8, C.y + 39, C.w - 16, 4, 2); x.fill();
+      this.rr(C.x + 8, C.y + 52, C.w - 16, 5, 2); x.fill();
       if (wpr > 0) {
         x.fillStyle = left < 5 ? T.danger : T.coin;
-        this.rr(C.x + 8, C.y + 39, Math.max(3, (C.w - 16) * wpr), 4, 2); x.fill();
+        this.rr(C.x + 8, C.y + 52, Math.max(3, (C.w - 16) * wpr), 5, 2); x.fill();
       }
       /* ---- 左下: 武器槽 ---- */
       var M = L.mat;
       this.plate(M.x, M.y, M.w, M.h, 12, 0.90, T.edge);
       this.groupTag(M.x, M.y, M.h, T.pos);
       var slotN = (s && s.weaponSlot) || B.WEAPON_SLOTS;
-      var sgap = 4, slotW = Math.min(26, Math.floor((M.w - 24 - (slotN - 1) * sgap) / slotN));
+      var sgap = 4, slotW = Math.min(30, Math.floor((M.w - 24 - (slotN - 1) * sgap) / slotN));
       var sx0 = M.x + 12, sy0 = M.y + Math.round((M.h - slotW) / 2);
       for (i = 0; i < slotN; i++) {
         var wx = sx0 + i * (slotW + sgap);
@@ -3320,14 +3336,14 @@
         x.lineWidth = 1.2;
         this.rr(wx, sy0, slotW, slotW, 6); x.stroke();
         if (g.weapons[i]) {
-          this.weaponIcon(g.weapons[i].key, wx + slotW / 2, sy0 + slotW / 2 - 3, 12,
+          this.weaponIcon(g.weapons[i].key, wx + slotW / 2, sy0 + slotW / 2 - 3, 13,
             { def: PS.WeaponData.list[g.weapons[i].key], tier: g.weapons[i].tier });
           x.fillStyle = 'rgba(5,8,5,0.78)';
-          this.rr(wx + slotW - 15, sy0 + slotW - 12, 13, 10, 3); x.fill();
+          this.rr(wx + slotW - 19, sy0 + slotW - 15, 17, 13, 3); x.fill();
           x.fillStyle = T.coin;
-          x.font = 'bold 8px ' + u.font;
+          x.font = 'bold 11px ' + u.font;
           x.textAlign = 'center';
-          x.fillText('T' + g.weapons[i].tier, wx + slotW - 8.5, sy0 + slotW - 4.5);
+          x.fillText('T' + g.weapons[i].tier, wx + slotW - 10.5, sy0 + slotW - 5);
         }
       }
       x.textAlign = 'left';
